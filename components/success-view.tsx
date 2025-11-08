@@ -2,102 +2,245 @@
 
 import { Button } from "@/components/ui/button"
 import { Download, Share2 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { db } from "@/firebase"
+import { collection, query, where, getDocs } from "firebase/firestore"
 
 interface SuccessViewProps {
   name: string
+  phone: string
 }
 
-export default function SuccessView({ name }: SuccessViewProps) {
+export default function SuccessView({ name, phone }: SuccessViewProps) {
   const [isDownloading, setIsDownloading] = useState(false)
   const [isSharing, setIsSharing] = useState(false)
+  const [certificateUrl, setCertificateUrl] = useState<string | null>(null)
+  const [pledgeId, setPledgeId] = useState<string | null>(null)
 
+  // Fetch certificate from Firestore with polling
+  useEffect(() => {
+    const fetchCertificate = async () => {
+      try {
+        const q = query(
+          collection(db, "pledges"),
+          where("fullName", "==", name),
+          where("phone", "==", phone)
+        )
+        const snapshot = await getDocs(q)
+        if (!snapshot.empty) {
+          const doc = snapshot.docs[0]
+          const data = doc.data()
+          console.log("Pledge document data:", data)
+          
+          // Store the pledge ID
+          setPledgeId(doc.id)
+          
+          if (data.certificateUrl) {
+            console.log("Certificate URL found:", data.certificateUrl)
+            setCertificateUrl(data.certificateUrl)
+          } else {
+            console.log("Certificate URL not yet available")
+          }
+        } else {
+          console.log("No pledge document found")
+        }
+      } catch (err) {
+        console.error("Error fetching certificate:", err)
+      }
+    }
+
+    // Initial fetch
+    fetchCertificate()
+
+    // Poll every 3 seconds for up to 30 seconds
+    const pollInterval = setInterval(fetchCertificate, 3000)
+    const timeout = setTimeout(() => {
+      clearInterval(pollInterval)
+    }, 30000)
+
+    return () => {
+      clearInterval(pollInterval)
+      clearTimeout(timeout)
+    }
+  }, [name, phone])
+
+  // Download handler
   const handleDownload = async () => {
+    if (!pledgeId) {
+      alert("Certificate not ready yet!")
+      return
+    }
+
     setIsDownloading(true)
-    // Simulate certificate generation and download
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    // In a real app, this would generate and download a PDF/image
-    alert(`Certificate for ${name} downloaded!`)
-    setIsDownloading(false)
+
+    try {
+      // Use the Cloud Function URL with CORS enabled
+      const functionUrl = `https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
+      
+      console.log("📥 Downloading from Cloud Function:", functionUrl)
+
+      const response = await fetch(functionUrl)
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const blob = await response.blob()
+
+      // Create an object URL from the Blob
+      const blobUrl = URL.createObjectURL(blob)
+
+      // Create an invisible anchor element
+      const anchor = document.createElement("a")
+      anchor.style.display = "none"
+      anchor.href = blobUrl
+      anchor.download = `${name}-certificate.png`
+
+      // Append to body, trigger click, then remove
+      document.body.appendChild(anchor)
+      anchor.click()
+      document.body.removeChild(anchor)
+
+      // Revoke the object URL to free up memory
+      URL.revokeObjectURL(blobUrl)
+
+      console.log("✅ Certificate downloaded successfully")
+    } catch (error) {
+      console.error("❌ Download failed:", error)
+      alert("Failed to download certificate. Please try again.")
+    } finally {
+      setIsDownloading(false)
+    }
   }
 
+  // Share handler
   const handleShare = async () => {
+    if (!pledgeId) return alert("Certificate not ready yet!")
     setIsSharing(true)
-    const text = `I've pledged to vote in Kottayam! 🇮🇳 Join me at Kottayam Votes - Your Vote, Your Voice.`
+    
+    const shareTitle = "Kottayam Voting Pledge"
+    const shareText = `I've pledged to vote in Kottayam! 🇮🇳\n\nJoin me in making democracy stronger.\n\nKottayam Votes - Your Vote, Your Voice.`
+    const functionUrl = `https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
 
-    if (navigator.share) {
+    try {
+      // Try to fetch and share the image
       try {
-        await navigator.share({
-          title: "Kottayam Votes",
-          text: text,
-        })
-      } catch (err) {
-        // User cancelled share
+        const response = await fetch(functionUrl)
+        const blob = await response.blob()
+        const fileName = `${name.replace(/\s+/g, '_')}_Certificate.png`
+        const file = new File([blob], fileName, { type: "image/png" })
+        
+        // Check if Web Share API with files is supported
+        if (navigator.share && navigator.canShare) {
+          const shareData = {
+            title: shareTitle,
+            text: shareText,
+            files: [file]
+          }
+          
+          if (navigator.canShare(shareData)) {
+            await navigator.share(shareData)
+            console.log("✅ Certificate image shared successfully")
+            setIsSharing(false)
+            return
+          }
+        }
+      } catch (fetchError) {
+        console.log("Could not fetch image for sharing:", fetchError)
       }
-    } else {
-      // Fallback - copy to clipboard
-      await navigator.clipboard.writeText(text)
-      alert("Share text copied to clipboard!")
+      
+      // Fallback: Share URL
+      if (navigator.share) {
+        await navigator.share({
+          title: shareTitle,
+          text: shareText + `\n\n${certificateUrl}`
+        })
+        console.log("✅ Shared URL")
+      } else {
+        // Copy to clipboard
+        const textToCopy = `${shareText}\n\nView my certificate: ${certificateUrl}`
+        await navigator.clipboard.writeText(textToCopy)
+        alert("✅ Certificate link copied to clipboard!\n\nYou can now paste it to share on social media.")
+        console.log("✅ Copied to clipboard")
+      }
+    } catch (error: any) {
+      if (error.name === 'AbortError') {
+        console.log("Share cancelled by user")
+      } else {
+        console.error("Share error:", error)
+        try {
+          const textToCopy = `${shareText}\n\n${certificateUrl}`
+          await navigator.clipboard.writeText(textToCopy)
+          alert("✅ Certificate link copied to clipboard!")
+        } catch (clipboardError) {
+          alert("Please manually copy this link:\n\n" + certificateUrl)
+        }
+      }
     }
+    
     setIsSharing(false)
   }
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <header className="bg-primary text-primary-foreground py-6 px-4 sm:py-8">
+      <header className="bg-primary text-primary-foreground py-6 px-4 sm:py-8 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center">
-              <div className="text-2xl font-bold text-primary-foreground">🇮🇳</div>
-            </div>
+          <div className="w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="text-2xl font-bold">🇮🇳</div>
           </div>
-          <p className="text-xs text-primary-foreground/70 text-center">
-            Initiative by Kottayam District Administration
-          </p>
+          <p className="text-xs text-primary-foreground/70">Initiative by Kottayam District Administration</p>
         </div>
       </header>
 
-      {/* Success Content */}
+      {/* Main Section */}
       <section className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16">
-        <div className="w-full max-w-md">
-          {/* Success Message */}
+        <div className="w-full max-w-4xl">
+          {/* Message */}
           <div className="text-center mb-10">
             <div className="mb-6 inline-flex items-center justify-center w-16 h-16 bg-accent/20 rounded-full">
               <div className="text-4xl">✓</div>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2 text-balance">Congratulations!</h1>
-            <p className="text-lg text-muted-foreground text-balance">{name}, you have pledged to vote.</p>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-2">Congratulations!</h1>
+            <p className="text-lg text-muted-foreground">{name}, you have pledged to vote.</p>
           </div>
 
-          {/* Certificate Preview */}
-          <div className="mb-10">
-            <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg border-2 border-dashed border-border flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-center p-6">
-                <div className="text-4xl mb-3">📜</div>
-                <p className="text-sm text-muted-foreground font-medium">Your Certificate</p>
-                <p className="text-xs text-muted-foreground mt-1">(Certificate will be generated and displayed here)</p>
+          {/* Certificate */}
+          <div className="mb-10 max-w-3xl mx-auto">
+            {certificateUrl ? (
+              <div className="w-full rounded-lg overflow-hidden border shadow-lg hover:shadow-xl transition-shadow">
+                <img 
+                  src={certificateUrl} 
+                  alt="Voting Pledge Certificate" 
+                  className="w-full h-auto object-contain"
+                />
               </div>
-            </div>
+            ) : (
+              <div className="aspect-[3/2] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg border-2 border-dashed border-border flex items-center justify-center shadow-sm">
+                <div className="text-center p-6">
+                  <div className="text-4xl mb-3 animate-pulse">📜</div>
+                  <p className="text-sm text-muted-foreground font-medium">Your Certificate</p>
+                  <p className="text-xs text-muted-foreground mt-1">(Generating... please wait)</p>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Action Buttons */}
-          <div className="space-y-3 mb-8">
+          {/* Buttons */}
+          <div className="space-y-3 mb-8 max-w-md mx-auto">
             <Button
               onClick={handleDownload}
-              disabled={isDownloading}
+              disabled={isDownloading || !certificateUrl}
               className="w-full h-12 text-base font-semibold bg-accent hover:bg-accent/90"
               size="lg"
             >
               {isDownloading ? (
                 <>
-                  <span className="animate-spin mr-2">⏳</span>
-                  Generating...
+                  <span className="animate-spin mr-2">⏳</span> Generating...
                 </>
               ) : (
                 <>
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Certificate
+                  <Download className="mr-2 h-5 w-5" /> Download Certificate
                 </>
               )}
             </Button>
@@ -111,28 +254,24 @@ export default function SuccessView({ name }: SuccessViewProps) {
             >
               {isSharing ? (
                 <>
-                  <span className="animate-spin mr-2">⏳</span>
-                  Sharing...
+                  <span className="animate-spin mr-2">⏳</span> Sharing...
                 </>
               ) : (
                 <>
-                  <Share2 className="mr-2 h-5 w-5" />
-                  Share This
+                  <Share2 className="mr-2 h-5 w-5" /> Share This
                 </>
               )}
             </Button>
           </div>
 
-          {/* Instruction Text */}
           <div className="bg-secondary/30 rounded-lg p-4 text-center">
-            <p className="text-sm text-foreground font-medium text-balance">
+            <p className="text-sm font-medium text-foreground">
               Save this image and post it to your Instagram Story!
             </p>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-muted py-4 px-4 text-center border-t border-border">
         <p className="text-sm text-muted-foreground">© 2025 Kottayam District Administration. Your vote matters.</p>
       </footer>
