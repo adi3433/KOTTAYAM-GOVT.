@@ -14,10 +14,12 @@
 ## 🚀 Deploy to Vercel
 
 ### Step 1: Login to Vercel
+
 1. Go to https://vercel.com
 2. Click "Login" and use your GitHub account
 
 ### Step 2: Import Repository
+
 1. Click "Add New..." → "Project"
 2. Select "Import Git Repository"
 3. Find and import: `kottayam-voting-RSVP`
@@ -36,6 +38,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=1:690059290710:web:2c4241aa7cbe30484eb3f7
 ```
 
 ### Step 4: Deploy
+
 1. Click "Deploy"
 2. Wait for build to complete (~2-3 minutes)
 3. Get your production URL!
@@ -45,13 +48,16 @@ NEXT_PUBLIC_FIREBASE_APP_ID=1:690059290710:web:2c4241aa7cbe30484eb3f7
 After getting your Vercel URL (e.g., `your-app.vercel.app`):
 
 ### 1. Update Firebase Authorized Domains
+
 - Go to [Firebase Console](https://console.firebase.google.com/project/kottayam-votes-2025/authentication/settings)
 - Click "Settings" tab
 - Scroll to "Authorized domains"
 - Add your Vercel domain: `your-app.vercel.app`
 
 ### 2. Update CORS Configuration (Optional)
+
 If you want to restrict CORS to specific domains, update `cors.json`:
+
 ```json
 {
   "origin": ["https://your-app.vercel.app"],
@@ -61,6 +67,7 @@ If you want to restrict CORS to specific domains, update `cors.json`:
 ```
 
 ### 3. Test Production App
+
 - [ ] Submit a test pledge
 - [ ] Verify certificate generation (wait ~5 seconds)
 - [ ] Test certificate download
@@ -79,7 +86,6 @@ If you want to restrict CORS to specific domains, update `cors.json`:
 - ✅ `generateCertificate` - Creates certificates on new pledges
   - Region: asia-south1
   - Trigger: Firestore document create
-  
 - ✅ `downloadCertificate` - Serves certificates with CORS
   - Region: us-central1
   - URL: https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate
@@ -88,16 +94,19 @@ If you want to restrict CORS to specific domains, update `cors.json`:
 ## 💡 Troubleshooting
 
 ### Build fails on Vercel
+
 - Check that all environment variables are set
 - Verify pnpm lockfile is committed
 - Check build logs in Vercel dashboard
 
 ### Certificates not generating
+
 - Check Firebase Functions logs
 - Verify Firestore trigger region matches
 - Ensure Storage permissions are correct
 
 ### Download not working
+
 - Verify Cloud Function is deployed
 - Check CORS settings
 - Test function URL directly with ?id=PLEDGE_ID
@@ -105,6 +114,7 @@ If you want to restrict CORS to specific domains, update `cors.json`:
 ## 📞 Support
 
 For issues, check:
+
 1. Vercel build logs
 2. Firebase Functions logs: `firebase functions:log`
 3. Browser console for errors

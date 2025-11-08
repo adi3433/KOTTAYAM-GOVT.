@@ -31,17 +31,20 @@ A modern voting pledge platform developed for the Kottayam District Administrati
 ## 📦 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/Basil-World/kottayam-voting-RSVP.git
 cd kottayam-voting-RSVP
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Set up Firebase:
+
 ```bash
 # Install Firebase CLI globally
 npm install -g firebase-tools
@@ -56,6 +59,7 @@ cd ..
 ```
 
 4. Configure environment variables:
+
 ```bash
 cp .env.local.example .env.local
 # Edit .env.local with your Firebase credentials
@@ -64,6 +68,7 @@ cp .env.local.example .env.local
 ## 🔧 Development
 
 Run the development server:
+
 ```bash
 pnpm dev
 ```
@@ -75,17 +80,20 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 ### Deploy to Vercel
 
 1. **Install Vercel CLI** (optional):
+
 ```bash
 npm install -g vercel
 ```
 
 2. **Deploy via Vercel Dashboard**:
+
    - Go to [vercel.com](https://vercel.com)
    - Import the GitHub repository
    - Configure environment variables (see below)
    - Deploy!
 
 3. **Or deploy via CLI**:
+
 ```bash
 vercel
 ```
