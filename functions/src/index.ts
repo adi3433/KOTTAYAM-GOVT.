@@ -42,32 +42,32 @@ export const generateCertificate = onDocumentCreated(
           <rect x="50" y="50" width="${width - 100}" 
                 height="${height - 100}" 
                 fill="none" stroke="#93c5fd" stroke-width="2"/>
-          <text x="${width / 2}" y="120" 
+          
+          <!-- Logo placeholder area -->
+          <rect x="${(width / 2) - 120}" y="70" width="240" 
+                height="80" fill="#ffffff" rx="8"/>
+          
+          <text x="${width / 2}" y="200" 
                 font-family="Georgia, serif" font-size="48" 
                 font-weight="bold" 
                 fill="#1e40af" text-anchor="middle">
             VOTING PLEDGE CERTIFICATE
           </text>
-          <text x="${width / 2}" y="170" 
-                font-family="Arial, sans-serif" font-size="24" 
+          <text x="${width / 2}" y="245" 
+                font-family="Arial, sans-serif" font-size="20" 
                 fill="#64748b" text-anchor="middle">
-            Kottayam District Administration
+            SVEEP Kottayam District
           </text>
-          <text x="${width / 2}" y="280" 
+          <text x="${width / 2}" y="330" 
                 font-family="Arial, sans-serif" font-size="28" 
                 fill="#334155" text-anchor="middle">
             This certifies that
           </text>
-          <text x="${width / 2}" y="360" 
+          <text x="${width / 2}" y="410" 
                 font-family="Georgia, serif" font-size="56" 
                 font-weight="bold" 
                 fill="#0f172a" text-anchor="middle">
             ${name}
-          </text>
-          <text x="${width / 2}" y="420" 
-                font-family="Arial, sans-serif" font-size="28" 
-                fill="#475569" text-anchor="middle">
-            ${college}
           </text>
           <text x="${width / 2}" y="520" 
                 font-family="Arial, sans-serif" font-size="24" 
@@ -85,18 +85,53 @@ export const generateCertificate = onDocumentCreated(
             Date: ${new Date().toLocaleDateString("en-IN",
     {year: "numeric", month: "long", day: "numeric"})}
           </text>
-          <text x="${width / 2}" y="740" 
-                font-family="Arial, sans-serif" font-size="32" 
-                text-anchor="middle">
-            🇮🇳
-          </text>
         </svg>
       `;
 
-      // Convert SVG to PNG
-      const finalImage = await sharp(Buffer.from(svgCertificate))
+      // Convert SVG to PNG base certificate
+      const baseCertificate = await sharp(Buffer.from(svgCertificate))
         .png()
         .toBuffer();
+
+      // Try to add SVEEP logo on top (if available)
+      let finalImage: Buffer;
+      try {
+        // Download the SVEEP logo from public storage or use a local copy
+        const logoBucket = storage.bucket();
+        const logoFile = logoBucket.file("public-assets/sveep-logo.jpg");
+        const [logoExists] = await logoFile.exists();
+
+        if (logoExists) {
+          const [logoBuffer] = await logoFile.download();
+
+          // Resize logo to fit in the certificate (240x80)
+          const resizedLogo = await sharp(logoBuffer)
+            .resize(240, 80, {
+              fit: "contain",
+              background: {r: 255, g: 255, b: 255, alpha: 0},
+            })
+            .png()
+            .toBuffer();
+
+          // Composite logo onto certificate
+          finalImage = await sharp(baseCertificate)
+            .composite([{
+              input: resizedLogo,
+              top: 70,
+              left: (width / 2) - 120,
+            }])
+            .png()
+            .toBuffer();
+
+          logger.info("✅ SVEEP logo added to certificate");
+        } else {
+          logger.warn("⚠️  SVEEP logo not found, using base certificate");
+          finalImage = baseCertificate;
+        }
+      } catch (logoError) {
+        logger.warn("⚠️  Could not add logo:", logoError);
+        finalImage = baseCertificate;
+      }
 
       // Upload to Storage
       const bucket = storage.bucket();

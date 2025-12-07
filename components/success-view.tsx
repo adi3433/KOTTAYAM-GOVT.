@@ -186,10 +186,10 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       {/* Header */}
       <header className="bg-primary text-primary-foreground py-6 px-4 sm:py-8 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="w-12 h-12 bg-primary-foreground/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <div className="text-2xl font-bold">🇮🇳</div>
+          <div className="w-48 h-24 bg-white rounded-lg flex items-center justify-center mx-auto mb-4 overflow-hidden">
+            <img src="/sveep-logo.png" alt="SVEEP Logo" className="w-full h-full object-cover" />
           </div>
-          <p className="text-xs text-primary-foreground/70">Initiative by Kottayam District Administration</p>
+          <p className="text-xs text-primary-foreground/70">Initiated by SVEEP Kottayam District</p>
         </div>
       </header>
 
@@ -273,7 +273,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       </section>
 
       <footer className="bg-muted py-4 px-4 text-center border-t border-border">
-        <p className="text-sm text-muted-foreground">© 2025 Kottayam District Administration. Your vote matters.</p>
+        <p className="text-sm text-muted-foreground">© 2025 SVEEP Kottayam District.</p>
       </footer>
     </div>
   )
