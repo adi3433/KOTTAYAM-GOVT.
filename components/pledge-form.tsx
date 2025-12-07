@@ -56,7 +56,7 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
       <header className="bg-primary text-primary-foreground py-6 px-4 sm:py-8">
         <div className="max-w-2xl mx-auto text-center">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-48 h-24 bg-white rounded-lg flex items-center justify-center overflow-hidden">
+            <div className="w-40 h-20 sm:w-48 sm:h-24 bg-white rounded-lg flex items-center justify-center overflow-hidden">
               <img src="/sveep-logo.png" alt="SVEEP Logo" className="w-full h-full object-cover" />
             </div>
           </div>
@@ -67,11 +67,11 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
       {/* Form Section */}
       <section className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16">
         <div className="w-full max-w-md">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight whitespace-nowrap">
+          <div className="text-center mb-8 sm:mb-12 px-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">
               Your Vote, Your Voice.
             </h1>
-            <p className="text-lg text-muted-foreground whitespace-nowrap">
+            <p className="text-base sm:text-lg text-muted-foreground px-2">
               Pledge today and be part of Kottayam's democratic journey.
             </p>
           </div>

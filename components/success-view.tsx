@@ -186,7 +186,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       {/* Header */}
       <header className="bg-primary text-primary-foreground py-6 px-4 sm:py-8 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="w-48 h-24 bg-white rounded-lg flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <div className="w-40 h-20 sm:w-48 sm:h-24 bg-white rounded-lg flex items-center justify-center mx-auto mb-4 overflow-hidden">
             <img src="/sveep-logo.png" alt="SVEEP Logo" className="w-full h-full object-cover" />
           </div>
           <p className="text-xs text-primary-foreground/70">Initiated by SVEEP Kottayam District</p>
@@ -197,12 +197,12 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       <section className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16">
         <div className="w-full max-w-4xl">
           {/* Message */}
-          <div className="text-center mb-10">
-            <div className="mb-6 inline-flex items-center justify-center w-16 h-16 bg-accent/20 rounded-full">
-              <div className="text-4xl">✓</div>
+          <div className="text-center mb-8 sm:mb-10 px-2">
+            <div className="mb-4 sm:mb-6 inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-accent/20 rounded-full">
+              <div className="text-3xl sm:text-4xl">✓</div>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-2">Congratulations!</h1>
-            <p className="text-lg text-muted-foreground">{name}, you have pledged to vote.</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Congratulations!</h1>
+            <p className="text-base sm:text-lg text-muted-foreground px-2">{name}, you have pledged to vote.</p>
           </div>
 
           {/* Certificate */}
@@ -227,11 +227,11 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
           </div>
 
           {/* Buttons */}
-          <div className="space-y-3 mb-8 max-w-md mx-auto">
+          <div className="space-y-3 mb-6 sm:mb-8 max-w-md mx-auto px-2">
             <Button
               onClick={handleDownload}
               disabled={isDownloading || !certificateUrl}
-              className="w-full h-12 text-base font-semibold bg-accent hover:bg-accent/90"
+              className="w-full h-11 sm:h-12 text-sm sm:text-base font-semibold bg-accent hover:bg-accent/90"
               size="lg"
             >
               {isDownloading ? (
@@ -249,7 +249,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               onClick={handleShare}
               disabled={isSharing}
               variant="outline"
-              className="w-full h-12 text-base font-semibold border-2 bg-transparent"
+              className="w-full h-11 sm:h-12 text-sm sm:text-base font-semibold border-2 bg-transparent"
               size="lg"
             >
               {isSharing ? (
@@ -264,8 +264,8 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             </Button>
           </div>
 
-          <div className="bg-secondary/30 rounded-lg p-4 text-center">
-            <p className="text-sm font-medium text-foreground">
+          <div className="bg-secondary/30 rounded-lg p-3 sm:p-4 text-center mx-2">
+            <p className="text-xs sm:text-sm font-medium text-foreground">
               Save this image and post it to your Instagram Story!
             </p>
           </div>
