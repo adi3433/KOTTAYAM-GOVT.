@@ -1,8 +1,0 @@
-[
-  {
-    "origin": ["http://localhost:3000", "https://*.vercel.app", "https://*.web.app", "https://*.firebaseapp.com"],
-    "method": ["GET", "HEAD"],
-    "maxAgeSeconds": 3600,
-    "responseHeader": ["Content-Type", "Content-Length", "Access-Control-Allow-Origin"]
-  }
-]
