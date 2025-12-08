@@ -60,13 +60,21 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-6 mb-4">
             {/* SVEEP Logo */}
-            <div className="group w-32 h-16 sm:w-40 sm:h-20 bg-white rounded-lg shadow-lg border-2 border-blue-100 flex items-center justify-center overflow-hidden transition-all hover:shadow-xl hover:scale-105 hover:border-blue-300">
+            <a 
+              href="/about"
+              className="group w-32 h-16 sm:w-40 sm:h-20 bg-white rounded-lg shadow-lg border-2 border-blue-100 flex items-center justify-center overflow-hidden transition-all hover:shadow-xl hover:scale-105 hover:border-blue-300"
+            >
               <img src="/sveep-logo.png" alt="SVEEP Logo" className="w-full h-full object-contain p-2" />
-            </div>
+            </a>
             {/* EC Logo */}
-            <div className="group w-32 h-16 sm:w-40 sm:h-20 bg-white rounded-lg shadow-lg border-2 border-blue-100 flex items-center justify-center overflow-hidden transition-all hover:shadow-xl hover:scale-105 hover:border-blue-300">
+            <a 
+              href="https://eci.gov.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group w-32 h-16 sm:w-40 sm:h-20 bg-white rounded-lg shadow-lg border-2 border-blue-100 flex items-center justify-center overflow-hidden transition-all hover:shadow-xl hover:scale-105 hover:border-blue-300"
+            >
               <img src="/ec-logo.png" alt="Election Commission Logo" className="w-full h-full object-contain p-2" />
-            </div>
+            </a>
           </div>
           <div className="text-center">
             <h2 className="text-lg sm:text-xl font-bold text-blue-900 mb-1">Systematic Voters' Education and Electoral Participation</h2>
@@ -166,12 +174,12 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
       {/* Footer */}
       <footer className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-6 px-4 border-t-4 border-orange-500 animate-fade-in">
         <div className="max-w-4xl mx-auto text-center space-y-3">
-          <div className="flex items-center justify-center gap-6 text-sm font-medium">
-            <span className="hover:text-orange-300 transition-colors cursor-pointer">About SVEEP</span>
+          <div className="flex items-center justify-center gap-6 text-sm font-medium flex-wrap">
+            <a href="/about" className="hover:text-orange-300 transition-colors cursor-pointer">About SVEEP</a>
             <span className="text-blue-300">|</span>
-            <span className="hover:text-orange-300 transition-colors cursor-pointer">Election Commission</span>
+            <a href="https://eci.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-orange-300 transition-colors cursor-pointer">Election Commission</a>
             <span className="text-blue-300">|</span>
-            <span className="hover:text-orange-300 transition-colors cursor-pointer">Contact</span>
+            <a href="/contact" className="hover:text-orange-300 transition-colors cursor-pointer">Contact</a>
           </div>
           <p className="text-sm text-blue-200">© 2025 SVEEP Kottayam District | Election Commission of India</p>
           <p className="text-xs text-blue-300">Empowering Democracy, One Vote at a Time</p>
