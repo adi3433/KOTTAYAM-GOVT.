@@ -75,7 +75,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
 
     try {
       // Use the Cloud Function URL with CORS enabled
-      const functionUrl = `https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
+      const functionUrl = `https://us-central1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
       
       console.log("📥 Downloading from Cloud Function:", functionUrl)
 

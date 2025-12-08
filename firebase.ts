@@ -1,17 +1,39 @@
 // firebase.ts (or firebase.js)
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getStorage, connectStorageEmulator } from "firebase/storage";
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyAJWdvIz_QR_eKxZXO4OrufsEOV34KtTvU",
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "kottayam-votes-2025.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "kottayam-votes-2025",
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "kottayam-votes-2025.firebasestorage.app",
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "690059290710",
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:690059290710:web:2c4241aa7cbe30484eb3f7",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyB7EHpcQXSdzFayr362Rt00JZJeldmM9Pw",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "kottayam-official.firebaseapp.com",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "kottayam-official",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "kottayam-official.firebasestorage.app",
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "945679591316",
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:945679591316:web:b6780228c9f01e7a16d181",
 };
 
 // Ensure Firebase initializes only once (important for Next.js hot reload)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-export const db = getFirestore(app);
+const db = getFirestore(app, "(default)");
+const storage = getStorage(app);
+const functions = getFunctions(app);
+
+// Connect to emulators if running locally (must be done before any operations)
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+  const useEmulators = process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true';
+  
+  if (useEmulators) {
+    try {
+      connectFirestoreEmulator(db, '127.0.0.1', 8081);
+      connectStorageEmulator(storage, '127.0.0.1', 9199);
+      connectFunctionsEmulator(functions, '127.0.0.1', 5001);
+      console.log('🔥 Connected to Firebase Emulators');
+    } catch (error) {
+      console.log('Emulators already connected or not available');
+    }
+  }
+}
+
+export { db, storage, functions };
