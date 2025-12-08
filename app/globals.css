@@ -4,40 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette for Kottayam Votes - professional gov aesthetic with teal/blue accents */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.35 0.12 200); /* Deep teal/blue */
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.88 0.08 180); /* Light teal accent */
-  --secondary-foreground: oklch(0.25 0 0);
-  --muted: oklch(0.93 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.42 0.15 200); /* Rich teal for success */
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.97 0 0);
-  --ring: oklch(0.35 0.12 200);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Official Government of India inspired color palette */
+  --background: 248 250 252; /* Clean white-blue */
+  --foreground: 15 23 42; /* Deep slate */
+  
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+  
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+  
+  --primary: 30 64 175; /* Government blue */
+  --primary-foreground: 248 250 252;
+  
+  --secondary: 241 245 249; /* Light blue-gray */
+  --secondary-foreground: 30 41 59;
+  
+  --muted: 241 245 249;
+  --muted-foreground: 100 116 139;
+  
+  --accent: 22 163 74; /* Indian green (success) */
+  --accent-foreground: 255 255 255;
+  
+  --destructive: 220 38 38;
+  --destructive-foreground: 248 250 252;
+  
+  --border: 226 232 240;
+  --input: 241 245 249;
+  --ring: 30 64 175;
+  
+  --saffron: 255 153 51; /* Indian flag saffron */
+  --india-green: 19 136 8; /* Indian flag green */
+  --navy-blue: 0 0 128; /* Official navy */
+  
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -73,6 +73,57 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+}
+
+/* Custom animations for government website feel */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 @theme inline {
