@@ -173,8 +173,100 @@ export default function NewsTicker() {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%200h20v20H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M10%200v20M0%2010h20%22%20stroke%3D%22%23000%22%20stroke-width%3D%220.5%22%2F%3E%3C%2Fsvg%3E')]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 relative">
-        <div className="flex items-center gap-2 sm:gap-4">
+      {/* Mobile Layout */}
+      <div className="sm:hidden px-3 py-2.5 relative">
+        {/* Top row - Label and Controls */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2 px-2.5 py-1.5 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg shadow-md relative overflow-hidden">
+            <div className="absolute inset-0 bg-white/20 animate-shimmer"></div>
+            <Megaphone className="w-3.5 h-3.5 text-white" />
+            <span className="text-[10px] font-bold text-white tracking-wide uppercase">
+              {t("news.title")}
+            </span>
+            <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping"></span>
+          </div>
+          
+          {/* Mobile Controls */}
+          <div className="flex items-center gap-0.5 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg px-1 py-0.5 shadow-sm">
+            <button
+              onClick={goToPrevious}
+              className="p-1.5 text-slate-600 dark:text-slate-300 hover:bg-orange-100 dark:hover:bg-slate-700 rounded-md transition-all active:scale-95 touch-manipulation"
+              aria-label="Previous news"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              className={`p-1.5 rounded-md transition-all active:scale-95 touch-manipulation ${
+                isPaused
+                  ? "bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400"
+                  : "text-slate-600 dark:text-slate-300 hover:bg-orange-100 dark:hover:bg-slate-700"
+              }`}
+              aria-label={isPaused ? "Play" : "Pause"}
+            >
+              {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={goToNext}
+              className="p-1.5 text-slate-600 dark:text-slate-300 hover:bg-orange-100 dark:hover:bg-slate-700 rounded-md transition-all active:scale-95 touch-manipulation"
+              aria-label="Next news"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+        
+        {/* News Text - Full Width on Mobile */}
+        <div
+          className={`transition-all duration-300 ${
+            isTransitioning ? "opacity-0 transform -translate-y-1" : "opacity-100 transform translate-y-0"
+          }`}
+        >
+          {currentNews.link ? (
+            <a
+              href={currentNews.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[13px] leading-snug font-semibold text-slate-800 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 flex items-start gap-1.5"
+            >
+              <span className="line-clamp-2">
+                {currentNews.text[language as keyof typeof currentNews.text]}
+              </span>
+              <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 opacity-70" />
+            </a>
+          ) : (
+            <p className="text-[13px] leading-snug font-semibold text-slate-800 dark:text-white line-clamp-2">
+              {currentNews.text[language as keyof typeof currentNews.text]}
+            </p>
+          )}
+        </div>
+        
+        {/* Mobile Progress Dots */}
+        <div className="flex items-center justify-center gap-1 mt-2">
+          {newsItems.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setIsTransitioning(true)
+                setTimeout(() => {
+                  setCurrentIndex(index)
+                  setIsTransitioning(false)
+                }, 150)
+              }}
+              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${
+                index === currentIndex
+                  ? "w-4 bg-orange-500"
+                  : "w-1.5 bg-slate-300 dark:bg-slate-600 hover:bg-orange-300"
+              }`}
+              aria-label={`Go to news ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden sm:block max-w-7xl mx-auto px-4 py-4 relative">
+        <div className="flex items-center gap-4">
           {/* Breaking News Label */}
           <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-red-600 to-orange-500 rounded-lg sm:rounded-xl flex-shrink-0 shadow-lg animate-pulse-slow relative overflow-hidden">
             <div className="absolute inset-0 bg-white/20 animate-shimmer"></div>
