@@ -51,118 +51,118 @@ export const generateCertificate = onDocumentCreated(
     // ---------- SVG CERTIFICATE ----------
     const svgCertificate = `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1" fill="#FFC700" opacity="0.08"/>
-          </pattern>
-          <radialGradient id="bgGradient" cx="50%" cy="50%">
-            <stop offset="0%" style="stop-color:#8B1A1A;stop-opacity:1"/>
-            <stop offset="50%" style="stop-color:#7F1D1D;stop-opacity:1"/>
-            <stop offset="100%" style="stop-color:#6B1616;stop-opacity:1"/>
-          </radialGradient>
-          <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1"/>
-            <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1"/>
-            <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1"/>
-          </linearGradient>
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1"/>
-            <stop offset="50%" style="stop-color:#FFC700;stop-opacity:1"/>
-            <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1"/>
-          </linearGradient>
-        </defs>
+      <defs>
+        <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="#FFC700" opacity="0.08"/>
+        </pattern>
+        <radialGradient id="bgGradient" cx="50%" cy="50%">
+        <stop offset="0%" style="stop-color:#8B1A1A;stop-opacity:1"/>
+        <stop offset="50%" style="stop-color:#7F1D1D;stop-opacity:1"/>
+        <stop offset="100%" style="stop-color:#6B1616;stop-opacity:1"/>
+        </radialGradient>
+        <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1"/>
+        <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1"/>
+        <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1"/>
+        <stop offset="50%" style="stop-color:#FFC700;stop-opacity:1"/>
+        <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1"/>
+        </linearGradient>
+      </defs>
 
-        <!-- Maroon background with gradient -->
-        <rect width="100%" height="100%" fill="url(#bgGradient)"/>
-        <rect width="100%" height="100%" fill="url(#dots)"/>
+      <!-- Maroon background with gradient -->
+      <rect width="100%" height="100%" fill="url(#bgGradient)"/>
+      <rect width="100%" height="100%" fill="url(#dots)"/>
 
-        <!-- Multiple golden borders for luxury effect -->
-        <rect x="15" y="15" width="${width - 30}" height="${height - 30}" fill="none" stroke="url(#borderGradient)" stroke-width="8" rx="10"/>
-        <rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="#D4AF37" stroke-width="3" rx="6"/>
-        <rect x="32" y="32" width="${width - 64}" height="${height - 64}" fill="none" stroke="#FFD700" stroke-width="2" rx="4"/>
-        <rect x="38" y="38" width="${width - 76}" height="${height - 76}" fill="none" stroke="#FFC700" stroke-width="1" rx="3"/>
+      <!-- Multiple golden borders for luxury effect -->
+      <rect x="15" y="15" width="${width - 30}" height="${height - 30}" fill="none" stroke="url(#borderGradient)" stroke-width="8" rx="10"/>
+      <rect x="25" y="25" width="${width - 50}" height="${height - 50}" fill="none" stroke="#D4AF37" stroke-width="3" rx="6"/>
+      <rect x="32" y="32" width="${width - 64}" height="${height - 64}" fill="none" stroke="#FFD700" stroke-width="2" rx="4"/>
+      <rect x="38" y="38" width="${width - 76}" height="${height - 76}" fill="none" stroke="#FFC700" stroke-width="1" rx="3"/>
 
-        <!-- Decorative golden corners -->
-        <path d="M 55 55 L 130 55 M 55 55 L 55 130" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M ${width - 55} 55 L ${width - 130} 55 M ${width - 55} 55 L ${width - 55} 130" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M 55 ${height - 55} L 130 ${height - 55} M 55 ${height - 55} L 55 ${height - 130}" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M ${width - 55} ${height - 55} L ${width - 130} ${height - 55} M ${width - 55} ${height - 55} L ${width - 55} ${height - 130}" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Decorative golden corners -->
+      <path d="M 55 55 L 130 55 M 55 55 L 55 130" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M ${width - 55} 55 L ${width - 130} 55 M ${width - 55} 55 L ${width - 55} 130" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 55 ${height - 55} L 130 ${height - 55} M 55 ${height - 55} L 55 ${height - 130}" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M ${width - 55} ${height - 55} L ${width - 130} ${height - 55} M ${width - 55} ${height - 55} L ${width - 55} ${height - 130}" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
 
-        <!-- Corner decorative circles -->
-        <circle cx="55" cy="55" r="6" fill="#FFD700"/>
-        <circle cx="${width - 55}" cy="55" r="6" fill="#FFD700"/>
-        <circle cx="55" cy="${height - 55}" r="6" fill="#FFD700"/>
-        <circle cx="${width - 55}" cy="${height - 55}" r="6" fill="#FFD700"/>
+      <!-- Corner decorative circles -->
+      <circle cx="55" cy="55" r="6" fill="#FFD700"/>
+      <circle cx="${width - 55}" cy="55" r="6" fill="#FFD700"/>
+      <circle cx="55" cy="${height - 55}" r="6" fill="#FFD700"/>
+      <circle cx="${width - 55}" cy="${height - 55}" r="6" fill="#FFD700"/>
 
-        <!-- Inner corner details -->
-        <circle cx="55" cy="55" r="3" fill="#8B1A1A"/>
-        <circle cx="${width - 55}" cy="55" r="3" fill="#8B1A1A"/>
-        <circle cx="55" cy="${height - 55}" r="3" fill="#8B1A1A"/>
-        <circle cx="${width - 55}" cy="${height - 55}" r="3" fill="#8B1A1A"/>
+      <!-- Inner corner details -->
+      <circle cx="55" cy="55" r="3" fill="#8B1A1A"/>
+      <circle cx="${width - 55}" cy="55" r="3" fill="#8B1A1A"/>
+      <circle cx="55" cy="${height - 55}" r="3" fill="#8B1A1A"/>
+      <circle cx="${width - 55}" cy="${height - 55}" r="3" fill="#8B1A1A"/>
 
-        <!-- Decorative line under title -->
-        <line x1="250" y1="245" x2="${width - 250}" y2="245" stroke="#FFC700" stroke-width="3" opacity="0.6"/>
+      <!-- Decorative line under title -->
+      <line x1="250" y1="245" x2="${width - 250}" y2="245" stroke="#FFC700" stroke-width="3" opacity="0.6"/>
 
-        <!-- Main Title -->
-        <text x="${width / 2}" y="230" font-family="Georgia, serif" font-size="56" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="2">
-          VOTING PLEDGE CERTIFICATE
-        </text>
+      <!-- Main Title -->
+      <text x="${width / 2}" y="230" font-family="Georgia, serif" font-size="56" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="2">
+        VOTING PLEDGE CERTIFICATE
+      </text>
 
-        <!-- Subtitle -->
-        <text x="${width / 2}" y="280" font-family="Georgia, serif" font-size="18" fill="#D4AF37" text-anchor="middle" font-style="italic">
-          SVEEP in association with
-        </text>
-        <text x="${width / 2}" y="305" font-family="Georgia, serif" font-size="21" fill="#FFD700" text-anchor="middle" font-weight="600">
-          Indian Institute of Information Technology Kottayam
-        </text>
+      <!-- Subtitle -->
+      <text x="${width / 2}" y="280" font-family="Georgia, serif" font-size="21" fill="#FFD700" text-anchor="middle" font-weight="600">
+        SVEEP in association with
+      </text>
+      <text x="${width / 2}" y="305" font-family="Georgia, serif" font-size="18" fill="#D4AF37" text-anchor="middle" font-style="italic">
+        Indian Institute of Information Technology Kottayam
+      </text>
 
-        <!-- Decorative divider -->
-        <text x="${width / 2}" y="350" font-family="Georgia, serif" font-size="26" fill="#FFC700" text-anchor="middle">
-          ◈ ◈ ◈
-        </text>
+      <!-- Decorative divider -->
+      <text x="${width / 2}" y="350" font-family="Georgia, serif" font-size="26" fill="#FFC700" text-anchor="middle">
+        ◈ ◈ ◈
+      </text>
 
-        <!-- Presented to text -->
-        <text x="${width / 2}" y="395" font-family="Georgia, serif" font-size="23" fill="#FEF3C7" text-anchor="middle" font-style="italic">
-          This certificate is proudly presented to
-        </text>
+      <!-- Presented to text -->
+      <text x="${width / 2}" y="395" font-family="Georgia, serif" font-size="23" fill="#FEF3C7" text-anchor="middle" font-style="italic">
+        This certificate is proudly presented to
+      </text>
 
-        <!-- Name with golden underline -->
-        <line x1="200" y1="485" x2="${width - 200}" y2="485" stroke="#FFD700" stroke-width="3"/>
-        <text x="${width / 2}" y="470" font-family="Georgia, serif" font-size="62" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="1">
-          ${name}
-        </text>
+      <!-- Name with golden underline -->
+      <line x1="200" y1="485" x2="${width - 200}" y2="485" stroke="#FFD700" stroke-width="3"/>
+      <text x="${width / 2}" y="470" font-family="Georgia, serif" font-size="62" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="1">
+        ${name}
+      </text>
 
-        <!-- Description text -->
-        <text x="${width / 2}" y="550" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
-          for pledging to vote and contribute to strengthening our democracy.
-        </text>
+      <!-- Description text -->
+      <text x="${width / 2}" y="550" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
+        for pledging to vote and contribute to strengthening our democracy.
+      </text>
 
-        <text x="${width / 2}" y="585" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
-          Congratulations on taking this important step towards responsible citizenship!
-        </text>
+      <text x="${width / 2}" y="585" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
+        Congratulations on taking this important step towards responsible citizenship!
+      </text>
 
-        <!-- Decorative separator line -->
-        <line x1="150" y1="660" x2="${width - 150}" y2="660" stroke="#FFC700" stroke-width="1" stroke-dasharray="8,4" opacity="0.7"/>
+      <!-- Decorative separator line -->
+      <line x1="150" y1="660" x2="${width - 150}" y2="660" stroke="#FFC700" stroke-width="1" stroke-dasharray="8,4" opacity="0.7"/>
 
-        <!-- Footer Left: Issued On -->
-        <text x="150" y="710" font-family="Georgia, serif" font-size="19" fill="#FBBF24" font-weight="bold">Issued On:</text>
-        <text x="150" y="738" font-family="Georgia, serif" font-size="17" fill="#FEF3C7">
-          ${new Date().toLocaleDateString("en-IN", {year: "numeric", month: "long", day: "numeric"})}
-        </text>
+      <!-- Footer Left: Issued On -->
+      <text x="150" y="710" font-family="Georgia, serif" font-size="19" fill="#FBBF24" font-weight="bold">Issued On:</text>
+      <text x="150" y="738" font-family="Georgia, serif" font-size="17" fill="#FEF3C7">
+        ${new Date().toLocaleDateString("en-IN", {year: "numeric", month: "long", day: "numeric"})}
+      </text>
 
-        <!-- Footer Right: Collector Info -->
-        <text x="${width - 150}" y="710" font-family="Georgia, serif" font-size="17" fill="#FBBF24" text-anchor="end" font-weight="600">
-          Chetan Kumar Meena IAS
-        </text>
-        <text x="${width - 150}" y="733" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
-          District Election Officer &amp;
-        </text>
-        <text x="${width - 150}" y="755" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
-          District Collector Kottayam
-        </text>
+      <!-- Footer Right: Collector Info -->
+      <text x="${width - 150}" y="710" font-family="Georgia, serif" font-size="17" fill="#FBBF24" text-anchor="end" font-weight="600">
+        Chetan Kumar Meena IAS
+      </text>
+      <text x="${width - 150}" y="733" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
+        District Election Officer &amp;
+      </text>
+      <text x="${width - 150}" y="755" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
+        District Collector Kottayam
+      </text>
 
-        <!-- Bottom golden line -->
-        <rect x="35" y="${height - 45}" width="${width - 70}" height="4" fill="url(#goldGradient)"/>
+      <!-- Bottom golden line -->
+      <rect x="35" y="${height - 45}" width="${width - 70}" height="4" fill="url(#goldGradient)"/>
       </svg>
     `;
 
