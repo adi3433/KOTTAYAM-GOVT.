@@ -162,7 +162,7 @@ export default function NewsTicker() {
   return (
     <div
       ref={tickerRef}
-      className="relative bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-800 dark:via-slate-850 dark:to-slate-800 border-y-2 border-orange-300 dark:border-slate-600 shadow-lg overflow-hidden"
+      className="relative bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border-y-2 border-orange-300 dark:border-orange-500/30 shadow-lg overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(true)}
@@ -216,7 +216,7 @@ export default function NewsTicker() {
                     href={currentNews.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100 hover:text-orange-600 dark:hover:text-orange-400 active:text-orange-700 transition-colors flex items-center gap-2 group"
+                    className="text-sm sm:text-base font-semibold text-slate-800 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 active:text-orange-700 transition-colors flex items-center gap-2 group"
                   >
                     <span className="line-clamp-2 break-words">
                       {currentNews.text[language as keyof typeof currentNews.text]}
@@ -224,7 +224,7 @@ export default function NewsTicker() {
                     <ExternalLink className="w-4 h-4 flex-shrink-0 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" />
                   </a>
                 ) : (
-                  <p className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100 line-clamp-2 break-words">
+                  <p className="text-sm sm:text-base font-semibold text-slate-800 dark:text-white line-clamp-2 break-words">
                     {currentNews.text[language as keyof typeof currentNews.text]}
                   </p>
                 )}

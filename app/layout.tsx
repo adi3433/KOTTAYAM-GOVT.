@@ -105,16 +105,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icons/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/icon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/sveep-logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/sveep-logo.png', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/sveep-logo.png',
     apple: [
       { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#1e3a8a' },
     ],
   },
   manifest: '/manifest.json',
