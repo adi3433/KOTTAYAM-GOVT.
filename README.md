@@ -60,8 +60,8 @@ A professional web application for collecting voting pledges and automatically g
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/adi3433/KOTTAYAM-GOVT.git
-   cd KOTTAYAM-GOVT
+   git clone https://github.com/adi3433/KOTTAYAM-GOVT..git
+   cd KOTTAYAM-GOVT.
    ```
 
 2. **Install dependencies**

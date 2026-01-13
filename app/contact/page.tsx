@@ -1,240 +1,335 @@
 "use client"
 
-import Link from "next/link"
-import { ArrowLeft, MapPin, Phone, Mail, Clock, Building2, Globe } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Building2, Globe, ExternalLink, MessageSquare, Users, Shield, AlertTriangle, ArrowRight, Send, CheckCircle2 } from "lucide-react"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
+import { useState } from "react"
 
 export default function ContactPage() {
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // In production, this would send to a backend
+    setFormSubmitted(true)
+    setTimeout(() => setFormSubmitted(false), 5000)
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
-      {/* Top Bar - Indian Flag Colors */}
-      <div className="h-1 w-full bg-gradient-to-r from-orange-500 via-white to-green-600"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+      <Navbar />
       
-      {/* Header */}
-      <header className="bg-white border-b-4 border-blue-800 shadow-md py-6 px-4">
-        <div className="max-w-5xl mx-auto">
-          <Link href="/" className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 font-semibold mb-4 transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-            Back to Home
-          </Link>
-          <div className="text-center mt-4">
-            <h1 className="text-4xl font-bold text-blue-900 mb-2">Contact Us</h1>
-            <p className="text-lg text-slate-600">District Election Office, Kottayam</p>
+      {/* Hero Header */}
+      <header className="relative overflow-hidden bg-gradient-to-r from-green-900 via-emerald-800 to-teal-900 py-20 px-4">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-emerald-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-teal-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
+            <MessageSquare className="w-5 h-5 text-emerald-300" />
+            <span className="text-sm font-semibold text-white">Get in Touch</span>
           </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-fade-in">
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-emerald-400">Us</span>
+          </h1>
+          <p className="text-xl text-emerald-200 max-w-2xl mx-auto">
+            District Election Office, Kottayam - We're here to help!
+          </p>
+        </div>
+        
+        {/* Decorative Wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
+                  className="fill-slate-50 dark:fill-slate-900"/>
+          </svg>
         </div>
       </header>
 
+      {/* Quick Contact Cards */}
+      <section className="max-w-6xl mx-auto px-4 -mt-10 relative z-20">
+        <div className="grid md:grid-cols-3 gap-4">
+          <a href="tel:1950" className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="p-4 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl text-white group-hover:scale-110 transition-transform">
+                <Phone className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">National Helpline</p>
+                <p className="text-2xl font-black text-slate-900 dark:text-white">1950</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">24/7 Available</p>
+              </div>
+            </div>
+          </a>
+          <a href="mailto:ceo@kerala.gov.in" className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl text-white group-hover:scale-110 transition-transform">
+                <Mail className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Email Us</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">ceo@kerala.gov.in</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">Quick Response</p>
+              </div>
+            </div>
+          </a>
+          <a href="https://nvsp.in" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-xl border border-slate-200 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-1 transition-all">
+            <div className="flex items-center gap-4">
+              <div className="p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl text-white group-hover:scale-110 transition-transform">
+                <Globe className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">Online Services</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">NVSP Portal</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">Register Online</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-4 py-12">
-        {/* Main Contact Card */}
-        <section className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-2 border-blue-100 animate-slide-up">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Left Column */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <Building2 className="w-8 h-8 text-blue-700" />
+      <main id="main-content" className="max-w-6xl mx-auto px-4 py-12">
+        <div className="grid lg:grid-cols-5 gap-8">
+          {/* Contact Information - 3 columns */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Main Office Card */}
+            <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 animate-fade-in-up">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
+                  <Building2 className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-blue-900">District Election Office</h2>
-                  <p className="text-slate-600">Kottayam, Kerala</p>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">District Election Office</h2>
+                  <p className="text-slate-600 dark:text-slate-400">Kottayam, Kerala</p>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                {/* District Election Officer */}
-                <div className="p-5 bg-blue-50 rounded-xl border-2 border-blue-200">
-                  <h3 className="font-bold text-blue-800 mb-2">District Election Officer</h3>
-                  <p className="text-slate-700 font-semibold">Chetan Kumar Meena IAS</p>
-                  <p className="text-sm text-slate-600">District Collector, Kottayam</p>
-                </div>
-
-                {/* Address */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-2 rounded-lg mt-1">
-                    <MapPin className="w-5 h-5 text-green-700" />
+              {/* District Election Officer */}
+              <div className="p-5 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 rounded-xl border border-blue-200 dark:border-slate-600 mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    CM
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 mb-1">Office Address</h3>
-                    <p className="text-slate-600">
+                    <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wide">District Election Officer</p>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">Chetan Kumar Meena IAS</h3>
+                    <p className="text-slate-600 dark:text-slate-400">District Collector, Kottayam</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Address */}
+                <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                  <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg text-white">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Office Address</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
                       District Collectorate<br />
                       Kottayam District<br />
-                      Kerala - 686002<br />
-                      India
+                      Kerala - 686002, India
                     </p>
                   </div>
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-orange-100 p-2 rounded-lg mt-1">
-                    <Phone className="w-5 h-5 text-orange-700" />
+                <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                  <div className="p-3 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg text-white">
+                    <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 mb-1">Contact Numbers</h3>
-                    <p className="text-slate-600">
-                      Office: <a href="tel:+914812560123" className="text-blue-700 hover:underline">0481-2560123</a><br />
-                      Helpline: <a href="tel:1950" className="text-blue-700 hover:underline font-semibold">1950</a> (National Voter Helpline)<br />
-                      Toll-Free: <a href="tel:18001801950" className="text-blue-700 hover:underline">1800-180-1950</a>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Contact Numbers</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                      Office: <a href="tel:+914812560123" className="text-blue-600 dark:text-blue-400 hover:underline">0481-2560123</a><br />
+                      Helpline: <a href="tel:1950" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">1950</a><br />
+                      Toll-Free: <a href="tel:18001801950" className="text-blue-600 dark:text-blue-400 hover:underline">1800-180-1950</a>
                     </p>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-purple-100 p-2 rounded-lg mt-1">
-                    <Mail className="w-5 h-5 text-purple-700" />
+                <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg text-white">
+                    <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 mb-1">Email</h3>
-                    <p className="text-slate-600">
-                      <a href="mailto:ceo@kerala.gov.in" className="text-blue-700 hover:underline">ceo@kerala.gov.in</a><br />
-                      <a href="mailto:collectorkottayam@gmail.com" className="text-blue-700 hover:underline">collectorkottayam@gmail.com</a>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Email</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                      <a href="mailto:ceo@kerala.gov.in" className="text-blue-600 dark:text-blue-400 hover:underline">ceo@kerala.gov.in</a><br />
+                      <a href="mailto:collectorkottayam@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">collectorkottayam@gmail.com</a>
                     </p>
                   </div>
                 </div>
 
                 {/* Office Hours */}
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 p-2 rounded-lg mt-1">
-                    <Clock className="w-5 h-5 text-blue-700" />
+                <div className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                  <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg text-white">
+                    <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 mb-1">Office Hours</h3>
-                    <p className="text-slate-600">
-                      Monday - Friday: 10:00 AM - 5:00 PM<br />
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Office Hours</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">
+                      Mon - Fri: 10:00 AM - 5:00 PM<br />
                       Saturday: 10:00 AM - 1:00 PM<br />
-                      Sunday & Public Holidays: Closed
+                      <span className="text-red-500">Sunday & Holidays: Closed</span>
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* Right Column - Quick Links & Resources */}
-            <div>
-              <h3 className="text-xl font-bold text-blue-900 mb-4">Important Links & Resources</h3>
+            {/* Quick Links */}
+            <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 animate-fade-in-up delay-100">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                <Globe className="w-6 h-6 text-blue-600" />
+                Important Links & Resources
+              </h3>
               
-              <div className="space-y-3">
-                <a 
-                  href="https://eci.gov.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border-2 border-blue-200 hover:shadow-lg transition-all hover:scale-[1.02]"
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-6 h-6 text-blue-700" />
-                    <div>
-                      <h4 className="font-bold text-blue-800">Election Commission of India</h4>
-                      <p className="text-sm text-slate-600">Official ECI Website</p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { href: "https://eci.gov.in", title: "Election Commission of India", desc: "Official ECI Website", color: "blue" },
+                  { href: "https://voters.eci.gov.in", title: "Voter Portal", desc: "Check your voter registration", color: "green" },
+                  { href: "https://nvsp.in", title: "National Voter Service Portal", desc: "Online voter registration", color: "orange" },
+                  { href: "https://ceo.kerala.gov.in", title: "Kerala CEO Office", desc: "Chief Electoral Officer, Kerala", color: "purple" }
+                ].map((link, index) => (
+                  <a 
+                    key={index}
+                    href={link.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`group flex items-center gap-4 p-4 bg-gradient-to-r from-${link.color}-50 to-${link.color}-100 dark:from-slate-700 dark:to-slate-800 rounded-xl border border-${link.color}-200 dark:border-slate-600 hover:shadow-lg hover:scale-[1.02] transition-all`}
+                  >
+                    <div className={`p-2 bg-${link.color}-100 dark:bg-${link.color}-900/30 rounded-lg group-hover:bg-${link.color}-600 transition-colors`}>
+                      <ExternalLink className={`w-5 h-5 text-${link.color}-600 dark:text-${link.color}-400 group-hover:text-white`} />
                     </div>
-                  </div>
-                </a>
+                    <div>
+                      <h4 className="font-bold text-slate-800 dark:text-white">{link.title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">{link.desc}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          </div>
 
-                <a 
-                  href="https://voters.eci.gov.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border-2 border-green-200 hover:shadow-lg transition-all hover:scale-[1.02]"
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-6 h-6 text-green-700" />
-                    <div>
-                      <h4 className="font-bold text-green-800">Voter Portal</h4>
-                      <p className="text-sm text-slate-600">Check your voter registration</p>
-                    </div>
+          {/* Right Column - Contact Form & Services */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Contact Form */}
+            <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 animate-fade-in-up delay-200">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                <Send className="w-6 h-6 text-emerald-600" />
+                Send us a Message
+              </h3>
+              
+              {formSubmitted ? (
+                <div className="p-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-700 text-center">
+                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
+                  <h4 className="font-bold text-emerald-800 dark:text-emerald-300 text-lg">Message Sent!</h4>
+                  <p className="text-emerald-700 dark:text-emerald-400 text-sm">We'll get back to you soon.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="Enter your name"
+                    />
                   </div>
-                </a>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      required
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Subject</label>
+                    <select className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                      <option>General Inquiry</option>
+                      <option>Voter Registration</option>
+                      <option>EPIC Card Issue</option>
+                      <option>Polling Station Info</option>
+                      <option>Complaint</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                    <textarea 
+                      required
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                      placeholder="How can we help you?"
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit"
+                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-5 h-5" />
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </section>
 
-                <a 
-                  href="https://nvsp.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border-2 border-orange-200 hover:shadow-lg transition-all hover:scale-[1.02]"
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-6 h-6 text-orange-700" />
-                    <div>
-                      <h4 className="font-bold text-orange-800">National Voter Service Portal</h4>
-                      <p className="text-sm text-slate-600">Online voter registration & services</p>
-                    </div>
-                  </div>
-                </a>
+            {/* Services Box */}
+            <section className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-xl p-6 text-white animate-fade-in-up delay-300">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+                <Shield className="w-6 h-6" />
+                Available Services
+              </h3>
+              <ul className="space-y-3 text-sm">
+                {[
+                  "Voter Registration & Correction",
+                  "EPIC Card Application",
+                  "Electoral Roll Search",
+                  "Polling Station Information",
+                  "Voter Grievance Redressal",
+                  "Electoral Literacy Programs"
+                ].map((service, index) => (
+                  <li key={index} className="flex items-center gap-3 p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                    <span>{service}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-                <a 
-                  href="https://ceo.kerala.gov.in" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl border-2 border-purple-200 hover:shadow-lg transition-all hover:scale-[1.02]"
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe className="w-6 h-6 text-purple-700" />
-                    <div>
-                      <h4 className="font-bold text-purple-800">Kerala CEO Office</h4>
-                      <p className="text-sm text-slate-600">Chief Electoral Officer, Kerala</p>
-                    </div>
-                  </div>
+            {/* Emergency Contact */}
+            <section className="bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl shadow-xl p-6 text-white animate-fade-in-up delay-400">
+              <div className="flex items-center gap-3 mb-4">
+                <AlertTriangle className="w-6 h-6" />
+                <h3 className="text-xl font-bold">Emergency & Complaints</h3>
+              </div>
+              <p className="text-red-100 mb-4 text-sm">
+                For election-related complaints, violations, or emergencies during elections:
+              </p>
+              <div className="flex flex-col gap-3">
+                <a href="tel:1950" className="flex items-center justify-center gap-2 bg-white text-red-600 px-6 py-3 rounded-xl font-bold hover:bg-red-50 transition-all hover:scale-105">
+                  <Phone className="w-5 h-5" />
+                  Call 1950 (24/7)
+                </a>
+                <a href="https://www.ceo.kerala.gov.in" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105">
+                  <ExternalLink className="w-5 h-5" />
+                  File Online Complaint
                 </a>
               </div>
-
-              {/* Services Box */}
-              <div className="mt-8 p-6 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl text-white">
-                <h3 className="text-xl font-bold mb-4">Available Services</h3>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>Voter Registration & Correction</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>EPIC Card Application</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>Electoral Roll Search</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>Polling Station Information</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>Voter Grievance Redressal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-300">✓</span>
-                    <span>Electoral Literacy Programs</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            </section>
           </div>
-        </section>
-
-        {/* Emergency Contact */}
-        <section className="bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl shadow-xl p-6 border-2 border-red-200">
-          <h3 className="text-xl font-bold text-red-800 mb-3">Emergency & Complaints</h3>
-          <p className="text-slate-700 mb-4">
-            For election-related complaints, violations, or emergencies during elections:
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="tel:1950" className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-all hover:scale-105">
-              <Phone className="w-5 h-5" />
-              Call 1950
-            </a>
-            <a href="https://www.ceo.kerala.gov.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-all hover:scale-105">
-              <Globe className="w-5 h-5" />
-              File Online Complaint
-            </a>
-          </div>
-        </section>
+        </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-6 px-4 border-t-4 border-orange-500 mt-12">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-sm text-blue-200">© 2025 SVEEP Kottayam District | Election Commission of India</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
