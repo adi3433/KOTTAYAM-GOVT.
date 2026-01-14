@@ -108,12 +108,12 @@ export const generateCertificate = onDocumentCreated(
         VOTING PLEDGE CERTIFICATE
       </text>
 
-      <!-- Subtitle -->
-      <text x="${width / 2}" y="280" font-family="Georgia, serif" font-size="21" fill="#FFD700" text-anchor="middle" font-weight="600">
-        SVEEP in association with
+      <!-- Subtitle - SVEEP prominent -->
+      <text x="${width / 2}" y="280" font-family="Georgia, serif" font-size="26" fill="#FFD700" text-anchor="middle" font-weight="bold" letter-spacing="1">
+        SVEEP Kottayam District
       </text>
-      <text x="${width / 2}" y="305" font-family="Georgia, serif" font-size="18" fill="#D4AF37" text-anchor="middle" font-style="italic">
-        Indian Institute of Information Technology Kottayam
+      <text x="${width / 2}" y="308" font-family="Georgia, serif" font-size="15" fill="#D4AF37" text-anchor="middle" font-style="italic">
+        in association with Indian Institute of Information Technology Kottayam
       </text>
 
       <!-- Decorative divider -->
