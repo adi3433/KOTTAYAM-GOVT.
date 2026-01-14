@@ -5,6 +5,7 @@ import { Download, Share2, Sparkles, Award, CheckCircle, Star, PartyPopper } fro
 import { useState, useEffect } from "react"
 import { db } from "@/firebase"
 import { collection, query, where, getDocs } from "firebase/firestore"
+import { useLanguage } from "@/lib/language-context"
 
 interface SuccessViewProps {
   name: string
@@ -12,11 +13,13 @@ interface SuccessViewProps {
 }
 
 export default function SuccessView({ name, phone }: SuccessViewProps) {
+  const { t } = useLanguage()
   const [isDownloading, setIsDownloading] = useState(false)
   const [isSharing, setIsSharing] = useState(false)
   const [certificateUrl, setCertificateUrl] = useState<string | null>(null)
   const [pledgeId, setPledgeId] = useState<string | null>(null)
   const [certificateLoaded, setCertificateLoaded] = useState(false)
+
 
   // Fetch certificate from Firestore with polling
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
   // Download handler
   const handleDownload = async () => {
     if (!pledgeId) {
-      alert("Certificate not ready yet!")
+      alert(t("success.notReady"))
       return
     }
 
@@ -88,7 +91,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       console.log("✅ Certificate downloaded successfully")
     } catch (error) {
       console.error("❌ Download failed:", error)
-      alert("Failed to download certificate. Please try again.")
+      alert(t("success.downloadFailed"))
     } finally {
       setIsDownloading(false)
     }
@@ -96,7 +99,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
 
   // Share handler
   const handleShare = async () => {
-    if (!pledgeId) return alert("Certificate not ready yet!")
+    if (!pledgeId) return alert(t("success.notReady"))
     setIsSharing(true)
     
     const shareTitle = "Kottayam Voting Pledge"
@@ -129,7 +132,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       } else {
         const textToCopy = `${shareText}\n\nView my certificate: ${certificateUrl}`
         await navigator.clipboard.writeText(textToCopy)
-        alert("✅ Certificate link copied to clipboard!\n\nYou can now paste it to share on social media.")
+        alert(t("success.linkCopied") + "\n\n" + t("success.shareOnSocial"))
         console.log("✅ Copied to clipboard")
       }
     } catch (error: any) {
@@ -140,9 +143,9 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
         try {
           const textToCopy = `${shareText}\n\n${certificateUrl}`
           await navigator.clipboard.writeText(textToCopy)
-          alert("✅ Certificate link copied to clipboard!")
+          alert(t("success.linkCopied"))
         } catch (clipboardError) {
-          alert("Please manually copy this link:\n\n" + certificateUrl)
+          alert(t("success.manualCopy") + "\n\n" + certificateUrl)
         }
       }
     }
@@ -169,7 +172,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
           </div>
           <p className="text-xs text-emerald-200 flex items-center justify-center gap-1">
             <Sparkles className="w-3 h-3 animate-pulse" />
-            Initiated by SVEEP Kottayam District
+            {t("success.initiatedBy")}
             <Sparkles className="w-3 h-3 animate-pulse" />
           </p>
         </div>
@@ -199,7 +202,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             {/* Congratulations text with shimmer */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 animate-fade-in-up">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-200 to-white bg-[length:200%_100%] animate-shimmer-slow">
-                🎉 Congratulations! 🎉
+                {t("success.congratulations")}
               </span>
             </h1>
             
@@ -213,7 +216,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             </div>
             
             <p className="text-white/90 text-sm sm:text-base md:text-lg drop-shadow-sm">
-              You have successfully taken the pledge to vote!
+              {t("success.pledgeSuccess")}
             </p>
           </div>
 
@@ -256,8 +259,8 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
                       <div className="w-16 h-16 border-4 border-emerald-500/30 border-t-emerald-400 rounded-full animate-spin"></div>
                       <div className="absolute text-3xl">📜</div>
                     </div>
-                    <p className="text-white font-semibold mb-1">Generating Your Certificate</p>
-                    <p className="text-emerald-300/80 text-sm">This won&apos;t take long...</p>
+                    <p className="text-white font-semibold mb-1">{t("success.generatingTitle")}</p>
+                    <p className="text-emerald-300/80 text-sm">{t("success.generatingWait")}</p>
                     
                     {/* Progress dots */}
                     <div className="flex justify-center gap-1 mt-3">
@@ -290,12 +293,12 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               {isDownloading ? (
                 <span className="relative flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Downloading...
+                  {t("success.downloading")}
                 </span>
               ) : (
                 <span className="relative flex items-center gap-2">
                   <Download className="w-5 h-5" />
-                  Download Certificate
+                  {t("success.downloadCertificate")}
                   <Sparkles className="w-4 h-4 animate-pulse" />
                 </span>
               )}
@@ -315,12 +318,12 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               {isSharing ? (
                 <span className="relative flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Sharing...
+                  {t("success.sharing")}
                 </span>
               ) : (
                 <span className="relative flex items-center gap-2">
                   <Share2 className="w-5 h-5" />
-                  Share Certificate
+                  {t("success.share")} 
                 </span>
               )}
             </Button>
@@ -332,7 +335,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-xl opacity-60 blur-sm group-hover:opacity-80 transition-opacity animate-gradient-flow"></div>
               <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-xl p-4 border border-white/20 text-center">
                 <p className="text-white font-medium text-sm sm:text-base">
-                  📸 Save and share your certificate on social media!
+                  {t("success.socialTip")}
                 </p>
               </div>
             </div>
@@ -343,7 +346,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       {/* Footer */}
       <footer className="relative z-10 bg-emerald-900/90 backdrop-blur-md py-4 px-4 text-center border-t border-white/10">
         <p className="text-white/80 text-sm">
-          © 2025 SVEEP Kottayam District
+          {t("success.copyright")}
         </p>
       </footer>
     </div>

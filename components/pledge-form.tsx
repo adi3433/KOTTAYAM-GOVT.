@@ -46,7 +46,7 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
       onSuccess(fullName, phone)
     } catch (err) {
       console.error("Error submitting pledge:", err)
-      alert("Something went wrong. Please try again.")
+      alert(t("common.error"))
     } finally {
       setIsLoading(false)
     }
