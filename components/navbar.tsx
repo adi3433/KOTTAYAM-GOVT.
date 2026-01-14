@@ -178,19 +178,23 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <Link href="/" className="flex items-center gap-3 group">
                 <div className="flex items-center gap-2">
-                  <img
-                    src="/sveep-logo.png"
-                    alt="SVEEP Logo"
-                    className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
-                    loading="eager"
-                  />
-                  <div className="hidden md:block h-10 w-px bg-slate-300 dark:bg-slate-600"></div>
-                  <img
-                    src="/ec-logo.png"
-                    alt="Election Commission Logo"
-                    className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
-                    loading="eager"
-                  />
+                  <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
+                    <img
+                      src="/sveep-logo.png"
+                      alt="SVEEP Logo"
+                      className="h-10 w-auto object-contain"
+                      loading="eager"
+                    />
+                  </div>
+                  <div className="hidden md:block h-10 w-px bg-slate-300 dark:bg-slate-500"></div>
+                  <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
+                    <img
+                      src="/ec-logo.png"
+                      alt="Election Commission Logo"
+                      className="h-10 w-auto object-contain"
+                      loading="eager"
+                    />
+                  </div>
                 </div>
               </Link>
               <div className="hidden lg:block ml-2">
