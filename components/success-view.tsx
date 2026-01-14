@@ -199,23 +199,23 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               <Sparkles className="absolute -bottom-1 -left-3 w-4 h-4 sm:w-5 sm:h-5 text-cyan-300 animate-pulse" />
             </div>
 
-            {/* Congratulations text with shimmer */}
+            {/* Congratulations text */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 animate-fade-in-up">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-200 to-white bg-[length:200%_100%] animate-shimmer-slow">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-emerald-300 to-yellow-300">
                 {t("success.congratulations")}
               </span>
             </h1>
             
             {/* Name */}
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-300 animate-pulse" />
-              <p className="text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-md">
+              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 animate-pulse" />
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-300">
                 {name}
               </p>
-              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-300 animate-pulse" />
+              <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 animate-pulse" />
             </div>
             
-            <p className="text-white/90 text-sm sm:text-base md:text-lg drop-shadow-sm">
+            <p className="text-emerald-300 text-sm sm:text-base md:text-lg font-medium">
               {t("success.pledgeSuccess")}
             </p>
           </div>
