@@ -6,8 +6,11 @@ import Footer from "@/components/footer"
 import FAQSection from "@/components/faq-section"
 import TrustIndicators from "@/components/trust-indicators"
 import { HelpCircle, MessageSquare, ArrowRight, Phone, Mail, Globe } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function FAQPage() {
+  const { t } = useLanguage()
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
       <Navbar />
@@ -21,13 +24,13 @@ export default function FAQPage() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
             <HelpCircle className="w-5 h-5 text-amber-300" />
-            <span className="text-sm font-semibold text-white">Help Center</span>
+            <span className="text-sm font-semibold text-white">{t("faq.helpCenter")}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-fade-in">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">Questions</span>
+            {t("faq.frequentlyAsked")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">{t("faq.questions")}</span>
           </h1>
           <p className="text-xl text-amber-200 max-w-2xl mx-auto">
-            Find answers to common questions about voter registration, the pledge campaign, and electoral processes.
+            {t("faq.heroSubtitle")}
           </p>
         </div>
         
@@ -51,16 +54,23 @@ export default function FAQPage() {
                 <MessageSquare className="w-10 h-10" />
               </div>
             </div>
-            <h2 className="text-2xl font-bold mb-3">Still Have Questions?</h2>
+            <h2 className="text-2xl font-bold mb-3">{t("faq.stillHaveQuestions")}</h2>
             <p className="text-blue-100 mb-6 max-w-xl mx-auto">
-              Can't find the answer you're looking for? Our team is here to help you with any queries about voting and the pledge campaign.
+              {t("faq.cantFindAnswer")}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <Link 
+                href="/" 
+                className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition-all hover:scale-105 shadow-lg"
+              >
+                <ArrowRight className="w-5 h-5 rotate-180" />
+                {t("home.takePledgeNow")}
+              </Link>
               <Link 
                 href="/contact" 
                 className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all hover:scale-105"
               >
-                Contact Us
+                {t("faq.contactUs")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a 
@@ -68,7 +78,7 @@ export default function FAQPage() {
                 className="inline-flex items-center gap-2 bg-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105"
               >
                 <Phone className="w-5 h-5" />
-                Call 1950
+                {t("faq.call1950")}
               </a>
             </div>
           </div>
@@ -77,18 +87,18 @@ export default function FAQPage() {
           <div className="mt-10 grid md:grid-cols-3 gap-4">
             <a href="https://nvsp.in" target="_blank" rel="noopener noreferrer" className="group p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
               <Globe className="w-8 h-8 text-blue-600 mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-slate-900 dark:text-white">Register Online</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Visit NVSP portal for voter registration</p>
+              <h3 className="font-bold text-slate-900 dark:text-white">{t("faq.registerOnline")}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t("faq.visitNvsp")}</p>
             </a>
             <a href="mailto:ceo@kerala.gov.in" className="group p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
               <Mail className="w-8 h-8 text-emerald-600 mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-slate-900 dark:text-white">Email Support</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Send us your detailed queries</p>
+              <h3 className="font-bold text-slate-900 dark:text-white">{t("faq.emailSupport")}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t("faq.sendQueries")}</p>
             </a>
             <a href="tel:1950" className="group p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
               <Phone className="w-8 h-8 text-orange-600 mb-3 group-hover:scale-110 transition-transform" />
-              <h3 className="font-bold text-slate-900 dark:text-white">24/7 Helpline</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">National Voter Helpline - 1950</p>
+              <h3 className="font-bold text-slate-900 dark:text-white">{t("faq.helpline247")}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t("faq.nationalHelpline")}</p>
             </a>
           </div>
         </div>

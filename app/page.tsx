@@ -91,32 +91,31 @@ export default function Home() {
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 sm:mb-8 border border-white/20 animate-fade-in">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 animate-pulse" />
-                  <span className="text-xs sm:text-sm font-semibold text-white">SVEEP Initiative - Election Commission of India</span>
+                  <span className="text-xs sm:text-sm font-semibold text-white">{t("home.sveepBadge")}</span>
                 </div>
 
                 {/* Main Heading */}
                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 animate-fade-in leading-tight">
                   <span className="block bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-white animate-shimmer-slow">
-                    Be a Responsible
+                    {t("home.beResponsible")}
                   </span>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400">
-                    Indian Citizen
+                    {t("home.indianCitizen")}
                   </span>
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-base sm:text-xl md:text-2xl text-blue-200 max-w-3xl mx-auto mb-8 sm:mb-10 animate-fade-in-up leading-relaxed px-2">
-                  Take the voter pledge and receive your official SVEEP certificate. 
-                  Your vote is your voice - make it count!
+                  {t("home.heroSubtitle")}
                 </p>
 
                 {/* Feature Pills */}
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-10 animate-fade-in-up delay-200 px-2">
                   {[
-                    { icon: <Vote className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: "Quick & Easy" },
-                    { icon: <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: "Official Certificate" },
-                    { icon: <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: "Join 10,000+ Citizens" },
-                    { icon: <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: "Government Verified" }
+                    { icon: <Vote className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: t("home.quickEasy") },
+                    { icon: <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: t("home.officialCertificate") },
+                    { icon: <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: t("home.joinCitizens") },
+                    { icon: <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, text: t("home.govVerified") }
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                       <span className="text-yellow-400">{item.icon}</span>
@@ -132,14 +131,14 @@ export default function Home() {
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity"></span>
                   <span className="relative flex items-center gap-2 sm:gap-3">
-                    Take the Pledge Now
+                    {t("home.takePledgeNow")}
                     <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
                   </span>
                 </button>
 
                 {/* Trust indicator */}
                 <p className="mt-4 sm:mt-6 text-blue-300 text-xs sm:text-sm animate-fade-in-up delay-300 px-4">
-                  🔒 Your information is secure and used only for certificate generation
+                  {t("home.secureInfo")}
                 </p>
               </div>
 

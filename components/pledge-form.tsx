@@ -146,7 +146,7 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
             <Button 
               type="submit" 
               disabled={isLoading} 
-              className="w-full min-h-[48px] sm:min-h-[56px] h-auto py-3 sm:py-4 px-4 text-sm sm:text-base md:text-lg font-bold mt-6 sm:mt-8 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 dark:from-blue-600 dark:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-900 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all rounded-lg sm:rounded-xl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 touch-manipulation whitespace-normal text-center leading-snug"
+              className="w-full min-h-[48px] sm:min-h-[56px] h-auto py-3 sm:py-4 px-4 text-sm sm:text-base md:text-lg font-bold mt-6 sm:mt-8 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 dark:from-blue-600 dark:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-900 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all rounded-lg sm:rounded-xl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 touch-manipulation whitespace-normal text-center leading-snug text-white"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">

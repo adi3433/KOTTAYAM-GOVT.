@@ -4,9 +4,11 @@ import { MapPin, Phone, Mail, Clock, Building2, Globe, ExternalLink, MessageSqua
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { useState } from "react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const { t } = useLanguage()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,13 +30,13 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
             <MessageSquare className="w-5 h-5 text-emerald-300" />
-            <span className="text-sm font-semibold text-white">Get in Touch</span>
+            <span className="text-sm font-semibold text-white">{t("contact.getInTouch")}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-fade-in">
-            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-emerald-400">Us</span>
+            {t("contact.title")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-emerald-400">{t("contact.us")}</span>
           </h1>
           <p className="text-xl text-emerald-200 max-w-2xl mx-auto">
-            District Election Office, Kottayam - We're here to help!
+            {t("contact.heroSubtitle")}
           </p>
         </div>
         
@@ -56,9 +58,9 @@ export default function ContactPage() {
                 <Phone className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">National Helpline</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t("contact.nationalHelpline")}</p>
                 <p className="text-2xl font-black text-slate-900 dark:text-white">1950</p>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400">24/7 Available</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">{t("contact.available247")}</p>
               </div>
             </div>
           </a>
@@ -68,9 +70,9 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Email Us</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t("contact.emailUs")}</p>
                 <p className="text-lg font-bold text-slate-900 dark:text-white">ceo@kerala.gov.in</p>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400">Quick Response</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">{t("contact.quickResponse")}</p>
               </div>
             </div>
           </a>
@@ -80,9 +82,9 @@ export default function ContactPage() {
                 <Globe className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Online Services</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">NVSP Portal</p>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400">Register Online</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{t("contact.onlineServices")}</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">{t("contact.nvspPortal")}</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">{t("contact.registerOnline")}</p>
               </div>
             </div>
           </a>
@@ -101,8 +103,8 @@ export default function ContactPage() {
                   <Building2 className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">District Election Office</h2>
-                  <p className="text-slate-600 dark:text-slate-400">Kottayam, Kerala</p>
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t("contact.districtElectionOffice")}</h2>
+                  <p className="text-slate-600 dark:text-slate-400">{t("contact.kottayamKerala")}</p>
                 </div>
               </div>
 
@@ -113,9 +115,9 @@ export default function ContactPage() {
                     CM
                   </div>
                   <div>
-                    <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wide">District Election Officer</p>
+                    <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wide">{t("contact.districtElectionOfficer")}</p>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">Chetan Kumar Meena IAS</h3>
-                    <p className="text-slate-600 dark:text-slate-400">District Collector, Kottayam</p>
+                    <p className="text-slate-600 dark:text-slate-400">{t("contact.districtCollector")}</p>
                   </div>
                 </div>
               </div>
@@ -127,9 +129,9 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Office Address</h3>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">{t("contact.officeAddress")}</h3>
                     <p className="text-slate-600 dark:text-slate-400 text-sm">
-                      District Collectorate<br />
+                      {t("contact.addressLine1")}<br />
                       Kottayam District<br />
                       Kerala - 686002, India
                     </p>
@@ -142,7 +144,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Contact Numbers</h3>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">{t("contact.contactNumbers")}</h3>
                     <p className="text-slate-600 dark:text-slate-400 text-sm">
                       Office: <a href="tel:+914812560123" className="text-blue-600 dark:text-blue-400 hover:underline">0481-2560123</a><br />
                       Helpline: <a href="tel:1950" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">1950</a><br />
@@ -157,7 +159,7 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Email</h3>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">{t("contact.email")}</h3>
                     <p className="text-slate-600 dark:text-slate-400 text-sm">
                       <a href="mailto:ceo@kerala.gov.in" className="text-blue-600 dark:text-blue-400 hover:underline">ceo@kerala.gov.in</a><br />
                       <a href="mailto:collectorkottayam@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">collectorkottayam@gmail.com</a>
@@ -171,11 +173,11 @@ export default function ContactPage() {
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">Office Hours</h3>
+                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">{t("contact.officeHours")}</h3>
                     <p className="text-slate-600 dark:text-slate-400 text-sm">
-                      Mon - Fri: 10:00 AM - 5:00 PM<br />
+                      {t("contact.mondayFriday")}: {t("contact.timing")}<br />
                       Saturday: 10:00 AM - 1:00 PM<br />
-                      <span className="text-red-500">Sunday & Holidays: Closed</span>
+                      <span className="text-red-500">{t("contact.closedWeekends")}</span>
                     </p>
                   </div>
                 </div>
@@ -186,15 +188,15 @@ export default function ContactPage() {
             <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 animate-fade-in-up delay-100">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                 <Globe className="w-6 h-6 text-blue-600" />
-                Important Links & Resources
+                {t("contact.importantLinks")}
               </h3>
               
               <div className="grid md:grid-cols-2 gap-4">
                 {[
-                  { href: "https://eci.gov.in", title: "Election Commission of India", desc: "Official ECI Website", color: "blue" },
-                  { href: "https://voters.eci.gov.in", title: "Voter Portal", desc: "Check your voter registration", color: "green" },
-                  { href: "https://nvsp.in", title: "National Voter Service Portal", desc: "Online voter registration", color: "orange" },
-                  { href: "https://ceo.kerala.gov.in", title: "Kerala CEO Office", desc: "Chief Electoral Officer, Kerala", color: "purple" }
+                  { href: "https://eci.gov.in", title: t("contact.eciTitle"), desc: t("contact.eciDesc"), color: "blue" },
+                  { href: "https://voters.eci.gov.in", title: t("contact.voterPortalTitle"), desc: t("contact.voterPortalDesc"), color: "green" },
+                  { href: "https://nvsp.in", title: t("contact.nvspTitle"), desc: t("contact.nvspDesc"), color: "orange" },
+                  { href: "https://ceo.kerala.gov.in", title: t("contact.keralaCeoTitle"), desc: t("contact.keralaCeoDesc"), color: "purple" }
                 ].map((link, index) => (
                   <a 
                     key={index}
@@ -222,53 +224,53 @@ export default function ContactPage() {
             <section className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 animate-fade-in-up delay-200">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
                 <Send className="w-6 h-6 text-emerald-600" />
-                Send us a Message
+                {t("contact.sendUsMessage")}
               </h3>
               
               {formSubmitted ? (
                 <div className="p-6 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-700 text-center">
                   <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                  <h4 className="font-bold text-emerald-800 dark:text-emerald-300 text-lg">Message Sent!</h4>
-                  <p className="text-emerald-700 dark:text-emerald-400 text-sm">We'll get back to you soon.</p>
+                  <h4 className="font-bold text-emerald-800 dark:text-emerald-300 text-lg">{t("contact.messageSent")}</h4>
+                  <p className="text-emerald-700 dark:text-emerald-400 text-sm">{t("contact.getBackSoon")}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t("contact.yourName")}</label>
                     <input 
                       type="text" 
                       required
                       className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="Enter your name"
+                      placeholder={t("contact.enterName")}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t("contact.emailAddress")}</label>
                     <input 
                       type="email" 
                       required
                       className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="your@email.com"
+                      placeholder={t("contact.enterEmail")}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Subject</label>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t("contact.subject")}</label>
                     <select className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                      <option>General Inquiry</option>
-                      <option>Voter Registration</option>
-                      <option>EPIC Card Issue</option>
-                      <option>Polling Station Info</option>
-                      <option>Complaint</option>
-                      <option>Other</option>
+                      <option>{t("contact.generalInquiry")}</option>
+                      <option>{t("contact.voterRegistration")}</option>
+                      <option>{t("contact.epicCardIssue")}</option>
+                      <option>{t("contact.pollingStationInfo")}</option>
+                      <option>{t("contact.complaint")}</option>
+                      <option>{t("contact.other")}</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">{t("contact.message")}</label>
                     <textarea 
                       required
                       rows={4}
                       className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                      placeholder="How can we help you?"
+                      placeholder={t("contact.howCanWeHelp")}
                     ></textarea>
                   </div>
                   <button 
@@ -276,7 +278,7 @@ export default function ContactPage() {
                     className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
                   >
                     <Send className="w-5 h-5" />
-                    Send Message
+                    {t("contact.sendMessage")}
                   </button>
                 </form>
               )}
@@ -286,16 +288,16 @@ export default function ContactPage() {
             <section className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-xl p-6 text-white animate-fade-in-up delay-300">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
                 <Shield className="w-6 h-6" />
-                Available Services
+                {t("contact.availableServices")}
               </h3>
               <ul className="space-y-3 text-sm">
                 {[
-                  "Voter Registration & Correction",
-                  "EPIC Card Application",
-                  "Electoral Roll Search",
-                  "Polling Station Information",
-                  "Voter Grievance Redressal",
-                  "Electoral Literacy Programs"
+                  t("contact.newVoterReg"),
+                  t("contact.epicCorrection"),
+                  t("contact.electoralRollSearch"),
+                  t("contact.pollingStationInformation"),
+                  t("contact.voterGrievance"),
+                  t("contact.electoralLiteracy")
                 ].map((service, index) => (
                   <li key={index} className="flex items-center gap-3 p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
                     <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
@@ -309,19 +311,19 @@ export default function ContactPage() {
             <section className="bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl shadow-xl p-6 text-white animate-fade-in-up delay-400">
               <div className="flex items-center gap-3 mb-4">
                 <AlertTriangle className="w-6 h-6" />
-                <h3 className="text-xl font-bold">Emergency & Complaints</h3>
+                <h3 className="text-xl font-bold">{t("contact.emergencyComplaints")}</h3>
               </div>
               <p className="text-red-100 mb-4 text-sm">
-                For election-related complaints, violations, or emergencies during elections:
+                {t("contact.emergencyNote")}
               </p>
               <div className="flex flex-col gap-3">
                 <a href="tel:1950" className="flex items-center justify-center gap-2 bg-white text-red-600 px-6 py-3 rounded-xl font-bold hover:bg-red-50 transition-all hover:scale-105">
                   <Phone className="w-5 h-5" />
-                  Call 1950 (24/7)
+                  {t("contact.call1950247")}
                 </a>
                 <a href="https://www.ceo.kerala.gov.in" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105">
                   <ExternalLink className="w-5 h-5" />
-                  File Online Complaint
+                  {t("contact.fileOnlineComplaint")}
                 </a>
               </div>
             </section>

@@ -4,21 +4,24 @@ import Link from "next/link"
 import { Vote, Users, Target, BookOpen, Award, CheckCircle2, TrendingUp, Globe, Heart, Calendar, Star, ArrowRight, Sparkles } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import { useLanguage } from "@/lib/language-context"
 
 export default function AboutPage() {
+  const { t } = useLanguage()
+  
   const milestones = [
-    { year: "2009", event: "SVEEP launched by Election Commission of India" },
-    { year: "2014", event: "Expanded to all states with dedicated SVEEP cells" },
-    { year: "2019", event: "Achieved historic 67.4% turnout in General Elections" },
-    { year: "2024", event: "Digital-first approach with enhanced voter outreach" },
-    { year: "2025", event: "National Voters' Day theme: 'Nothing Like Voting, I Vote For Sure'" }
+    { year: "2009", event: t("about.milestone2009") },
+    { year: "2014", event: t("about.milestone2014") },
+    { year: "2019", event: t("about.milestone2019") },
+    { year: "2024", event: t("about.milestone2024") },
+    { year: "2025", event: t("about.milestone2025") }
   ]
 
   const achievements = [
-    { number: "97 Cr+", label: "Registered Voters in India", icon: <Users className="w-6 h-6" /> },
-    { number: "67.4%", label: "2024 General Election Turnout", icon: <TrendingUp className="w-6 h-6" /> },
-    { number: "10.5L+", label: "Polling Stations Nationwide", icon: <Globe className="w-6 h-6" /> },
-    { number: "25th Jan", label: "National Voters' Day", icon: <Calendar className="w-6 h-6" /> }
+    { number: "97 Cr+", label: t("about.registeredVoters"), icon: <Users className="w-6 h-6" /> },
+    { number: "67.4%", label: t("about.electionTurnout"), icon: <TrendingUp className="w-6 h-6" /> },
+    { number: "10.5L+", label: t("about.pollingStations"), icon: <Globe className="w-6 h-6" /> },
+    { number: "25th Jan", label: t("about.votersDay"), icon: <Calendar className="w-6 h-6" /> }
   ]
 
   return (
@@ -34,13 +37,13 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
             <Vote className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm font-semibold text-white">Election Commission of India Initiative</span>
+            <span className="text-sm font-semibold text-white">{t("about.eciInitiative")}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-fade-in">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">SVEEP</span>
+            {t("about.title")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">SVEEP</span>
           </h1>
           <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-            Systematic Voters' Education and Electoral Participation
+            {t("about.subtitle")}
           </p>
         </div>
         
@@ -81,16 +84,16 @@ export default function AboutPage() {
               <Vote className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-3">What is SVEEP?</h2>
+              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-3">{t("about.whatIsSveep")}</h2>
               <div className="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
                 <p>
-                  <strong className="text-blue-700 dark:text-blue-400">SVEEP (Systematic Voters' Education and Electoral Participation)</strong> is a flagship program of the Election Commission of India (ECI) designed to educate citizens, especially new and young voters, about the electoral process and motivate them to participate in elections.
+                  <strong className="text-blue-700 dark:text-blue-400">{t("about.sveepDesc1")}</strong> {t("about.sveepDesc2")}
                 </p>
                 <p>
-                  Launched in <span className="font-semibold">2009</span>, SVEEP aims to build a sustainable model for voter education and electoral participation by reaching out to citizens through multiple platforms and innovative strategies. The program focuses on creating awareness about the value of every vote and ensuring inclusive participation in the democratic process.
+                  {t("about.launchedIn2009")}
                 </p>
                 <p>
-                  SVEEP operates on the principle that <em className="text-blue-700 dark:text-blue-400">"an informed voter is key to a healthy democracy."</em> The program addresses low voter turnout and promotes ethical voting practices across diverse communities in India.
+                  {t("about.informedVoter")}
                 </p>
               </div>
             </div>
@@ -101,7 +104,7 @@ export default function AboutPage() {
         <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl shadow-xl p-8 mb-8 border border-blue-200 dark:border-slate-700 animate-fade-in-up delay-100">
           <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-8 flex items-center gap-3">
             <Calendar className="w-7 h-7 text-blue-600" />
-            SVEEP Journey & Milestones
+            {t("about.journey")}
           </h2>
           <div className="relative">
             <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500"></div>
@@ -128,24 +131,24 @@ export default function AboutPage() {
               <Target className="w-8 h-8 text-white" />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">Mission & Objectives</h2>
+              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">{t("about.missionTitle")}</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-700 dark:to-slate-800 p-6 rounded-xl border border-blue-200 dark:border-slate-600 hover:shadow-lg transition-shadow">
                   <div className="flex items-center gap-2 mb-3">
                     <Heart className="w-5 h-5 text-red-500" />
-                    <h3 className="text-lg font-bold text-blue-800 dark:text-white">Primary Mission</h3>
+                    <h3 className="text-lg font-bold text-blue-800 dark:text-white">{t("about.primaryMission")}</h3>
                   </div>
                   <p className="text-slate-700 dark:text-slate-300">
-                    To educate all eligible citizens to vote in a confident, comfortable, and ethical manner. SVEEP aims to create a culture of voting that is participatory, informed, and ethical.
+                    {t("about.primaryMissionDesc")}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-700 dark:to-slate-800 p-6 rounded-xl border border-green-200 dark:border-slate-600 hover:shadow-lg transition-shadow">
                   <div className="flex items-center gap-2 mb-3">
                     <Sparkles className="w-5 h-5 text-yellow-500" />
-                    <h3 className="text-lg font-bold text-blue-800 dark:text-white">Core Focus</h3>
+                    <h3 className="text-lg font-bold text-blue-800 dark:text-white">{t("about.coreFocus")}</h3>
                   </div>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Emphasis on voter registration, ethical voting, and increasing voter turnout, particularly among marginalized and underrepresented communities.
+                    {t("about.coreFocusDesc")}
                   </p>
                 </div>
               </div>
@@ -160,17 +163,17 @@ export default function AboutPage() {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">Key Objectives</h2>
+              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">{t("about.keyObjectives")}</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {[
-                  "Disseminate information on registration process and polling station locations",
-                  "Facilitate easy registration through various platforms",
-                  "Educate voters about the electoral process and voting procedures",
-                  "Motivate citizens to participate in electoral democracy",
-                  "Promote ethical voting and prevent malpractices",
-                  "Increase voter turnout, especially among youth, women, and marginalized groups",
-                  "Create awareness about the importance of each vote",
-                  "Foster inclusive and participatory democracy"
+                  t("about.objective1"),
+                  t("about.objective2"),
+                  t("about.objective3"),
+                  t("about.objective4"),
+                  t("about.objective5"),
+                  t("about.objective6"),
+                  t("about.objective7"),
+                  t("about.objective8")
                 ].map((objective, index) => (
                   <div key={index} className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-transparent dark:from-slate-700 dark:to-transparent rounded-xl hover:from-blue-100 dark:hover:from-slate-600 transition-colors group">
                     <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -189,15 +192,15 @@ export default function AboutPage() {
               <Users className="w-8 h-8 text-white" />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">Target Groups</h2>
+              <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-4">{t("about.targetGroups")}</h2>
               <div className="grid md:grid-cols-3 gap-4">
                 {[
-                  { title: "Youth Voters", desc: "First-time voters and college students", emoji: "🎓" },
-                  { title: "Women", desc: "Empowering female participation", emoji: "👩" },
-                  { title: "Urban Migrants", desc: "Workers living away from home", emoji: "🏙️" },
-                  { title: "Persons with Disabilities", desc: "Ensuring accessible voting", emoji: "♿" },
-                  { title: "Senior Citizens", desc: "Facilitating elderly participation", emoji: "👴" },
-                  { title: "Tribal Communities", desc: "Reaching remote populations", emoji: "🏕️" }
+                  { title: t("about.youthVoters"), desc: t("about.youthVotersDesc"), emoji: "🎓" },
+                  { title: t("about.women"), desc: t("about.womenDesc"), emoji: "👩" },
+                  { title: t("about.urbanMigrants"), desc: t("about.urbanMigrantsDesc"), emoji: "🏙️" },
+                  { title: t("about.pwd"), desc: t("about.pwdDesc"), emoji: "♿" },
+                  { title: t("about.seniors"), desc: t("about.seniorsDesc"), emoji: "👴" },
+                  { title: t("about.tribal"), desc: t("about.tribalDesc"), emoji: "🏕️" }
                 ].map((group, index) => (
                   <div key={index} className="p-5 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-800 rounded-xl border border-slate-200 dark:border-slate-600 hover:shadow-lg hover:scale-105 transition-all group">
                     <span className="text-3xl mb-2 block">{group.emoji}</span>
@@ -214,15 +217,15 @@ export default function AboutPage() {
         <section className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl shadow-xl p-8 mb-8 border border-orange-200 dark:border-slate-700 animate-fade-in-up delay-500">
           <h2 className="text-2xl font-bold text-blue-900 dark:text-white mb-6 flex items-center gap-3">
             <Award className="w-7 h-7 text-orange-500" />
-            SVEEP Activities & Initiatives
+            {t("about.activities")}
           </h2>
           <div className="space-y-4 text-slate-700 dark:text-slate-300">
             {[
-              { title: "Mass Media Campaigns", desc: "Television, radio, print, and digital media campaigns to reach diverse audiences with voter awareness messages." },
-              { title: "Educational Programs", desc: "Workshops, seminars, and interactive sessions in schools, colleges, and community centers focusing on electoral education." },
-              { title: "Creative Outreach", desc: "Use of street plays, cultural programs, songs, and local art forms to engage communities in a culturally relevant manner." },
-              { title: "Digital Initiatives", desc: "Social media campaigns, mobile apps, and online registration facilities to connect with tech-savvy youth." },
-              { title: "Voter Helplines", desc: "Toll-free numbers and helpdesks for voter queries and assistance with registration and electoral information." }
+              { title: t("about.massMedia"), desc: t("about.massMediaDesc") },
+              { title: t("about.eduPrograms"), desc: t("about.eduProgramsDesc") },
+              { title: t("about.creativeOutreach"), desc: t("about.creativeOutreachDesc") },
+              { title: t("about.digitalInitiatives"), desc: t("about.digitalInitiativesDesc") },
+              { title: t("about.voterHelplines"), desc: t("about.voterHelplinesDesc") }
             ].map((activity, index) => (
               <div key={index} className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-orange-200 dark:border-slate-600 hover:shadow-md transition-shadow">
                 <strong className="text-orange-700 dark:text-orange-400">{activity.title}:</strong>
@@ -244,15 +247,15 @@ export default function AboutPage() {
                 <Vote className="w-10 h-10" />
               </div>
             </div>
-            <h2 className="text-3xl font-bold mb-4">Join the Movement</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("about.joinMovement")}</h2>
             <p className="text-xl mb-8 text-blue-100 max-w-xl mx-auto">
-              Every vote matters. Be a responsible citizen and participate in the democratic process.
+              {t("about.everyVoteMatters")}
             </p>
             <Link 
               href="/"
               className="inline-flex items-center gap-3 bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105 shadow-lg"
             >
-              Take the Voting Pledge
+              {t("about.takeVotingPledge")}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>

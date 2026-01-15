@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   const sections = [
     {
       icon: Database,
-      title: "Information We Collect",
+      title: t("privacy.infoWeCollect"),
       content: [
         "Personal identification information (Name, Email, Phone number)",
         "Demographic information (Age, Gender, Location)",
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
     },
     {
       icon: Eye,
-      title: "How We Use Your Information",
+      title: t("privacy.howWeUse"),
       content: [
         "To register your voter pledge and participation",
         "To send notifications about electoral events and updates",
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
     },
     {
       icon: Lock,
-      title: "Data Protection & Security",
+      title: t("privacy.dataProtection"),
       content: [
         "All data is encrypted using industry-standard SSL/TLS protocols",
         "Access to personal data is restricted to authorized personnel only",
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
     },
     {
       icon: UserCheck,
-      title: "Your Rights",
+      title: t("privacy.yourRights"),
       content: [
         "Right to access your personal data upon request",
         "Right to correct inaccurate information",
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
     },
     {
       icon: Shield,
-      title: "Data Sharing & Third Parties",
+      title: t("privacy.dataSharing"),
       content: [
         "We do not sell your personal information to third parties",
         "Data may be shared with Election Commission of India as required by law",
@@ -74,16 +74,16 @@ export default function PrivacyPage() {
         <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
             <Shield className="w-4 h-4" />
-            Your Privacy Matters
+            {t("privacy.yourPrivacyMatters")}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Privacy Policy
+            {t("privacy.title")}
           </h1>
           <p className="text-xl text-white/90">
-            SVEEP Kottayam - Voter Pledge Portal
+            {t("privacy.sveepKottayam")}
           </p>
           <p className="text-sm text-white/70 mt-4">
-            Last Updated: January 15, 2026
+            {t("privacy.lastUpdated")}
           </p>
         </div>
       </section>
@@ -96,14 +96,10 @@ export default function PrivacyPage() {
               <AlertCircle className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
               <div>
                 <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                  Commitment to Your Privacy
+                  {t("privacy.commitment")}
                 </h2>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  The District Election Office, Kottayam, under the Election Commission of India, 
-                  is committed to protecting your privacy. This Privacy Policy explains how we collect, 
-                  use, disclose, and safeguard your information when you visit our voter pledge portal. 
-                  Please read this policy carefully. If you do not agree with the terms of this privacy 
-                  policy, please do not access the site.
+                  {t("privacy.commitmentDesc")}
                 </p>
               </div>
             </div>

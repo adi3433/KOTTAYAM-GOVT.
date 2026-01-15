@@ -50,7 +50,7 @@ export default function TrustIndicators() {
         <div className="flex items-center justify-center mt-4 sm:mt-6 gap-2">
           <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500" />
           <span className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400">
-            SSL Secured | 256-bit Encryption
+            {t("trust.sslSecured")}
           </span>
         </div>
       </div>

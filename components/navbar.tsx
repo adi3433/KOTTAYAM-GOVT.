@@ -114,7 +114,7 @@ export default function Navbar() {
                       ? "bg-white text-blue-900"
                       : "text-blue-200 hover:text-white hover:bg-blue-800/50"
                   } ${isPending ? 'opacity-70' : ''}`}
-                  aria-label={`Switch to ${lang.code === 'en' ? 'English' : lang.code === 'hi' ? 'Hindi' : 'Malayalam'}`}
+                  aria-label={lang.code === 'en' ? t("nav.switchToEnglish") : lang.code === 'hi' ? t("nav.switchToHindi") : t("nav.switchToMalayalam")}
                   aria-pressed={language === lang.code}
                 >
                   {lang.label}
@@ -134,7 +134,7 @@ export default function Navbar() {
                     ? "text-blue-400 cursor-not-allowed"
                     : "text-blue-200 hover:text-white hover:bg-blue-800/50"
                 }`}
-                aria-label="Decrease font size"
+                aria-label={t("nav.decreaseFontSize")}
               >
                 A<Minus className="w-2 h-2 inline ml-0.5" />
               </button>
@@ -153,7 +153,7 @@ export default function Navbar() {
                     ? "text-blue-400 cursor-not-allowed"
                     : "text-blue-200 hover:text-white hover:bg-blue-800/50"
                 }`}
-                aria-label="Increase font size"
+                aria-label={t("nav.increaseFontSize")}
               >
                 A<Plus className="w-2 h-2 inline ml-0.5" />
               </button>
@@ -181,7 +181,7 @@ export default function Navbar() {
                   <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
                     <img
                       src="/sveep-logo.png"
-                      alt="SVEEP Logo"
+                      alt={t("nav.sveepLogo")}
                       className="h-10 w-auto object-contain"
                       loading="eager"
                     />
@@ -190,7 +190,7 @@ export default function Navbar() {
                   <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
                     <img
                       src="/ec-logo.png"
-                      alt="Election Commission Logo"
+                      alt={t("nav.ecLogo")}
                       className="h-10 w-auto object-contain"
                       loading="eager"
                     />

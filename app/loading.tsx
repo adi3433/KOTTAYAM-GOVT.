@@ -1,6 +1,10 @@
 "use client"
 
+import { useLanguage } from "@/lib/language-context"
+
 export default function Loading() {
+  const { t } = useLanguage()
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 flex items-center justify-center">
       <div className="text-center">
@@ -16,10 +20,10 @@ export default function Loading() {
         {/* Loading Text */}
         <div className="space-y-2">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-            Loading...
+            {t("common.loading")}
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400">
-            Please wait while we prepare your content
+            {t("common.pleaseWait")}
           </p>
         </div>
 

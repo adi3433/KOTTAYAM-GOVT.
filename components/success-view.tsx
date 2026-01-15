@@ -102,8 +102,8 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
     if (!pledgeId) return alert(t("success.notReady"))
     setIsSharing(true)
     
-    const shareTitle = "Kottayam Voting Pledge"
-    const shareText = `I've pledged to vote in Kottayam! 🇮🇳\n\nJoin me in making democracy stronger.\n\nKottayam Votes - Your Vote, Your Voice.`
+    const shareTitle = t("success.shareTitle")
+    const shareText = t("success.shareText")
     const functionUrl = `https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
 
     try {
@@ -168,7 +168,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       <header className="relative z-10 bg-gradient-to-r from-emerald-800/80 via-teal-800/80 to-cyan-800/80 backdrop-blur-md text-white py-6 px-4 sm:py-8 text-center border-b border-white/10">
         <div className="max-w-2xl mx-auto animate-fade-in">
           <div className="w-40 h-20 sm:w-48 sm:h-24 bg-white/95 rounded-xl flex items-center justify-center mx-auto mb-4 overflow-hidden shadow-lg shadow-emerald-500/20 animate-bounce-in">
-            <img src="/sveep-logo.png" alt="SVEEP Logo" className="w-full h-full object-cover" />
+            <img src="/sveep-logo.png" alt={t("nav.sveepLogo")} className="w-full h-full object-cover" />
           </div>
           <p className="text-xs text-emerald-200 flex items-center justify-center gap-1">
             <Sparkles className="w-3 h-3 animate-pulse" />
@@ -233,7 +233,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
                 <div className="relative bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-500/30">
                   <img 
                     src={certificateUrl} 
-                    alt="Voting Pledge Certificate" 
+                    alt={t("success.certificateAlt")} 
                     className="w-full h-auto object-contain"
                     onLoad={() => setCertificateLoaded(true)}
                   />

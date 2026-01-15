@@ -17,12 +17,12 @@ export default function Footer() {
             <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
               <img
                 src="/sveep-logo.png"
-                alt="SVEEP Logo"
+                alt={t("nav.sveepLogo")}
                 className="h-12 sm:h-16 w-auto bg-white rounded-lg p-1.5 sm:p-2"
               />
               <img
                 src="/ec-logo.png"
-                alt="Election Commission Logo"
+                alt={t("nav.ecLogo")}
                 className="h-12 sm:h-16 w-auto bg-white rounded-lg p-1.5 sm:p-2"
               />
             </div>
@@ -37,7 +37,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-orange-400">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-4 text-orange-400">{t("footer.quickLinksHeader")}</h4>
             <ul className="space-y-2">
               <li>
                 <Link 
@@ -84,16 +84,16 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-orange-400">Contact</h4>
+            <h4 className="text-lg font-bold mb-4 text-orange-400">{t("footer.contactHeader")}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-blue-200">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-400" />
-                <span>District Collectorate, Kottayam, Kerala - 686002</span>
+                <span>{t("contact.addressLine1")}, {t("contact.addressLine2")}</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-blue-200">
                 <Phone className="w-4 h-4 flex-shrink-0 text-orange-400" />
                 <a href="tel:1950" className="hover:text-white transition-colors">
-                  1950 (Voter Helpline)
+                  1950 ({t("faq.nationalHelpline").split(" - ")[0]})
                 </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-blue-200">
@@ -112,7 +112,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-sm text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
               >
-                Election Commission of India
+                {t("nav.electionCommission")}
                 <ExternalLink className="w-3 h-3" />
               </a>
               <br />
@@ -122,7 +122,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-sm text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
               >
-                National Voter Service Portal
+                {t("footer.nvsp")}
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -139,15 +139,15 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 sm:gap-4 text-blue-300 flex-wrap justify-center">
               <Link href="/privacy-policy" className="hover:text-white active:text-white transition-colors">
-                Privacy Policy
+                {t("footer.privacyPolicy")}
               </Link>
               <span className="text-blue-500">|</span>
               <Link href="/terms" className="hover:text-white active:text-white transition-colors">
-                Terms of Use
+                {t("footer.termsOfUse")}
               </Link>
               <span className="text-blue-500">|</span>
               <Link href="/sitemap" className="hover:text-white active:text-white transition-colors">
-                Sitemap
+                {t("footer.sitemap")}
               </Link>
             </div>
           </div>

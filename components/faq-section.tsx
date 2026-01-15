@@ -13,6 +13,8 @@ interface FAQItemProps {
 }
 
 function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
+  const { t } = useLanguage()
+  
   return (
     <div
       className={`border-2 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${
@@ -62,6 +64,16 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               {answer}
             </p>
+            {index === 4 && (
+              <div className="mt-3">
+                <a 
+                  href="/" 
+                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 hover:underline transition-colors"
+                >
+                  {t("faq.takePledgeNow")}
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -112,11 +124,7 @@ export default function FAQSection() {
         {/* Additional Help Section */}
         <div className="mt-10 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-800 rounded-2xl border-2 border-blue-200 dark:border-slate-700 text-center">
           <p className="text-slate-700 dark:text-slate-300 mb-4">
-            {t("nav.electionCommission") === "Election Commission of India"
-              ? "Still have questions? Contact us or visit the official Election Commission website."
-              : t("nav.electionCommission") === "भारत निर्वाचन आयोग"
-              ? "अभी भी प्रश्न हैं? हमसे संपर्क करें या आधिकारिक चुनाव आयोग वेबसाइट पर जाएं।"
-              : "ഇപ്പോഴും ചോദ്യങ്ങളുണ്ടോ? ഞങ്ങളെ ബന്ധപ്പെടുക അല്ലെങ്കിൽ ഔദ്യോഗിക തിരഞ്ഞെടുപ്പ് കമ്മീഷൻ വെബ്സൈറ്റ് സന്ദർശിക്കുക."}
+            {t("faq.stillHaveQuestionsAlt")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
