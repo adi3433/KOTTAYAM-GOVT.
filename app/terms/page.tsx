@@ -3,112 +3,61 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Scale, Shield, FileText, AlertTriangle, CheckCircle, Users, Globe, Lock, BookOpen } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export default function TermsPage() {
+  const { t } = useLanguage()
+  
   const sections = [
     {
       icon: <FileText className="w-6 h-6" />,
-      title: "Acceptance of Terms",
-      content: `By accessing and using the SVEEP Kottayam Voter Pledge Portal ("Website"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Use. If you do not agree with any part of these terms, you must not use this Website.
-
-This Website is operated by the District Election Office, Kottayam, under the authority of the Election Commission of India. Your continued use of the Website constitutes your acceptance of any amendments to these terms.`
+      title: t("terms.section1Title"),
+      content: t("terms.section1Content")
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Eligibility",
-      content: `This Website and its services are intended for:
-• Indian citizens who are 18 years of age or older
-• Individuals who are eligible to vote in Indian elections
-• Residents of Kottayam District, Kerala, or students/staff of institutions within the district
-
-By using this Website, you represent and warrant that you meet these eligibility requirements. The pledge certificate is a symbolic commitment and does not constitute official voter registration.`
+      title: t("terms.section2Title"),
+      content: t("terms.section2Content")
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "User Responsibilities",
-      content: `When using this Website, you agree to:
-• Provide accurate and truthful information
-• Not impersonate any person or entity
-• Not submit false or misleading information
-• Use the Website only for lawful purposes
-• Not attempt to gain unauthorized access to any part of the Website
-• Not interfere with or disrupt the Website's functionality
-• Respect the intellectual property rights of the Election Commission of India`
+      title: t("terms.section3Title"),
+      content: t("terms.section3Content")
     },
     {
       icon: <Lock className="w-6 h-6" />,
-      title: "Data Collection & Privacy",
-      content: `We collect the following information when you submit a pledge:
-• Full Name (as per official identification)
-• Mobile Phone Number
-
-This information is used solely for:
-• Generating your pledge certificate
-• Statistical analysis of voter awareness campaigns
-• Communication regarding electoral activities (with consent)
-
-Your data is protected under the Information Technology Act, 2000 and relevant data protection regulations. For complete details, please refer to our Privacy Policy.`
+      title: t("terms.section4Title"),
+      content: t("terms.section4Content")
     },
     {
       icon: <FileText className="w-6 h-6" />,
-      title: "Certificate Generation",
-      content: `Upon successful submission of your pledge:
-• A digital certificate will be automatically generated
-• The certificate is for commemorative purposes only
-• It does not serve as an official voter ID or registration document
-• The certificate can be downloaded and shared on social media
-• We reserve the right to modify the certificate design
-
-The pledge certificate acknowledges your commitment to participate in the democratic process and is part of the SVEEP (Systematic Voters' Education and Electoral Participation) initiative.`
+      title: t("terms.section5Title"),
+      content: t("terms.section5Content")
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      title: "Intellectual Property",
-      content: `All content on this Website, including but not limited to:
-• Logos of Election Commission of India and SVEEP
-• Text, graphics, images, and software
-• Certificate designs and templates
-• Website design and layout
-
-are the property of the Election Commission of India or its licensors and are protected by Indian copyright and trademark laws. You may not reproduce, distribute, or create derivative works without prior written permission.`
+      title: t("terms.section6Title"),
+      content: t("terms.section6Content")
     },
     {
       icon: <AlertTriangle className="w-6 h-6" />,
-      title: "Disclaimer of Warranties",
-      content: `This Website is provided "as is" without warranties of any kind. The Election Commission of India and SVEEP Kottayam:
-• Do not guarantee uninterrupted or error-free service
-• Do not warrant the accuracy or completeness of information
-• Are not responsible for any technical issues or data loss
-• Reserve the right to modify or discontinue services without notice
-
-The pledge certificate does not guarantee any electoral benefits or privileges.`
+      title: t("terms.section7Title"),
+      content: t("terms.section7Content")
     },
     {
       icon: <Scale className="w-6 h-6" />,
-      title: "Limitation of Liability",
-      content: `To the maximum extent permitted by law, the Election Commission of India, SVEEP Kottayam, and their affiliates shall not be liable for:
-• Any indirect, incidental, or consequential damages
-• Loss of data or unauthorized access to your information
-• Any damages arising from your use of this Website
-• Actions taken based on information provided on this Website
-
-Your use of this Website is at your own risk.`
+      title: t("terms.section8Title"),
+      content: t("terms.section8Content")
     },
     {
       icon: <BookOpen className="w-6 h-6" />,
-      title: "Governing Law",
-      content: `These Terms of Use shall be governed by and construed in accordance with the laws of India. Any disputes arising from or related to these terms or your use of this Website shall be subject to the exclusive jurisdiction of the courts in Kottayam, Kerala.
-
-The Election Commission of India reserves the right to take appropriate legal action against any misuse of this Website or violation of these terms.`
+      title: t("terms.section9Title"),
+      content: t("terms.section9Content")
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
-      title: "Modifications to Terms",
-      content: `We reserve the right to modify these Terms of Use at any time. Changes will be effective immediately upon posting on this Website. Your continued use of the Website after any modifications constitutes your acceptance of the revised terms.
-
-We encourage you to review these terms periodically for any updates.
-
-Last Updated: January 14, 2026`
+      title: t("terms.section10Title"),
+      content: t("terms.section10Content")
     }
   ]
 
@@ -125,10 +74,10 @@ Last Updated: January 14, 2026`
             <span className="text-sm font-semibold text-white">Legal Agreement</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 animate-fade-in">
-            Terms of Use
+            {t("terms.heroTitle")}
           </h1>
           <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-            Please read these terms carefully before using the SVEEP Kottayam Voter Pledge Portal
+            {t("terms.heroSubtitle")}
           </p>
         </div>
         
@@ -144,12 +93,11 @@ Last Updated: January 14, 2026`
               <AlertTriangle className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-amber-900 dark:text-amber-100 mb-2">Important Notice</h2>
+              <h2 className="text-xl font-bold text-amber-900 dark:text-amber-100 mb-2">{t("terms.noticeTitle")}</h2>
               <p className="text-amber-800 dark:text-amber-200">
-                By using this website and submitting a voter pledge, you acknowledge that this is a symbolic commitment to participate in elections. 
-                The pledge certificate is not a substitute for official voter registration. To register as a voter or verify your registration, 
-                please visit <a href="https://nvsp.in" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-amber-600">nvsp.in</a> or 
-                contact your local Electoral Registration Officer.
+                {t("terms.noticeText")}{" "}
+                <a href="https://nvsp.in" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:text-amber-600">nvsp.in</a>{" "}
+                {t("terms.noticeContact")}
               </p>
             </div>
           </div>
@@ -188,16 +136,16 @@ Last Updated: January 14, 2026`
 
         {/* Contact Section */}
         <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white text-center shadow-xl">
-          <h2 className="text-2xl font-bold mb-4">Questions About These Terms?</h2>
+          <h2 className="text-2xl font-bold mb-4">{t("terms.questionsTitle")}</h2>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            If you have any questions or concerns about these Terms of Use, please contact the District Election Office, Kottayam.
+            {t("terms.questionsText")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="/contact"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-all hover:scale-105 shadow-lg"
             >
-              Contact Us
+              {t("terms.contactUs")}
             </a>
             <a
               href="mailto:ceo@kerala.gov.in"

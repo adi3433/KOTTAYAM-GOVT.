@@ -20,152 +20,155 @@ import {
   BookOpen,
   Award
 } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface SitemapItem {
   href: string
-  label: string
-  description: string
+  labelKey: string
+  descKey: string
   icon: React.ReactNode
   isExternal?: boolean
 }
 
 interface SitemapSection {
-  title: string
-  description: string
+  titleKey: string
+  descKey: string
   items: SitemapItem[]
   color: string
 }
 
 export default function SitemapPage() {
+  const { t } = useLanguage()
+  
   const sitemapSections: SitemapSection[] = [
     {
-      title: "Main Pages",
-      description: "Core pages of the SVEEP Kottayam Portal",
+      titleKey: "sitemap.mainPagesTitle",
+      descKey: "sitemap.mainPagesDesc",
       color: "blue",
       items: [
         {
           href: "/",
-          label: "Home",
-          description: "Take the voter pledge and get your certificate",
+          labelKey: "sitemap.homeLabel",
+          descKey: "sitemap.homeDesc",
           icon: <Home className="w-5 h-5" />
         },
         {
           href: "/about",
-          label: "About SVEEP",
-          description: "Learn about SVEEP and voter education initiatives",
+          labelKey: "sitemap.aboutLabel",
+          descKey: "sitemap.aboutDesc",
           icon: <Info className="w-5 h-5" />
         },
         {
           href: "/faq",
-          label: "Frequently Asked Questions",
-          description: "Common questions about voting and the pledge",
+          labelKey: "sitemap.faqLabel",
+          descKey: "sitemap.faqDesc",
           icon: <HelpCircle className="w-5 h-5" />
         },
         {
           href: "/contact",
-          label: "Contact Us",
-          description: "Get in touch with the District Election Office",
+          labelKey: "sitemap.contactLabel",
+          descKey: "sitemap.contactDesc",
           icon: <Phone className="w-5 h-5" />
         }
       ]
     },
     {
-      title: "Legal & Policies",
-      description: "Terms, conditions, and privacy information",
+      titleKey: "sitemap.legalTitle",
+      descKey: "sitemap.legalDesc",
       color: "purple",
       items: [
         {
           href: "/privacy-policy",
-          label: "Privacy Policy",
-          description: "How we collect, use, and protect your data",
+          labelKey: "sitemap.privacyLabel",
+          descKey: "sitemap.privacyDesc",
           icon: <Shield className="w-5 h-5" />
         },
         {
           href: "/terms",
-          label: "Terms of Use",
-          description: "Rules and regulations for using this website",
+          labelKey: "sitemap.termsLabel",
+          descKey: "sitemap.termsDesc",
           icon: <Scale className="w-5 h-5" />
         },
         {
           href: "/sitemap",
-          label: "Sitemap",
-          description: "Complete overview of website structure",
+          labelKey: "sitemap.sitemapLabel",
+          descKey: "sitemap.sitemapDesc",
           icon: <Map className="w-5 h-5" />
         }
       ]
     },
     {
-      title: "Official Resources",
-      description: "Government portals and official websites",
+      titleKey: "sitemap.officialTitle",
+      descKey: "sitemap.officialDesc",
       color: "green",
       items: [
         {
           href: "https://eci.gov.in",
-          label: "Election Commission of India",
-          description: "Official website of ECI",
+          labelKey: "sitemap.eciLabel",
+          descKey: "sitemap.eciDesc",
           icon: <Building2 className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://nvsp.in",
-          label: "National Voter Service Portal",
-          description: "Register as a voter, check electoral roll",
+          labelKey: "sitemap.nvspLabel",
+          descKey: "sitemap.nvspDesc",
           icon: <Vote className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://voterportal.eci.gov.in",
-          label: "Voter Portal",
-          description: "One-stop platform for voter services",
+          labelKey: "sitemap.voterPortalLabel",
+          descKey: "sitemap.voterPortalDesc",
           icon: <Users className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://www.ceo.kerala.gov.in",
-          label: "CEO Kerala",
-          description: "Chief Electoral Officer, Kerala",
+          labelKey: "sitemap.ceoKeralaLabel",
+          descKey: "sitemap.ceoKeralaDesc",
           icon: <Globe className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://ecisveep.eci.gov.in",
-          label: "SVEEP National Portal",
-          description: "National SVEEP initiatives and resources",
+          labelKey: "sitemap.sveepNationalLabel",
+          descKey: "sitemap.sveepNationalDesc",
           icon: <Award className="w-5 h-5" />,
           isExternal: true
         }
       ]
     },
     {
-      title: "Voter Resources",
-      description: "Helpful tools and information for voters",
+      titleKey: "sitemap.voterResourcesTitle",
+      descKey: "sitemap.voterResourcesDesc",
       color: "orange",
       items: [
         {
           href: "https://voters.eci.gov.in/download-epic-erevin",
-          label: "Download e-EPIC",
-          description: "Download your digital voter ID card",
+          labelKey: "sitemap.downloadEpicLabel",
+          descKey: "sitemap.downloadEpicDesc",
           icon: <FileText className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://nvsp.in/Forms/Forms/form6",
-          label: "New Voter Registration (Form 6)",
-          description: "Apply for new voter registration",
+          labelKey: "sitemap.form6Label",
+          descKey: "sitemap.form6Desc",
           icon: <FileText className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://electoralsearch.eci.gov.in",
-          label: "Electoral Roll Search",
-          description: "Search your name in the electoral roll",
+          labelKey: "sitemap.electoralSearchLabel",
+          descKey: "sitemap.electoralSearchDesc",
           icon: <BookOpen className="w-5 h-5" />,
           isExternal: true
         },
         {
           href: "https://nvsp.in/Forms/Forms/form8",
-          label: "Corrections in Electoral Roll (Form 8)",
-          description: "Apply for corrections in voter details",
+          labelKey: "sitemap.form8Label",
+          descKey: "sitemap.form8Desc",
           icon: <FileText className="w-5 h-5" />,
           isExternal: true
         }
@@ -219,10 +222,10 @@ export default function SitemapPage() {
             <span className="text-sm font-semibold text-white">Website Navigation</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 animate-fade-in">
-            Sitemap
+            {t("sitemap.heroTitle")}
           </h1>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto">
-            Complete overview of all pages and resources available on the SVEEP Kottayam Portal
+            {t("sitemap.heroSubtitle")}
           </p>
         </div>
         
@@ -239,17 +242,17 @@ export default function SitemapPage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
-            { label: "Internal Pages", value: "7", icon: <FileText className="w-5 h-5" /> },
-            { label: "External Links", value: "9", icon: <ExternalLink className="w-5 h-5" /> },
-            { label: "Resources", value: "16+", icon: <BookOpen className="w-5 h-5" /> },
-            { label: "Languages", value: "3", icon: <Globe className="w-5 h-5" /> }
+            { labelKey: "sitemap.statInternalPages", value: "7", icon: <FileText className="w-5 h-5" /> },
+            { labelKey: "sitemap.statExternalLinks", value: "9", icon: <ExternalLink className="w-5 h-5" /> },
+            { labelKey: "sitemap.statResources", value: "16+", icon: <BookOpen className="w-5 h-5" /> },
+            { labelKey: "sitemap.statLanguages", value: "3", icon: <Globe className="w-5 h-5" /> }
           ].map((stat, index) => (
             <div key={index} className="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-lg border border-slate-200 dark:border-slate-700 hover:scale-105 transition-transform">
               <div className="flex justify-center mb-2 text-blue-600 dark:text-blue-400">
                 {stat.icon}
               </div>
               <div className="text-2xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
-              <div className="text-sm text-slate-600 dark:text-slate-400">{stat.label}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">{t(stat.labelKey)}</div>
             </div>
           ))}
         </div>
@@ -265,8 +268,8 @@ export default function SitemapPage() {
                     <FileText className="w-6 h-6" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{section.title}</h2>
-                    <p className="text-slate-600 dark:text-slate-400">{section.description}</p>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t(section.titleKey)}</h2>
+                    <p className="text-slate-600 dark:text-slate-400">{t(section.descKey)}</p>
                   </div>
                 </div>
 
@@ -286,11 +289,11 @@ export default function SitemapPage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
                             <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
-                              {item.label}
+                              {t(item.labelKey)}
                             </h3>
                             <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-blue-500" />
                           </div>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{item.description}</p>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t(item.descKey)}</p>
                         </div>
                       </a>
                     ) : (
@@ -304,9 +307,9 @@ export default function SitemapPage() {
                         </div>
                         <div className="flex-1">
                           <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
-                            {item.label}
+                            {t(item.labelKey)}
                           </h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{item.description}</p>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t(item.descKey)}</p>
                         </div>
                       </Link>
                     )
@@ -319,9 +322,9 @@ export default function SitemapPage() {
 
         {/* XML Sitemap Notice */}
         <div className="mt-12 bg-slate-100 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-          <h3 className="font-bold text-slate-900 dark:text-white mb-2">For Search Engines</h3>
+          <h3 className="font-bold text-slate-900 dark:text-white mb-2">{t("sitemap.xmlNoticeTitle")}</h3>
           <p className="text-slate-600 dark:text-slate-400 text-sm">
-            An XML sitemap is also available for search engine crawlers at{" "}
+            {t("sitemap.xmlNoticeText")}{" "}
             <code className="bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-blue-600 dark:text-blue-400">
               /sitemap.xml
             </code>

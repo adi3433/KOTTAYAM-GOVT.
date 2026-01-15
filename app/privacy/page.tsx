@@ -13,50 +13,50 @@ export default function PrivacyPage() {
       icon: Database,
       title: t("privacy.infoWeCollect"),
       content: [
-        "Personal identification information (Name, Email, Phone number)",
-        "Demographic information (Age, Gender, Location)",
-        "Electoral roll details for verification purposes",
-        "Device information and IP address for security"
+        t("privacy.info1"),
+        t("privacy.info2"),
+        t("privacy.info3"),
+        t("privacy.info4")
       ]
     },
     {
       icon: Eye,
       title: t("privacy.howWeUse"),
       content: [
-        "To register your voter pledge and participation",
-        "To send notifications about electoral events and updates",
-        "To improve our services and user experience",
-        "To comply with legal requirements and electoral regulations"
+        t("privacy.use1"),
+        t("privacy.use2"),
+        t("privacy.use3"),
+        t("privacy.use4")
       ]
     },
     {
       icon: Lock,
       title: t("privacy.dataProtection"),
       content: [
-        "All data is encrypted using industry-standard SSL/TLS protocols",
-        "Access to personal data is restricted to authorized personnel only",
-        "Regular security audits and vulnerability assessments",
-        "Data stored on secure government-approved cloud infrastructure"
+        t("privacy.protection1"),
+        t("privacy.protection2"),
+        t("privacy.protection3"),
+        t("privacy.protection4")
       ]
     },
     {
       icon: UserCheck,
       title: t("privacy.yourRights"),
       content: [
-        "Right to access your personal data upon request",
-        "Right to correct inaccurate information",
-        "Right to request deletion of your data (subject to legal requirements)",
-        "Right to withdraw consent for non-essential communications"
+        t("privacy.right1"),
+        t("privacy.right2"),
+        t("privacy.right3"),
+        t("privacy.right4")
       ]
     },
     {
       icon: Shield,
       title: t("privacy.dataSharing"),
       content: [
-        "We do not sell your personal information to third parties",
-        "Data may be shared with Election Commission of India as required by law",
-        "Analytics data is anonymized before any external processing",
-        "Government agencies may access data for official electoral purposes"
+        t("privacy.sharing1"),
+        t("privacy.sharing2"),
+        t("privacy.sharing3"),
+        t("privacy.sharing4")
       ]
     }
   ]
@@ -141,28 +141,27 @@ export default function PrivacyPage() {
           {/* Cookie Policy */}
           <div className="mt-12 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              🍪 Cookie Policy
+              {t("privacy.cookiePolicyTitle")}
             </h2>
             <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-              Our website uses essential cookies to ensure its proper functioning. These cookies are 
-              necessary for:
+              {t("privacy.cookieDesc")}
             </p>
             <ul className="space-y-2 text-slate-700 dark:text-slate-300">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                Maintaining your session and preferences
+                {t("privacy.cookie1")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                Remembering your language and accessibility settings
+                {t("privacy.cookie2")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                Ensuring security of your connection
+                {t("privacy.cookie3")}
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                Anonymous analytics to improve our services
+                {t("privacy.cookie4")}
               </li>
             </ul>
           </div>
@@ -170,24 +169,20 @@ export default function PrivacyPage() {
           {/* Data Retention */}
           <div className="mt-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              📅 Data Retention Period
+              {t("privacy.dataRetentionTitle")}
             </h2>
             <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-              Your pledge information will be retained for the duration of the electoral cycle and 
-              may be kept for historical and statistical purposes as per Election Commission guidelines. 
-              Personal identifiable information will be anonymized after 5 years from the date of 
-              collection unless required by law to be retained longer.
+              {t("privacy.dataRetentionDesc")}
             </p>
           </div>
 
           {/* Contact Information */}
           <div className="mt-12 bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-850 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-              📞 Contact Us
+              {t("privacy.contactTitle")}
             </h2>
             <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
-              If you have questions about this Privacy Policy or wish to exercise your rights regarding 
-              your personal data, please contact:
+              {t("privacy.contactDesc")}
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
@@ -196,9 +191,9 @@ export default function PrivacyPage() {
                     <MapPin className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Address</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t("privacy.addressLabel")}</p>
                     <p className="text-slate-800 dark:text-slate-200">
-                      District Election Office, Collectorate, Kottayam, Kerala - 686001
+                      {t("privacy.addressText")}
                     </p>
                   </div>
                 </div>
@@ -207,7 +202,7 @@ export default function PrivacyPage() {
                     <Phone className="w-5 h-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Phone</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t("privacy.phoneLabel")}</p>
                     <p className="text-slate-800 dark:text-slate-200">0481-2562001</p>
                   </div>
                 </div>
@@ -218,7 +213,7 @@ export default function PrivacyPage() {
                     <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t("privacy.emailLabel")}</p>
                     <p className="text-slate-800 dark:text-slate-200">sveep.kottayam@kerala.gov.in</p>
                   </div>
                 </div>
@@ -229,8 +224,7 @@ export default function PrivacyPage() {
           {/* Policy Updates */}
           <div className="mt-12 text-center text-slate-600 dark:text-slate-400 text-sm">
             <p>
-              We may update this privacy policy from time to time. We will notify you of any changes 
-              by posting the new policy on this page with an updated revision date.
+              {t("privacy.policyUpdate")}
             </p>
           </div>
         </div>
