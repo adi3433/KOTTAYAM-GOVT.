@@ -2181,6 +2181,218 @@ Last Updated: January 14, 2026`,
     hi: "सर्च इंजन क्रॉलर के लिए एक XML साइटमैप भी उपलब्ध है",
     ml: "സെർച്ച് എൻജിൻ ക്രാളറുകൾക്കായി ഒരു XML സൈറ്റ്മാപ്പ് ലഭ്യമാണ്",
   },
+  
+  // Privacy Policy page (separate from /privacy page)
+  "privacyPolicy.badge": {
+    en: "Privacy Policy",
+    hi: "गोपनीयता नीति",
+    ml: "സ്വകാര്യതാ നയം",
+  },
+  "privacyPolicy.title": {
+    en: "Privacy Policy",
+    hi: "गोपनीयता नीति",
+    ml: "സ്വകാര്യതാ നയം",
+  },
+  "privacyPolicy.lastUpdated": {
+    en: "Last updated: January 14, 2026",
+    hi: "अंतिम अद्यतन: 14 जनवरी, 2026",
+    ml: "അവസാനം അപ്ഡേറ്റ് ചെയ്തത്: ജനുവരി 14, 2026",
+  },
+  "privacyPolicy.introTitle": {
+    en: "Introduction",
+    hi: "परिचय",
+    ml: "ആമുഖം",
+  },
+  "privacyPolicy.introText": {
+    en: "The SVEEP Kottayam Voter Pledge Portal (\"Website\") is an official initiative of the District Election Office, Kottayam, under the Election Commission of India. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.",
+    hi: "SVEEP कोट्टायम मतदाता प्रतिज्ञा पोर्टल (\"वेबसाइट\") भारत के निर्वाचन आयोग के तहत जिला निर्वाचन कार्यालय, कोट्टायम की एक आधिकारिक पहल है। यह गोपनीयता नीति बताती है कि जब आप हमारी वेबसाइट पर जाते हैं और हमारी सेवाओं का उपयोग करते हैं तो हम आपकी जानकारी कैसे एकत्र, उपयोग, प्रकट और सुरक्षित करते हैं।",
+    ml: "SVEEP കോട്ടയം വോട്ടർ പ്രതിജ്ഞാ പോർട്ടൽ (\"വെബ്സൈറ്റ്\") ഇന്ത്യൻ തിരഞ്ഞെടുപ്പ് കമ്മീഷന്റെ കീഴിൽ ജില്ലാ തിരഞ്ഞെടുപ്പ് ഓഫീസ്, കോട്ടയത്തിന്റെ ഔദ്യോഗിക സംരംഭമാണ്. നിങ്ങൾ ഞങ്ങളുടെ വെബ്സൈറ്റ് സന്ദർശിക്കുകയും ഞങ്ങളുടെ സേവനങ്ങൾ ഉപയോഗിക്കുകയും ചെയ്യുമ്പോൾ നിങ്ങളുടെ വിവരങ്ങൾ ഞങ്ങൾ എങ്ങനെ ശേഖരിക്കുകയും ഉപയോഗിക്കുകയും വെളിപ്പെടുത്തുകയും സംരക്ഷിക്കുകയും ചെയ്യുന്നുവെന്ന് ഈ സ്വകാര്യതാ നയം വിശദീകരിക്കുന്നു.",
+  },
+  "privacyPolicy.collectTitle": {
+    en: "Information We Collect",
+    hi: "हम जो जानकारी एकत्र करते हैं",
+    ml: "ഞങ്ങൾ ശേഖരിക്കുന്ന വിവരങ്ങൾ",
+  },
+  "privacyPolicy.collectIntro": {
+    en: "When you take the voter pledge on our website, we collect the following information:",
+    hi: "जब आप हमारी वेबसाइट पर मतदाता प्रतिज्ञा लेते हैं, तो हम निम्नलिखित जानकारी एकत्र करते हैं:",
+    ml: "നിങ്ങൾ ഞങ്ങളുടെ വെബ്സൈറ്റിൽ വോട്ടർ പ്രതിജ്ഞ എടുക്കുമ്പോൾ, ഞങ്ങൾ ഇനിപ്പറയുന്ന വിവരങ്ങൾ ശേഖരിക്കുന്നു:",
+  },
+  "privacyPolicy.collectItem1": {
+    en: "Full Name (as per official ID)",
+    hi: "पूरा नाम (आधिकारिक पहचान पत्र के अनुसार)",
+    ml: "പൂർണ്ണ നാമം (ഔദ്യോഗിക ഐഡി പ്രകാരം)",
+  },
+  "privacyPolicy.collectItem2": {
+    en: "Phone Number (10-digit mobile number)",
+    hi: "फोन नंबर (10-अंकों का मोबाइल नंबर)",
+    ml: "ഫോൺ നമ്പർ (10 അക്ക മൊബൈൽ നമ്പർ)",
+  },
+  "privacyPolicy.collectItem3": {
+    en: "Timestamp of pledge submission",
+    hi: "प्रतिज्ञा जमा करने का समय",
+    ml: "പ്രതിജ്ഞ സമർപ്പിക്കുന്ന സമയമുദ്ര",
+  },
+  "privacyPolicy.collectAuto": {
+    en: "We may also automatically collect certain information about your device, including:",
+    hi: "हम आपके डिवाइस के बारे में कुछ जानकारी भी स्वचालित रूप से एकत्र कर सकते हैं, जिसमें शामिल हैं:",
+    ml: "നിങ്ങളുടെ ഉപകരണത്തെക്കുറിച്ചുള്ള ചില വിവരങ്ങൾ ഞങ്ങൾ യാന്ത്രികമായി ശേഖരിച്ചേക്കാം, ഇതിൽ ഉൾപ്പെടുന്നു:",
+  },
+  "privacyPolicy.collectAuto1": {
+    en: "Browser type and version",
+    hi: "ब्राउज़र प्रकार और संस्करण",
+    ml: "ബ്രൗസർ തരവും പതിപ്പും",
+  },
+  "privacyPolicy.collectAuto2": {
+    en: "Operating system",
+    hi: "ऑपरेटिंग सिस्टम",
+    ml: "ഓപ്പറേറ്റിംഗ് സിസ്റ്റം",
+  },
+  "privacyPolicy.collectAuto3": {
+    en: "IP address (anonymized)",
+    hi: "IP पता (गुमनाम)",
+    ml: "IP വിലാസം (അജ്ഞാതമാക്കിയത്)",
+  },
+  "privacyPolicy.collectAuto4": {
+    en: "Access times and dates",
+    hi: "एक्सेस समय और तारीखें",
+    ml: "ആക്സസ് സമയവും തീയതികളും",
+  },
+  "privacyPolicy.useTitle": {
+    en: "How We Use Your Information",
+    hi: "हम आपकी जानकारी का उपयोग कैसे करते हैं",
+    ml: "നിങ്ങളുടെ വിവരങ്ങൾ ഞങ്ങൾ എങ്ങനെ ഉപയോഗിക്കുന്നു",
+  },
+  "privacyPolicy.useIntro": {
+    en: "The information collected is used for the following purposes:",
+    hi: "एकत्रित जानकारी का उपयोग निम्नलिखित उद्देश्यों के लिए किया जाता है:",
+    ml: "ശേഖരിച്ച വിവരങ്ങൾ ഇനിപ്പറയുന്ന ആവശ്യങ്ങൾക്കായി ഉപയോഗിക്കുന്നു:",
+  },
+  "privacyPolicy.useItem1": {
+    en: "Generate your official voter pledge certificate",
+    hi: "आपका आधिकारिक मतदाता प्रतिज्ञा प्रमाण पत्र उत्पन्न करें",
+    ml: "നിങ്ങളുടെ ഔദ്യോഗിക വോട്ടർ പ്രതിജ്ഞാ സർട്ടിഫിക്കറ്റ് ജനറേറ്റ് ചെയ്യുക",
+  },
+  "privacyPolicy.useItem2": {
+    en: "Maintain records of pledge submissions for SVEEP initiatives",
+    hi: "SVEEP पहलों के लिए प्रतिज्ञा प्रस्तुतीकरण के रिकॉर्ड बनाए रखें",
+    ml: "SVEEP സംരംഭങ്ങൾക്കായി പ്രതിജ്ഞാ സമർപ്പണങ്ങളുടെ രേഖകൾ സൂക്ഷിക്കുക",
+  },
+  "privacyPolicy.useItem3": {
+    en: "Compile anonymous statistics for voter awareness programs",
+    hi: "मतदाता जागरूकता कार्यक्रमों के लिए गुमनाम आंकड़े संकलित करें",
+    ml: "വോട്ടർ അവബോധ പരിപാടികൾക്കായി അജ്ഞാത സ്ഥിതിവിവരക്കണക്കുകൾ സമാഹരിക്കുക",
+  },
+  "privacyPolicy.useItem4": {
+    en: "Send important election-related notifications (if opted in)",
+    hi: "महत्वपूर्ण चुनाव-संबंधी सूचनाएं भेजें (यदि सहमति दी गई है)",
+    ml: "പ്രധാനപ്പെട്ട തിരഞ്ഞെടുപ്പ് സംബന്ധിയായ അറിയിപ്പുകൾ അയയ്ക്കുക (സമ്മതം നൽകിയാൽ)",
+  },
+  "privacyPolicy.useItem5": {
+    en: "Improve our website and services",
+    hi: "हमारी वेबसाइट और सेवाओं में सुधार करें",
+    ml: "ഞങ്ങളുടെ വെബ്സൈറ്റും സേവനങ്ങളും മെച്ചപ്പെടുത്തുക",
+  },
+  "privacyPolicy.securityTitle": {
+    en: "Data Security",
+    hi: "डेटा सुरक्षा",
+    ml: "ഡാറ്റ സുരക്ഷ",
+  },
+  "privacyPolicy.securityIntro": {
+    en: "We implement appropriate technical and organizational security measures to protect your personal information, including:",
+    hi: "हम आपकी व्यक्तिगत जानकारी की सुरक्षा के लिए उपयुक्त तकनीकी और संगठनात्मक सुरक्षा उपाय लागू करते हैं, जिनमें शामिल हैं:",
+    ml: "നിങ്ങളുടെ വ്യക്തിഗത വിവരങ്ങൾ സംരക്ഷിക്കാൻ ഞങ്ങൾ ഉചിതമായ സാങ്കേതികവും സംഘടനാപരവുമായ സുരക്ഷാ നടപടികൾ നടപ്പിലാക്കുന്നു, ഇതിൽ ഉൾപ്പെടുന്നു:",
+  },
+  "privacyPolicy.securityItem1": {
+    en: "SSL/TLS encryption for all data transmissions",
+    hi: "सभी डेटा ट्रांसमिशन के लिए SSL/TLS एन्क्रिप्शन",
+    ml: "എല്ലാ ഡാറ്റ ട്രാൻസ്മിഷനുകൾക്കും SSL/TLS എൻക്രിപ്ഷൻ",
+  },
+  "privacyPolicy.securityItem2": {
+    en: "Secure cloud storage with Firebase (Google Cloud Platform)",
+    hi: "Firebase (Google क्लाउड प्लेटफॉर्म) के साथ सुरक्षित क्लाउड स्टोरेज",
+    ml: "Firebase (Google Cloud Platform) ഉപയോഗിച്ച് സുരക്ഷിത ക്ലൗഡ് സ്റ്റോറേജ്",
+  },
+  "privacyPolicy.securityItem3": {
+    en: "Access controls and authentication protocols",
+    hi: "एक्सेस नियंत्रण और प्रमाणीकरण प्रोटोकॉल",
+    ml: "ആക്സസ് നിയന്ത്രണങ്ങളും പ്രാമാണീകരണ പ്രോട്ടോക്കോളുകളും",
+  },
+  "privacyPolicy.securityItem4": {
+    en: "Regular security audits and updates",
+    hi: "नियमित सुरक्षा ऑडिट और अपडेट",
+    ml: "പതിവ് സുരക്ഷാ ഓഡിറ്റുകളും അപ്ഡേറ്റുകളും",
+  },
+  "privacyPolicy.securityDisclaimer": {
+    en: "While we strive to use commercially acceptable means to protect your personal information, no method of transmission over the Internet or method of electronic storage is 100% secure.",
+    hi: "हालांकि हम आपकी व्यक्तिगत जानकारी की सुरक्षा के लिए व्यावसायिक रूप से स्वीकार्य साधनों का उपयोग करने का प्रयास करते हैं, इंटरनेट पर प्रसारण की कोई भी विधि या इलेक्ट्रॉनिक भंडारण की विधि 100% सुरक्षित नहीं है।",
+    ml: "നിങ്ങളുടെ വ്യക്തിഗത വിവരങ്ങൾ സംരക്ഷിക്കാൻ വാണിജ്യപരമായി സ്വീകാര്യമായ മാർഗങ്ങൾ ഉപയോഗിക്കാൻ ഞങ്ങൾ പരിശ്രമിക്കുമ്പോൾ, ഇന്റർനെറ്റിലൂടെയുള്ള ട്രാൻസ്മിഷന്റെയോ ഇലക്ട്രോണിക് സംഭരണത്തിന്റെയോ ഒരു രീതിയും 100% സുരക്ഷിതമല്ല.",
+  },
+  "privacyPolicy.retentionTitle": {
+    en: "Data Retention & Your Rights",
+    hi: "डेटा प्रतिधारण और आपके अधिकार",
+    ml: "ഡാറ്റ നിലനിർത്തലും നിങ്ങളുടെ അവകാശങ്ങളും",
+  },
+  "privacyPolicy.retentionText": {
+    en: "Your pledge data is retained for the duration of SVEEP programs and may be archived for historical record-keeping purposes by the Election Commission.",
+    hi: "आपकी प्रतिज्ञा डेटा SVEEP कार्यक्रमों की अवधि के लिए बनाए रखा जाता है और निर्वाचन आयोग द्वारा ऐतिहासिक रिकॉर्ड-रखने के उद्देश्यों के लिए संग्रहीत किया जा सकता है।",
+    ml: "നിങ്ങളുടെ പ്രതിജ്ഞാ ഡാറ്റ SVEEP പ്രോഗ്രാമുകളുടെ കാലയളവിലേക്ക് നിലനിർത്തുകയും തിരഞ്ഞെടുപ്പ് കമ്മീഷൻ ചരിത്രപരമായ രേഖാപരിപാലനത്തിനായി ആർക്കൈവ് ചെയ്തേക്കാം.",
+  },
+  "privacyPolicy.rightsIntro": {
+    en: "You have the right to:",
+    hi: "आपको निम्नलिखित अधिकार हैं:",
+    ml: "നിങ്ങൾക്ക് അവകാശമുണ്ട്:",
+  },
+  "privacyPolicy.rightsItem1": {
+    en: "Request access to your personal data",
+    hi: "अपने व्यक्तिगत डेटा तक पहुंच का अनुरोध करें",
+    ml: "നിങ്ങളുടെ വ്യക്തിഗത ഡാറ്റയിലേക്ക് പ്രവേശനം അഭ്യർത്ഥിക്കുക",
+  },
+  "privacyPolicy.rightsItem2": {
+    en: "Request correction of inaccurate data",
+    hi: "गलत डेटा के सुधार का अनुरोध करें",
+    ml: "തെറ്റായ ഡാറ്റയുടെ തിരുത്തൽ അഭ്യർത്ഥിക്കുക",
+  },
+  "privacyPolicy.rightsItem3": {
+    en: "Request deletion of your data (subject to legal requirements)",
+    hi: "अपने डेटा को हटाने का अनुरोध करें (कानूनी आवश്यकताओं के अधीन)",
+    ml: "നിങ്ങളുടെ ഡാറ്റ ഇല്ലാതാക്കാൻ അഭ്യർത്ഥിക്കുക (നിയമപരമായ ആവശ്യകതകൾക്ക് വിധേയമായി)",
+  },
+  "privacyPolicy.rightsItem4": {
+    en: "Opt-out of non-essential communications",
+    hi: "गैर-आवश्यक संचार से बाहर निकलें",
+    ml: "അനിവാര്യമല്ലാത്ത ആശയവിനിമയങ്ങളിൽ നിന്ന് ഒഴിവാക്കുക",
+  },
+  "privacyPolicy.rightsExercise": {
+    en: "To exercise these rights, please contact us at",
+    hi: "इन अधिकारों का प्रयोग करने के लिए, कृपया हमसे संपर्क करें",
+    ml: "ഈ അവകാശങ്ങൾ വിനിയോഗിക്കാൻ, ദയവായി ഞങ്ങളെ ബന്ധപ്പെടുക",
+  },
+  "privacyPolicy.contactTitle": {
+    en: "Contact Us",
+    hi: "संपर्क करें",
+    ml: "ഞങ്ങളെ ബന്ധപ്പെടുക",
+  },
+  "privacyPolicy.contactText": {
+    en: "If you have any questions about this Privacy Policy, please contact:",
+    hi: "यदि आपके पास इस गोपनीयता नीति के बारे में कोई प्रश्न हैं, तो कृपया संपर्क करें:",
+    ml: "ഈ സ്വകാര്യതാ നയത്തെക്കുറിച്ച് നിങ്ങൾക്ക് ചോദ്യങ്ങളുണ്ടെങ്കിൽ, ദയവായി ബന്ധപ്പെടുക:",
+  },
+  "privacyPolicy.officeName": {
+    en: "District Election Office, Kottayam",
+    hi: "जिला निर्वाचन कार्यालय, कोट्टायम",
+    ml: "ജില്ലാ ഇലക്ഷൻ ഓഫീസ്, കോട്ടയം",
+  },
+  "privacyPolicy.officeAddress": {
+    en: "District Collectorate, Kottayam, Kerala - 686002",
+    hi: "जिला कलेक्टरेट, कोट्टायम, केरल - 686002",
+    ml: "ജില്ലാ കളക്ടറേറ്റ്, കോട്ടയം, കേരള - 686002",
+  },
+  "privacyPolicy.officeContact": {
+    en: "Phone: 0481-2560123 | Email: ceo@kerala.gov.in",
+    hi: "फोन: 0481-2560123 | ईमेल: ceo@kerala.gov.in",
+    ml: "ഫോൺ: 0481-2560123 | ഇമെയിൽ: ceo@kerala.gov.in",
+  },
 }
 
 interface LanguageContextType {
