@@ -104,7 +104,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
     
     const shareTitle = t("success.shareTitle")
     const shareText = t("success.shareText")
-    const functionUrl = `https://us-central1-kottayam-votes-2025.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
+    const functionUrl = `https://asia-south1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
 
     try {
       try {
