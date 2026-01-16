@@ -16,7 +16,7 @@ const firebaseConfig = {
 // Ensure Firebase initializes only once (important for Next.js hot reload)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-const db = getFirestore(app, "(default)");
+const db = getFirestore(app);
 const storage = getStorage(app);
 const functions = getFunctions(app);
 
