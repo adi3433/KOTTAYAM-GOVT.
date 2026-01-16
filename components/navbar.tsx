@@ -75,7 +75,6 @@ export default function Navbar() {
       <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 text-white text-xs py-2 px-4 hidden sm:block relative overflow-hidden">
         {/* Subtle animated background */}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.03)_50%,transparent_100%)] animate-shimmer-slow pointer-events-none" />
-        
         <div className="max-w-7xl mx-auto flex items-center justify-between relative z-10">
           {/* Left side - Official info */}
           <div className="flex items-center gap-3 md:gap-6">
@@ -92,71 +91,11 @@ export default function Navbar() {
               <span className="whitespace-nowrap">{t("nav.governmentOfIndia")}</span>
             </div>
           </div>
-
           {/* Right side - Controls */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Helpline */}
             <div className="hidden lg:flex items-center gap-1.5 text-blue-200">
               <Phone className="w-3.5 h-3.5" />
               <span className="font-medium">1950</span>
-            </div>
-            
-            <span className="hidden lg:block h-4 w-px bg-blue-700/50"></span>
-
-            {/* Language Switcher - Inline */}
-            <div className="flex items-center">
-              {languages.map((lang, index) => (
-                <button
-                  key={lang.code}
-                  onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
-                  className={`px-2 py-0.5 text-xs font-semibold transition-all focus:outline-none focus:ring-1 focus:ring-yellow-400 rounded ${
-                    language === lang.code
-                      ? "bg-white text-blue-900"
-                      : "text-blue-200 hover:text-white hover:bg-blue-800/50"
-                  } ${isPending ? 'opacity-70' : ''}`}
-                  aria-label={lang.code === 'en' ? t("nav.switchToEnglish") : lang.code === 'hi' ? t("nav.switchToHindi") : t("nav.switchToMalayalam")}
-                  aria-pressed={language === lang.code}
-                >
-                  {lang.label}
-                </button>
-              ))}
-            </div>
-
-            <span className="h-4 w-px bg-blue-700/50"></span>
-
-            {/* Font Size Controls - A- A A+ */}
-            <div className="flex items-center gap-0.5">
-              <button
-                onClick={decreaseFontSize}
-                disabled={fontSize === "normal"}
-                className={`px-1.5 py-0.5 text-xs font-bold rounded transition-all focus:outline-none focus:ring-1 focus:ring-yellow-400 ${
-                  fontSize === "normal"
-                    ? "text-blue-400 cursor-not-allowed"
-                    : "text-blue-200 hover:text-white hover:bg-blue-800/50"
-                }`}
-                aria-label={t("nav.decreaseFontSize")}
-              >
-                A<Minus className="w-2 h-2 inline ml-0.5" />
-              </button>
-              <span
-                className={`px-2 py-0.5 text-xs font-bold rounded ${
-                  fontSize === "normal" ? "bg-white/20" : fontSize === "large" ? "bg-yellow-500/30" : "bg-yellow-500/50"
-                }`}
-              >
-                A
-              </span>
-              <button
-                onClick={increaseFontSize}
-                disabled={fontSize === "xlarge"}
-                className={`px-1.5 py-0.5 text-xs font-bold rounded transition-all focus:outline-none focus:ring-1 focus:ring-yellow-400 ${
-                  fontSize === "xlarge"
-                    ? "text-blue-400 cursor-not-allowed"
-                    : "text-blue-200 hover:text-white hover:bg-blue-800/50"
-                }`}
-                aria-label={t("nav.increaseFontSize")}
-              >
-                A<Plus className="w-2 h-2 inline ml-0.5" />
-              </button>
             </div>
           </div>
         </div>
@@ -222,6 +161,25 @@ export default function Navbar() {
 
             {/* Right Side Controls */}
             <div className="flex items-center gap-2">
+              {/* Language Switcher - Now in Navbar */}
+              <div className="flex items-center gap-1">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
+                    className={`px-2 py-1 text-xs font-semibold rounded transition-all focus:outline-none focus:ring-1 focus:ring-yellow-400 ${
+                      language === lang.code
+                        ? "bg-blue-600 text-white"
+                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                    }`}
+                    aria-label={lang.code === 'en' ? t("nav.switchToEnglish") : lang.code === 'hi' ? t("nav.switchToHindi") : t("nav.switchToMalayalam")}
+                    aria-pressed={language === lang.code}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+
               {/* Dark Mode Toggle */}
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

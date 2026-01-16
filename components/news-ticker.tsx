@@ -382,16 +382,13 @@ export default function NewsTicker() {
         </div>
 
         {/* Progress Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-200 dark:bg-slate-700">
+        {/* Progress Bar removed as per request */}
+        {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-200 dark:bg-slate-700">
           <div
-            className={`h-full bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 transition-all ${
-              isPaused || isHovered ? "" : "animate-progress-bar"
-            }`}
-            style={{
-              width: isPaused || isHovered ? `${((currentIndex + 1) / newsItems.length) * 100}%` : undefined,
-            }}
+            className="h-full bg-gradient-to-r from-orange-500 via-red-500 to-orange-500"
+            style={{ width: "100%" }}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   )
