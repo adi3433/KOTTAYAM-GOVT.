@@ -72,7 +72,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
     setIsDownloading(true)
 
     try {
-      const functionUrl = `https://us-central1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
+      const functionUrl = `https://asia-south1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
       console.log("📥 Downloading from Cloud Function:", functionUrl)
 
       const response = await fetch(functionUrl)

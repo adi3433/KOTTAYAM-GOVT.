@@ -80,22 +80,33 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
         // Return cached response and update cache in background
-        fetch(request).then((networkResponse) => {
-          caches.open(STATIC_CACHE).then((cache) => {
-            cache.put(request, networkResponse);
-          });
-        });
+        fetch(request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+              caches.open(STATIC_CACHE).then((cache) => {
+                cache.put(request, networkResponse.clone());
+              });
+            }
+          })
+          .catch(() => {}); // Ignore network errors in background update
         return cachedResponse;
       }
 
-      // Fetch from network and cache
-      return fetch(request).then((networkResponse) => {
-        const clonedResponse = networkResponse.clone();
-        caches.open(DYNAMIC_CACHE).then((cache) => {
-          cache.put(request, clonedResponse);
+      // Fetch from network and cache only successful responses
+      return fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            const clonedResponse = networkResponse.clone();
+            caches.open(DYNAMIC_CACHE).then((cache) => {
+              cache.put(request, clonedResponse);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          // Optionally return a fallback response here
+          return new Response('Network error occurred', { status: 408 });
         });
-        return networkResponse;
-      });
     })
   );
 });

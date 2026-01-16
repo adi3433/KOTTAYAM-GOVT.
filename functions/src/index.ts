@@ -11,8 +11,10 @@ const db = admin.firestore();
 const storage = admin.storage();
 
 // Trigger when a new pledge is added
-export const generateCertificate = onDocumentCreated(
-  "pledges/{pledgeId}",
+export const generateCertificate = onDocumentCreated({
+  document: "pledges/{pledgeId}",
+  region: "asia-south1"
+},
   async (event) => {
     const snap = event.data;
     if (!snap) return;
@@ -256,8 +258,10 @@ export const generateCertificate = onDocumentCreated(
 );
 
 // Download certificate endpoint
-export const downloadCertificate = onRequest(
-  { cors: true },
+export const downloadCertificate = onRequest({
+  cors: true,
+  region: "asia-south1"
+},
   async (req, res) => {
     const pledgeId = req.query.id as string;
 
