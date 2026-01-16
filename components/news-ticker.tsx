@@ -382,13 +382,7 @@ export default function NewsTicker() {
         </div>
 
         {/* Progress Bar */}
-        {/* Progress Bar removed as per request */}
-        {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-200 dark:bg-slate-700">
-          <div
-            className="h-full bg-gradient-to-r from-orange-500 via-red-500 to-orange-500"
-            style={{ width: "100%" }}
-          />
-        </div> */}
+        {/* Progress Bar visually removed, auto-advance remains active */}
       </div>
     </div>
   )

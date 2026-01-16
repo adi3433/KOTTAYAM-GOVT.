@@ -162,15 +162,15 @@ export default function Navbar() {
             {/* Right Side Controls */}
             <div className="flex items-center gap-2">
               {/* Language Switcher - Now in Navbar */}
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 px-2 py-1 border-2 border-blue-600 rounded-lg shadow-lg bg-white dark:bg-slate-800 scale-105 transition-transform">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
-                    className={`px-2 py-1 text-xs font-semibold rounded transition-all focus:outline-none focus:ring-1 focus:ring-yellow-400 ${
+                    className={`px-2 py-1 text-xs font-semibold rounded transition-all focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
                       language === lang.code
-                        ? "bg-blue-600 text-white"
-                        : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                        ? "bg-blue-600 text-white scale-110 shadow"
+                        : "text-blue-700 dark:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-900"
                     }`}
                     aria-label={lang.code === 'en' ? t("nav.switchToEnglish") : lang.code === 'hi' ? t("nav.switchToHindi") : t("nav.switchToMalayalam")}
                     aria-pressed={language === lang.code}
