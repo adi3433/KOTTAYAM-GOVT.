@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { LanguageProvider } from '@/lib/language-context'
 import { AccessibilityProvider } from '@/lib/accessibility-context'
@@ -190,7 +189,6 @@ export default function RootLayout({
             </AccessibilityProvider>
           </LanguageProvider>
         </ThemeProvider>
-        <Analytics />
         
         {/* Service Worker Registration */}
         <script
