@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { LanguageProvider } from '@/lib/language-context'
@@ -7,15 +7,15 @@ import { AccessibilityProvider } from '@/lib/accessibility-context'
 import AccessibilityPanel from '@/components/accessibility-panel'
 import './globals.css'
 
-const geist = Geist({ 
+const inter = Inter({ 
   subsets: ["latin"],
-  variable: '--font-geist',
+  variable: '--font-inter',
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({ 
+const jetbrainsMono = JetBrains_Mono({ 
   subsets: ["latin"],
-  variable: '--font-geist-mono',
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -174,7 +174,7 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className={`${geist.variable} ${geistMono.variable} font-sans antialiased`} 
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`} 
         suppressHydrationWarning
       >
         <ThemeProvider
