@@ -263,6 +263,16 @@ export const downloadCertificate = onRequest({
   region: "asia-south1"
 },
   async (req, res) => {
+    // Always set CORS headers
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    if (req.method === "OPTIONS") {
+      res.status(204).send("");
+      return;
+    }
+
     const pledgeId = req.query.id as string;
 
     if (!pledgeId) {
@@ -284,7 +294,7 @@ export const downloadCertificate = onRequest({
       const [fileBuffer] = await file.download();
       
       res.setHeader("Content-Type", "image/png");
-      res.setHeader("Content-Disposition", `attachment; filename="${pledgeId}-certificate.png"`);
+      res.setHeader("Content-Disposition", `attachment; filename=\"${pledgeId}-certificate.png\"`);
       res.send(fileBuffer);
     } catch (error) {
       console.error("Download error:", error);
