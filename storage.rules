@@ -2,10 +2,19 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
-    // Allow anyone to read certificate files
+    // Certificate files - public read, Cloud Functions write only
     match /certificates/{fileName} {
+      // Anyone can read (download) certificates
       allow read: if true;
-      allow write: if false; // Reverted statewide rules
+      
+      // Only Cloud Functions (Admin SDK) can write certificates
+      // Admin SDK bypasses these rules
+      allow write: if false;
+    }
+    
+    // Block access to all other paths
+    match /{allPaths=**} {
+      allow read, write: if false;
     }
   }
 }

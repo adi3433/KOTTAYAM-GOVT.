@@ -72,11 +72,10 @@ export default function AccessibilityPanel() {
                 <button
                   key={option.size}
                   onClick={() => setFontSize(option.size)}
-                  className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                    fontSize === option.size
+                  className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${fontSize === option.size
                       ? "border-blue-600 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
                       : "border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800"
-                  } ${option.className || ""}`}
+                    } ${option.className || ""}`}
                   aria-pressed={fontSize === option.size}
                   aria-label={option.ariaLabel}
                 >
@@ -99,23 +98,20 @@ export default function AccessibilityPanel() {
             </h3>
             <button
               onClick={toggleHighContrast}
-              className={`w-full py-4 px-6 rounded-xl border-2 font-semibold transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                highContrast
+              className={`w-full py-4 px-6 rounded-xl border-2 font-semibold transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${highContrast
                   ? "border-blue-600 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
                   : "border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800"
-              }`}
+                }`}
               aria-pressed={highContrast}
             >
               <span>{highContrast ? t("accessibility.enabled") : t("accessibility.disabled")}</span>
               <div
-                className={`w-12 h-7 rounded-full transition-colors relative ${
-                  highContrast ? "bg-blue-600" : "bg-slate-300 dark:bg-slate-600"
-                }`}
+                className={`w-12 h-7 rounded-full transition-colors relative ${highContrast ? "bg-blue-600" : "bg-slate-300 dark:bg-slate-600"
+                  }`}
               >
                 <div
-                  className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${
-                    highContrast ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${highContrast ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </div>
             </button>
@@ -132,23 +128,20 @@ export default function AccessibilityPanel() {
             </h3>
             <button
               onClick={toggleReducedMotion}
-              className={`w-full py-4 px-6 rounded-xl border-2 font-semibold transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                reducedMotion
+              className={`w-full py-4 px-6 rounded-xl border-2 font-semibold transition-all flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${reducedMotion
                   ? "border-blue-600 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
                   : "border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800"
-              }`}
+                }`}
               aria-pressed={reducedMotion}
             >
               <span>{reducedMotion ? t("accessibility.enabled") : t("accessibility.disabled")}</span>
               <div
-                className={`w-12 h-7 rounded-full transition-colors relative ${
-                  reducedMotion ? "bg-blue-600" : "bg-slate-300 dark:bg-slate-600"
-                }`}
+                className={`w-12 h-7 rounded-full transition-colors relative ${reducedMotion ? "bg-blue-600" : "bg-slate-300 dark:bg-slate-600"
+                  }`}
               >
                 <div
-                  className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${
-                    reducedMotion ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform ${reducedMotion ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </div>
             </button>

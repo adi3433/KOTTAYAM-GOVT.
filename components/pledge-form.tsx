@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
 import { db } from "@/firebase"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, query, where, getDocs } from "firebase/firestore"
 import { useLanguage } from "@/lib/language-context"
 
 interface PledgeFormProps {
@@ -20,12 +20,39 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const { t } = useLanguage()
 
+  // Validate Indian phone number (must start with 6, 7, 8, or 9)
+  const isValidIndianPhone = (phoneNumber: string): boolean => {
+    return /^[6-9][0-9]{9}$/.test(phoneNumber)
+  }
+
+  // Check if phone number already exists in database
+  const checkDuplicatePhone = async (phoneNumber: string): Promise<boolean> => {
+    try {
+      const q = query(
+        collection(db, "pledges"),
+        where("phone", "==", phoneNumber)
+      )
+      const snapshot = await getDocs(q)
+      return !snapshot.empty
+    } catch (error) {
+      console.error("Error checking duplicate:", error)
+      return false
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const newErrors: Record<string, string> = {}
 
-    if (!fullName.trim()) newErrors.fullName = t("form.errorFullName")
-    if (!phone || !/^[0-9]{10}$/.test(phone)) newErrors.phone = t("form.errorPhone")
+    // Validate name
+    if (!fullName.trim()) {
+      newErrors.fullName = t("form.errorFullName")
+    }
+
+    // Validate Indian phone number
+    if (!phone || !isValidIndianPhone(phone)) {
+      newErrors.phone = t("form.errorPhoneInvalid") || "Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -35,6 +62,14 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
     setIsLoading(true)
 
     try {
+      // Check for duplicate phone number
+      const isDuplicate = await checkDuplicatePhone(phone)
+      if (isDuplicate) {
+        setErrors({ phone: t("form.errorPhoneDuplicate") || "This phone number has already been used for a pledge" })
+        setIsLoading(false)
+        return
+      }
+
       // Add pledge document to Firestore
       await addDoc(collection(db, "pledges"), {
         fullName,
@@ -83,7 +118,7 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
               {t("form.subtitle")}
             </p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}
             <div className="space-y-3 group">
@@ -143,9 +178,9 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
             </div>
 
             {/* Submit */}
-            <Button 
-              type="submit" 
-              disabled={isLoading} 
+            <Button
+              type="submit"
+              disabled={isLoading}
               className="w-full min-h-[48px] sm:min-h-[56px] h-auto py-3 sm:py-4 px-4 text-sm sm:text-base md:text-lg font-bold mt-6 sm:mt-8 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 dark:from-blue-600 dark:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-900 shadow-lg hover:shadow-xl active:scale-[0.98] transition-all rounded-lg sm:rounded-xl focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 touch-manipulation whitespace-normal text-center leading-snug text-white"
             >
               {isLoading ? (

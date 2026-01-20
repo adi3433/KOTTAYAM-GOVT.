@@ -2,8 +2,28 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Pledges collection - Citizens can create and read pledges
+    match /pledges/{pledgeId} {
+      // Allow anyone to create a new pledge (for form submission)
+      // Validates: name exists, Indian phone number (starts with 6-9, 10 digits)
+      allow create: if 
+        request.resource.data.fullName is string &&
+        request.resource.data.fullName.size() > 0 &&
+        request.resource.data.fullName.size() <= 100 &&
+        request.resource.data.phone is string &&
+        request.resource.data.phone.matches('^[6-9][0-9]{9}$');
+      
+      // Allow anyone to read pledges (for certificate retrieval)
+      allow read: if true;
+      
+      // Cloud Functions use Admin SDK which bypasses these rules
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // Block access to all other collections by default
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }

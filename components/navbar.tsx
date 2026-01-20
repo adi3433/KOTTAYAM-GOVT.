@@ -103,11 +103,10 @@ export default function Navbar() {
 
       {/* Main Navigation */}
       <nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg"
-            : "bg-white dark:bg-slate-900"
-        } border-b-4 border-blue-800 dark:border-blue-600`}
+        className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg"
+          : "bg-white dark:bg-slate-900"
+          } border-b-4 border-blue-800 dark:border-blue-600`}
         role="navigation"
         aria-label={t("nav.mainNavigation")}
       >
@@ -160,18 +159,17 @@ export default function Navbar() {
             </div>
 
             {/* Right Side Controls */}
-            <div className="flex items-center gap-2">
-              {/* Language Switcher - Now in Navbar */}
-              <div className="flex items-center gap-1 px-2 py-1 border-2 border-blue-600 rounded-lg shadow-lg bg-white dark:bg-slate-800 scale-105 transition-transform">
+            <div className="flex items-center gap-1 sm:gap-2">
+              {/* Language Switcher - Hidden on mobile/tablet, shown in mobile menu instead */}
+              <div className="hidden lg:flex items-center gap-0.5 px-1.5 py-1 border-2 border-blue-600 rounded-lg shadow-md bg-white dark:bg-slate-800 transition-all duration-200 hover:shadow-lg">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
-                    className={`px-2 py-1 text-xs font-semibold rounded transition-all focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
-                      language === lang.code
-                        ? "bg-blue-600 text-white scale-110 shadow"
-                        : "text-blue-700 dark:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-900"
-                    }`}
+                    className={`px-2 py-1 text-xs font-bold rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-1 ${language === lang.code
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-blue-700 dark:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-900"
+                      }`}
                     aria-label={lang.code === 'en' ? t("nav.switchToEnglish") : lang.code === 'hi' ? t("nav.switchToHindi") : t("nav.switchToMalayalam")}
                     aria-pressed={language === lang.code}
                   >
@@ -183,7 +181,7 @@ export default function Navbar() {
               {/* Dark Mode Toggle */}
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 sm:p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95"
                 aria-label="Toggle theme"
                 suppressHydrationWarning
               >
@@ -194,10 +192,10 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* Accessibility Button */}
+              {/* Accessibility Button - Hidden on smallest screens */}
               <button
                 onClick={toggleAccessibilityPanel}
-                className="p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="hidden xs:block p-2 sm:p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95"
                 aria-label={t("accessibility.openPanel")}
               >
                 <Accessibility className="w-5 h-5" />
@@ -206,7 +204,7 @@ export default function Navbar() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lg:hidden p-2 sm:p-2.5 text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95"
                 aria-expanded={isMobileMenuOpen}
                 aria-label={isMobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
               >
@@ -218,57 +216,68 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 animate-slide-up">
-            <div className="px-4 py-4 space-y-2">
-              {/* Mobile Language & Font Controls */}
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg mb-4">
-                {/* Language Switcher */}
-                <div className="flex items-center gap-1">
-                  <span className="text-xs text-slate-500 dark:text-slate-400 mr-2">Lang:</span>
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
-                      className={`px-2.5 py-1 text-sm font-semibold rounded transition-all ${
-                        language === lang.code
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+          <div className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 shadow-lg animate-slide-up">
+            <div className="px-4 py-4 space-y-3">
+              {/* Mobile Language Switcher - Prominent at top */}
+              <div className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800 rounded-xl border-2 border-blue-200 dark:border-slate-600">
+                <span className="text-sm font-semibold text-slate-600 dark:text-slate-300 mr-2">🌐</span>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code as "en" | "hi" | "ml")}
+                    className={`px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 active:scale-95 ${language === lang.code
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600"
                       }`}
-                    >
-                      {lang.label}
-                    </button>
-                  ))}
-                </div>
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Font Size & Accessibility Controls */}
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
                 {/* Font Size */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Size:</span>
                   <button
                     onClick={decreaseFontSize}
                     disabled={fontSize === "normal"}
-                    className={`px-2 py-1 text-sm font-bold rounded ${
-                      fontSize === "normal" ? "text-slate-300 dark:text-slate-600" : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                    }`}
+                    className={`w-8 h-8 flex items-center justify-center text-sm font-bold rounded-lg transition-all duration-200 active:scale-95 ${fontSize === "normal" ? "text-slate-300 dark:text-slate-600 bg-slate-100 dark:bg-slate-700" : "text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 shadow-sm"
+                      }`}
                   >
                     A-
                   </button>
-                  <span className="px-2 py-1 text-sm font-bold bg-slate-200 dark:bg-slate-700 rounded">A</span>
+                  <span className="w-8 h-8 flex items-center justify-center text-sm font-bold bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-lg">A</span>
                   <button
                     onClick={increaseFontSize}
                     disabled={fontSize === "xlarge"}
-                    className={`px-2 py-1 text-sm font-bold rounded ${
-                      fontSize === "xlarge" ? "text-slate-300 dark:text-slate-600" : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
-                    }`}
+                    className={`w-8 h-8 flex items-center justify-center text-sm font-bold rounded-lg transition-all duration-200 active:scale-95 ${fontSize === "xlarge" ? "text-slate-300 dark:text-slate-600 bg-slate-100 dark:bg-slate-700" : "text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-600 hover:bg-slate-200 dark:hover:bg-slate-500 shadow-sm"
+                      }`}
                   >
                     A+
                   </button>
                 </div>
+
+                {/* Accessibility Button */}
+                <button
+                  onClick={toggleAccessibilityPanel}
+                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-700 hover:bg-blue-50 dark:hover:bg-slate-600 rounded-lg border border-slate-200 dark:border-slate-600 transition-all duration-200 active:scale-95"
+                >
+                  <Accessibility className="w-4 h-4" />
+                </button>
               </div>
 
+              {/* Divider */}
+              <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent"></div>
+
+              {/* Navigation Links */}
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-lg transition-all"
+                  className="flex items-center px-4 py-3 text-base font-semibold text-slate-700 dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-xl transition-all duration-200 active:scale-[0.98]"
                 >
                   {link.label}
                 </Link>

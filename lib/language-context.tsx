@@ -199,6 +199,16 @@ const translations: Translations = {
     hi: "एक वैध 10 अंकों का फोन नंबर दर्ज करें",
     ml: "സാധുവായ 10 അക്ക ഫോൺ നമ്പർ നൽകുക",
   },
+  "form.errorPhoneInvalid": {
+    en: "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9",
+    hi: "कृपया 6, 7, 8, या 9 से शुरू होने वाला वैध भारतीय मोबाइल नंबर दर्ज करें",
+    ml: "6, 7, 8, അല്ലെങ്കിൽ 9 ൽ ആരംഭിക്കുന്ന സാധുവായ ഇന്ത്യൻ മൊബൈൽ നമ്പർ നൽകുക",
+  },
+  "form.errorPhoneDuplicate": {
+    en: "This phone number has already been used for a pledge",
+    hi: "यह फोन नंबर पहले से ही प्रतिज्ञा के लिए उपयोग किया जा चुका है",
+    ml: "ഈ ഫോൺ നമ്പർ ഇതിനകം ഒരു പ്രതിജ്ഞയ്ക്കായി ഉപയോഗിച്ചിട്ടുണ്ട്",
+  },
 
   // Statistics
   "stats.totalPledges": {
@@ -1635,7 +1645,7 @@ const translations: Translations = {
     hi: "हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं। हम अद्यतन संशोधन तिथि के साथ इस पृष्ठ पर नई नीति पोस्ट करके आपको किसी भी परिवर्तन के बारे में सूचित करेंगे।",
     ml: "ഞങ്ങൾ ഈ സ്വകാര്യതാ നയം കാലാകാലങ്ങളിൽ അപ്ഡേറ്റ് ചെയ്തേക്കാം. അപ്ഡേറ്റ് ചെയ്ത പുനരവലോകന തീയതിയോടെ ഈ പേജിൽ പുതിയ നയം പോസ്റ്റ് ചെയ്ത് ഏതെങ്കിലും മാറ്റങ്ങളെക്കുറിച്ച് ഞങ്ങൾ നിങ്ങളെ അറിയിക്കും.",
   },
-  
+
   // Terms of Use page
   "terms.heroTitle": {
     en: "Terms of Use",
@@ -1939,7 +1949,7 @@ Last Updated: January 14, 2026`,
     hi: "संपर्क करें",
     ml: "ഞങ്ങളെ ബന്ധപ്പെടുക",
   },
-  
+
   // Sitemap page
   "sitemap.heroTitle": {
     en: "Sitemap",
@@ -2181,7 +2191,7 @@ Last Updated: January 14, 2026`,
     hi: "सर्च इंजन क्रॉलर के लिए एक XML साइटमैप भी उपलब्ध है",
     ml: "സെർച്ച് എൻജിൻ ക്രാളറുകൾക്കായി ഒരു XML സൈറ്റ്മാപ്പ് ലഭ്യമാണ്",
   },
-  
+
   // Privacy Policy page (separate from /privacy page)
   "privacyPolicy.badge": {
     en: "Privacy Policy",

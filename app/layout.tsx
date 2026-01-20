@@ -6,13 +6,13 @@ import { AccessibilityProvider } from '@/lib/accessibility-context'
 import AccessibilityPanel from '@/components/accessibility-panel'
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: '--font-mono',
   display: 'swap',
@@ -172,8 +172,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body 
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`} 
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -189,7 +189,7 @@ export default function RootLayout({
             </AccessibilityProvider>
           </LanguageProvider>
         </ThemeProvider>
-        
+
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{
