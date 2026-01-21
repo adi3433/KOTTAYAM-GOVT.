@@ -14,7 +14,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
       <Navbar />
-      
+
       {/* Hero Header */}
       <header className="relative overflow-hidden bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 py-20 px-4">
         <div className="absolute inset-0 opacity-20">
@@ -33,12 +33,12 @@ export default function FAQPage() {
             {t("faq.heroSubtitle")}
           </p>
         </div>
-        
+
         {/* Decorative Wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
-                  className="fill-slate-50 dark:fill-slate-900"/>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+              className="fill-slate-50 dark:fill-slate-900" />
           </svg>
         </div>
       </header>
@@ -46,7 +46,7 @@ export default function FAQPage() {
       <main id="main-content" className="py-12">
         <div className="max-w-5xl mx-auto px-4">
           <FAQSection />
-          
+
           {/* Still Have Questions? */}
           <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-xl p-8 text-white text-center">
             <div className="flex justify-center mb-4">
@@ -59,22 +59,22 @@ export default function FAQPage() {
               {t("faq.cantFindAnswer")}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link 
-                href="/" 
+              <Link
+                href="/#pledge-form"
                 className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition-all hover:scale-105 shadow-lg"
               >
                 <ArrowRight className="w-5 h-5 rotate-180" />
                 {t("home.takePledgeNow")}
               </Link>
-              <Link 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all hover:scale-105"
               >
                 {t("faq.contactUs")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <a 
-                href="tel:1950" 
+              <a
+                href="tel:1950"
                 className="inline-flex items-center gap-2 bg-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105"
               >
                 <Phone className="w-5 h-5" />

@@ -25,6 +25,19 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Handle hash-based navigation to scroll to pledge form
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash
+      if (hash === '#pledge-form') {
+        // Small delay to ensure the DOM is ready
+        setTimeout(() => {
+          document.getElementById("pledge-form")?.scrollIntoView({ behavior: "smooth" })
+        }, 100)
+      }
+    }
+  }, [])
+
   const scrollToForm = () => {
     document.getElementById("pledge-form")?.scrollIntoView({ behavior: "smooth" })
   }

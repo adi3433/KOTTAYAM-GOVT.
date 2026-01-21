@@ -14,14 +14,13 @@ interface FAQItemProps {
 
 function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
   const { t } = useLanguage()
-  
+
   return (
     <div
-      className={`border-2 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${
-        isOpen
+      className={`border-2 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${isOpen
           ? "border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-slate-800/50 shadow-lg"
           : "border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-slate-600 active:border-blue-400"
-      }`}
+        }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <button
@@ -31,33 +30,29 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
       >
         <span className="flex items-center gap-2 sm:gap-3">
           <span
-            className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm font-bold transition-colors flex-shrink-0 ${
-              isOpen
+            className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm font-bold transition-colors flex-shrink-0 ${isOpen
                 ? "bg-blue-600 text-white"
                 : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-            }`}
+              }`}
           >
             {index + 1}
           </span>
           <span
-            className={`font-semibold text-sm sm:text-lg transition-colors ${
-              isOpen ? "text-blue-900 dark:text-blue-100" : "text-slate-800 dark:text-slate-200"
-            }`}
+            className={`font-semibold text-sm sm:text-lg transition-colors ${isOpen ? "text-blue-900 dark:text-blue-100" : "text-slate-800 dark:text-slate-200"
+              }`}
           >
             {question}
           </span>
         </span>
         <ChevronDown
-          className={`w-5 h-5 sm:w-6 sm:h-6 text-slate-500 dark:text-slate-400 transition-transform duration-300 flex-shrink-0 ${
-            isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
-          }`}
+          className={`w-5 h-5 sm:w-6 sm:h-6 text-slate-500 dark:text-slate-400 transition-transform duration-300 flex-shrink-0 ${isOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : ""
+            }`}
         />
       </button>
 
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-1 sm:pt-2">
           <div className="pl-8 sm:pl-11">
@@ -66,8 +61,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
             </p>
             {index === 4 && (
               <div className="mt-3">
-                <a 
-                  href="/" 
+                <a
+                  href="/#pledge-form"
                   className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 hover:underline transition-colors"
                 >
                   {t("faq.takePledgeNow")}
