@@ -1,7 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Download, Share2, Sparkles, Award, CheckCircle, Star, PartyPopper } from "lucide-react"
+import { Download, Share2, Sparkles, Award, CheckCircle, Star, PartyPopper, Home } from "lucide-react"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import { db } from "@/firebase"
 import { collection, query, where, getDocs } from "firebase/firestore"
@@ -35,9 +36,9 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
           const doc = snapshot.docs[0]
           const data = doc.data()
           console.log("Pledge document data:", data)
-          
+
           setPledgeId(doc.id)
-          
+
           if (data.certificateUrl) {
             console.log("Certificate URL found:", data.certificateUrl)
             setCertificateUrl(data.certificateUrl)
@@ -101,7 +102,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
   const handleShare = async () => {
     if (!pledgeId) return alert(t("success.notReady"))
     setIsSharing(true)
-    
+
     const shareTitle = t("success.shareTitle")
     const shareText = t("success.shareText")
     const functionUrl = `https://asia-south1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
@@ -112,7 +113,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
         const blob = await response.blob()
         const fileName = `${name.replace(/\s+/g, '_')}_Certificate.png`
         const file = new File([blob], fileName, { type: "image/png" })
-        
+
         if (navigator.share && navigator.canShare) {
           const shareData = { title: shareTitle, text: shareText, files: [file] }
           if (navigator.canShare(shareData)) {
@@ -125,7 +126,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
       } catch (fetchError) {
         console.log("Could not fetch image for sharing:", fetchError)
       }
-      
+
       if (navigator.share) {
         await navigator.share({ title: shareTitle, text: shareText + `\n\n${certificateUrl}` })
         console.log("✅ Shared URL")
@@ -149,7 +150,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
         }
       }
     }
-    
+
     setIsSharing(false)
   }
 
@@ -188,12 +189,12 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               {/* Outer pulsing rings - reduced size */}
               <div className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-emerald-400/25 animate-ping"></div>
               <div className="absolute w-18 h-18 sm:w-22 sm:h-22 rounded-full bg-emerald-400/30 animate-pulse"></div>
-              
+
               {/* Main circle with checkmark */}
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/50 animate-bounce-in">
                 <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-white drop-shadow-md" />
               </div>
-              
+
               {/* Sparkle decorations */}
               <Star className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 text-yellow-300 animate-pulse fill-yellow-300" />
               <Sparkles className="absolute -bottom-1 -left-3 w-4 h-4 sm:w-5 sm:h-5 text-cyan-300 animate-pulse" />
@@ -205,7 +206,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
                 {t("success.congratulations")}
               </span>
             </h1>
-            
+
             {/* Name */}
             <div className="flex items-center justify-center gap-2 mb-2">
               <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 animate-pulse" />
@@ -214,7 +215,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               </p>
               <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 animate-pulse" />
             </div>
-            
+
             <p className="text-emerald-300 text-sm sm:text-base md:text-lg font-medium">
               {t("success.pledgeSuccess")}
             </p>
@@ -223,25 +224,25 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
           {/* Certificate Container */}
           <div className="mb-8 max-w-3xl mx-auto animate-fade-in-up delay-300">
             {certificateUrl ? (
-              <div 
+              <div
                 className={`relative group rounded-2xl overflow-hidden transition-all duration-500 ${certificateLoaded ? 'animate-scale-in' : ''}`}
               >
                 {/* Glowing border effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-cyan-500 to-teal-500 rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity animate-gradient-flow"></div>
-                
+
                 {/* Certificate image */}
                 <div className="relative bg-white rounded-xl overflow-hidden shadow-2xl shadow-emerald-500/30">
-                  <img 
-                    src={certificateUrl} 
-                    alt={t("success.certificateAlt")} 
+                  <img
+                    src={certificateUrl}
+                    alt={t("success.certificateAlt")}
                     className="w-full h-auto object-contain"
                     onLoad={() => setCertificateLoaded(true)}
                   />
-                  
+
                   {/* Shimmer overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
-                
+
                 {/* Decorative corners */}
                 <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-yellow-400/60 rounded-tl-lg"></div>
                 <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-yellow-400/60 rounded-tr-lg"></div>
@@ -261,7 +262,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
                     </div>
                     <p className="text-white font-semibold mb-1">{t("success.generatingTitle")}</p>
                     <p className="text-emerald-300/80 text-sm">{t("success.generatingWait")}</p>
-                    
+
                     {/* Progress dots */}
                     <div className="flex justify-center gap-1 mt-3">
                       {[0, 1, 2].map((i) => (
@@ -289,7 +290,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             >
               {/* Shimmer effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              
+
               {isDownloading ? (
                 <span className="relative flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -314,7 +315,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             >
               {/* Shimmer effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              
+
               {isSharing ? (
                 <span className="relative flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -323,10 +324,24 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
               ) : (
                 <span className="relative flex items-center gap-2">
                   <Share2 className="w-5 h-5" />
-                  {t("success.share")} 
+                  {t("success.share")}
                 </span>
               )}
             </Button>
+
+            {/* Go to Home Button */}
+            <Link href="/" className="block w-full">
+              <Button
+                variant="outline"
+                className="relative w-full h-12 sm:h-14 text-sm sm:text-base font-bold bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 rounded-xl transition-all duration-200 active:scale-[0.98] overflow-hidden group"
+                size="lg"
+              >
+                <span className="relative flex items-center gap-2">
+                  <Home className="w-5 h-5" />
+                  {t("success.goToHome") || "Go to Home"}
+                </span>
+              </Button>
+            </Link>
           </div>
 
           {/* Social Media Tip with rainbow gradient */}
