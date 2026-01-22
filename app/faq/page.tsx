@@ -58,26 +58,26 @@ export default function FAQPage() {
             <p className="text-blue-100 mb-6 max-w-xl mx-auto">
               {t("faq.cantFindAnswer")}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0">
               <Link
                 href="/#pledge-form"
-                className="inline-flex items-center gap-2 bg-amber-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition-all hover:scale-105 shadow-lg"
+                className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white px-5 sm:px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition-all hover:scale-105 shadow-lg w-full sm:w-auto text-sm sm:text-base"
               >
-                <ArrowRight className="w-5 h-5 rotate-180" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 rotate-180" />
                 {t("home.takePledgeNow")}
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 px-5 sm:px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all hover:scale-105 w-full sm:w-auto text-sm sm:text-base"
               >
                 {t("faq.contactUs")}
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
               <a
                 href="tel:1950"
-                className="inline-flex items-center gap-2 bg-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 bg-white/20 text-white px-5 sm:px-6 py-3 rounded-xl font-bold hover:bg-white/30 transition-all hover:scale-105 w-full sm:w-auto text-sm sm:text-base"
               >
-                <Phone className="w-5 h-5" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                 {t("faq.call1950")}
               </a>
             </div>

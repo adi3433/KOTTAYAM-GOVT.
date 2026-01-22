@@ -20,20 +20,53 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const { t } = useLanguage()
 
-  // Validate Indian phone number (must start with 6, 7, 8, or 9)
-  const isValidIndianPhone = (phoneNumber: string): boolean => {
-    return /^[6-9][0-9]{9}$/.test(phoneNumber)
+  // Validate phone number with specific error messages
+  const validatePhone = (phoneNumber: string): string | null => {
+    // Check if empty
+    if (!phoneNumber || phoneNumber.length === 0) {
+      return t("form.errorPhoneRequired") || "Please enter your mobile number"
+    }
+
+    // Check if less than 10 digits
+    if (phoneNumber.length < 10) {
+      return t("form.errorPhoneTooShort") || "Please enter a complete 10-digit mobile number"
+    }
+
+    // Check if starts with valid digit (6, 7, 8, or 9)
+    if (!/^[6-9]/.test(phoneNumber)) {
+      return t("form.errorPhoneInvalid") || "Please enter a valid Indian mobile number"
+    }
+
+    // Final validation - should be exactly 10 digits starting with 6-9
+    if (!/^[6-9][0-9]{9}$/.test(phoneNumber)) {
+      return t("form.errorPhoneInvalid") || "Please enter a valid 10-digit Indian mobile number"
+    }
+
+    return null // No error
   }
 
-  // Check if phone number already exists in database
-  const checkDuplicatePhone = async (phoneNumber: string): Promise<boolean> => {
+  // Check if both name and phone already exist together in database (same person)
+  const checkDuplicatePledge = async (name: string, phoneNumber: string): Promise<boolean> => {
     try {
+      // Query for pledges with the same phone number
       const q = query(
         collection(db, "pledges"),
         where("phone", "==", phoneNumber)
       )
       const snapshot = await getDocs(q)
-      return !snapshot.empty
+
+      // Check if any existing pledge has both same name AND same phone
+      for (const doc of snapshot.docs) {
+        const data = doc.data()
+        // Normalize names for comparison (trim and lowercase)
+        const existingName = (data.fullName || "").trim().toLowerCase()
+        const newName = name.trim().toLowerCase()
+        if (existingName === newName) {
+          return true // Duplicate found - same name and phone
+        }
+      }
+
+      return false // No duplicate - allow different name with same phone or different phone
     } catch (error) {
       console.error("Error checking duplicate:", error)
       return false
@@ -45,13 +78,20 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
     const newErrors: Record<string, string> = {}
 
     // Validate name
-    if (!fullName.trim()) {
-      newErrors.fullName = t("form.errorFullName")
+    const trimmedName = fullName.trim()
+    if (!trimmedName) {
+      newErrors.fullName = t("form.errorFullName") || "Please enter your full name"
+    } else if (trimmedName.length < 2) {
+      newErrors.fullName = t("form.errorNameTooShort") || "Name must be at least 2 characters"
+    } else if (!/^[a-zA-Z\s\u0900-\u097F\u0D00-\u0D7F.'-]+$/.test(trimmedName)) {
+      // Allow letters, spaces, Hindi, Malayalam, dots, apostrophes, and hyphens
+      newErrors.fullName = t("form.errorNameInvalid") || "Name can only contain letters and spaces"
     }
 
-    // Validate Indian phone number
-    if (!phone || !isValidIndianPhone(phone)) {
-      newErrors.phone = t("form.errorPhoneInvalid") || "Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
+    // Validate phone with specific error messages
+    const phoneError = validatePhone(phone)
+    if (phoneError) {
+      newErrors.phone = phoneError
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -62,23 +102,25 @@ export default function PledgeForm({ onSuccess }: PledgeFormProps) {
     setIsLoading(true)
 
     try {
-      // Check for duplicate phone number
-      const isDuplicate = await checkDuplicatePhone(phone)
+      // Check for duplicate pledge (both name AND phone must match)
+      const isDuplicate = await checkDuplicatePledge(trimmedName, phone)
       if (isDuplicate) {
-        setErrors({ phone: t("form.errorPhoneDuplicate") || "This phone number has already been used for a pledge" })
+        setErrors({
+          phone: t("form.errorDuplicate") || "You have already taken the pledge with this name and phone number"
+        })
         setIsLoading(false)
         return
       }
 
       // Add pledge document to Firestore
       await addDoc(collection(db, "pledges"), {
-        fullName,
+        fullName: trimmedName,
         phone,
         timestamp: serverTimestamp(),
       })
 
       // Move to success view
-      onSuccess(fullName, phone)
+      onSuccess(trimmedName, phone)
     } catch (err) {
       console.error("Error submitting pledge:", err)
       alert(t("common.error"))

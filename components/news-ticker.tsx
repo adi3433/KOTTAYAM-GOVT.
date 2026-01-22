@@ -185,7 +185,7 @@ export default function NewsTicker() {
             </span>
             <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping"></span>
           </div>
-          
+
           {/* Mobile Controls */}
           <div className="flex items-center gap-0.5 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-lg px-1 py-0.5 shadow-sm">
             <button
@@ -197,11 +197,10 @@ export default function NewsTicker() {
             </button>
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className={`p-1.5 rounded-md transition-all active:scale-95 touch-manipulation ${
-                isPaused
+              className={`p-1.5 rounded-md transition-all active:scale-95 touch-manipulation ${isPaused
                   ? "bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400"
                   : "text-slate-600 dark:text-slate-300 hover:bg-orange-100 dark:hover:bg-slate-700"
-              }`}
+                }`}
               aria-label={isPaused ? "Play" : "Pause"}
             >
               {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
@@ -215,12 +214,11 @@ export default function NewsTicker() {
             </button>
           </div>
         </div>
-        
+
         {/* News Text - Full Width on Mobile */}
         <div
-          className={`transition-all duration-300 ${
-            isTransitioning ? "opacity-0 transform -translate-y-1" : "opacity-100 transform translate-y-0"
-          }`}
+          className={`transition-all duration-300 ${isTransitioning ? "opacity-0 transform -translate-y-1" : "opacity-100 transform translate-y-0"
+            }`}
         >
           {currentNews.link ? (
             <a
@@ -240,7 +238,7 @@ export default function NewsTicker() {
             </p>
           )}
         </div>
-        
+
         {/* Mobile Progress Dots */}
         <div className="flex items-center justify-center gap-1 mt-2">
           {newsItems.map((_, index) => (
@@ -253,11 +251,10 @@ export default function NewsTicker() {
                   setIsTransitioning(false)
                 }, 150)
               }}
-              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${
-                index === currentIndex
+              className={`dot-indicator h-1.5 rounded-full transition-all duration-300 touch-manipulation ${index === currentIndex
                   ? "w-4 bg-orange-500"
                   : "w-1.5 bg-slate-300 dark:bg-slate-600 hover:bg-orange-300"
-              }`}
+                }`}
               aria-label={`Go to news ${index + 1}`}
             />
           ))}
@@ -280,9 +277,8 @@ export default function NewsTicker() {
           {/* News Content */}
           <div className="flex-1 overflow-hidden min-h-[60px] flex items-center">
             <div
-              className={`flex items-center gap-4 w-full transition-all duration-300 ${
-                isTransitioning ? "opacity-0 transform -translate-y-2" : "opacity-100 transform translate-y-0"
-              }`}
+              className={`flex items-center gap-4 w-full transition-all duration-300 ${isTransitioning ? "opacity-0 transform -translate-y-2" : "opacity-100 transform translate-y-0"
+                }`}
             >
               {/* Type Badge */}
               <span
@@ -336,11 +332,10 @@ export default function NewsTicker() {
 
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className={`p-2 sm:p-2.5 rounded-lg transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-orange-500 touch-manipulation ${
-                isPaused
+              className={`p-2 sm:p-2.5 rounded-lg transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-orange-500 touch-manipulation ${isPaused
                   ? "bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400"
                   : "text-slate-600 dark:text-slate-300 hover:bg-orange-100 dark:hover:bg-slate-700 active:bg-orange-200"
-              }`}
+                }`}
               aria-label={isPaused ? "Play" : "Pause"}
             >
               {isPaused ? <Play className="w-4 h-4 sm:w-5 sm:h-5" /> : <Pause className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -369,11 +364,10 @@ export default function NewsTicker() {
                       setIsTransitioning(false)
                     }, 150)
                   }}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentIndex
+                  className={`transition-all duration-300 rounded-full ${index === currentIndex
                       ? "w-6 h-2.5 bg-gradient-to-r from-orange-500 to-red-500"
                       : "w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-orange-300 dark:hover:bg-slate-500"
-                  }`}
+                    }`}
                   aria-label={`Go to news ${index + 1}`}
                 />
               ))}

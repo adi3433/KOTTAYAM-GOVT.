@@ -200,14 +200,44 @@ const translations: Translations = {
     ml: "സാധുവായ 10 അക്ക ഫോൺ നമ്പർ നൽകുക",
   },
   "form.errorPhoneInvalid": {
-    en: "Please enter a valid Indian mobile number starting with 6, 7, 8, or 9",
-    hi: "कृपया 6, 7, 8, या 9 से शुरू होने वाला वैध भारतीय मोबाइल नंबर दर्ज करें",
-    ml: "6, 7, 8, അല്ലെങ്കിൽ 9 ൽ ആരംഭിക്കുന്ന സാധുവായ ഇന്ത്യൻ മൊബൈൽ നമ്പർ നൽകുക",
+    en: "Please enter a valid Indian mobile number",
+    hi: "कृपया एक वैध भारतीय मोबाइल नंबर दर्ज करें",
+    ml: "സാധുവായ ഒരു ഇന്ത്യൻ മൊബൈൽ നമ്പർ നൽകുക",
   },
   "form.errorPhoneDuplicate": {
     en: "This phone number has already been used for a pledge",
     hi: "यह फोन नंबर पहले से ही प्रतिज्ञा के लिए उपयोग किया जा चुका है",
     ml: "ഈ ഫോൺ നമ്പർ ഇതിനകം ഒരു പ്രതിജ്ഞയ്ക്കായി ഉപയോഗിച്ചിട്ടുണ്ട്",
+  },
+  "form.errorPhoneRequired": {
+    en: "Please enter your mobile number",
+    hi: "कृपया अपना मोबाइल नंबर दर्ज करें",
+    ml: "നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക",
+  },
+  "form.errorPhoneTooShort": {
+    en: "Please enter a complete 10-digit mobile number",
+    hi: "कृपया पूरा 10 अंकों का मोबाइल नंबर दर्ज करें",
+    ml: "പൂർണ്ണമായ 10 അക്ക മൊബൈൽ നമ്പർ നൽകുക",
+  },
+  "form.errorPhoneInvalidStart": {
+    en: "Please enter a valid Indian mobile number",
+    hi: "कृपया एक वैध भारतीय मोबाइल नंबर दर्ज करें",
+    ml: "സാധുവായ ഒരു ഇന്ത്യൻ മൊബൈൽ നമ്പർ നൽകുക",
+  },
+  "form.errorNameTooShort": {
+    en: "Name must be at least 2 characters",
+    hi: "नाम कम से कम 2 अक्षरों का होना चाहिए",
+    ml: "പേരിൽ കുറഞ്ഞത് 2 അക്ഷരങ്ങൾ ഉണ്ടായിരിക്കണം",
+  },
+  "form.errorNameInvalid": {
+    en: "Name can only contain letters and spaces",
+    hi: "नाम में केवल अक्षर और स्पेस हो सकते हैं",
+    ml: "പേരിൽ അക്ഷരങ്ങളും സ്പെയ്സുകളും മാത്രമേ ഉണ്ടാകാവൂ",
+  },
+  "form.errorDuplicate": {
+    en: "You have already taken the pledge with this name and phone number",
+    hi: "आप इस नाम और फोन नंबर से पहले ही प्रतिज्ञा ले चुके हैं",
+    ml: "ഈ പേരും ഫോൺ നമ്പറും ഉപയോഗിച്ച് നിങ്ങൾ ഇതിനകം പ്രതിജ്ഞ എടുത്തിട്ടുണ്ട്",
   },
 
   // Statistics

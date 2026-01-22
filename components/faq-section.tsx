@@ -18,8 +18,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
   return (
     <div
       className={`border-2 rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 ${isOpen
-          ? "border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-slate-800/50 shadow-lg"
-          : "border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-slate-600 active:border-blue-400"
+        ? "border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-slate-800/50 shadow-lg"
+        : "border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-slate-600 active:border-blue-400"
         }`}
       style={{ animationDelay: `${index * 100}ms` }}
     >
@@ -31,8 +31,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }: FAQItemProps) {
         <span className="flex items-center gap-2 sm:gap-3">
           <span
             className={`flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm font-bold transition-colors flex-shrink-0 ${isOpen
-                ? "bg-blue-600 text-white"
-                : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+              ? "bg-blue-600 text-white"
+              : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
               }`}
           >
             {index + 1}
@@ -121,10 +121,10 @@ export default function FAQSection() {
           <p className="text-slate-700 dark:text-slate-300 mb-4">
             {t("faq.stillHaveQuestionsAlt")}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto text-sm sm:text-base"
             >
               {t("nav.contact")}
             </a>
@@ -132,7 +132,7 @@ export default function FAQSection() {
               href="https://eci.gov.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold rounded-xl border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold rounded-xl border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full sm:w-auto text-sm sm:text-base"
             >
               {t("nav.electionCommission")}
             </a>
