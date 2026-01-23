@@ -2,7 +2,7 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
-    "build": "tsc && node -e \"const fs=require('fs'); fs.mkdirSync('lib', {recursive:true}); fs.copyFileSync('src/sveep-logo.png', 'lib/sveep-logo.png'); fs.copyFileSync('src/ec-logo.png', 'lib/ec-logo.png');\"",
+    "build": "tsc && node -e \"const fs=require('fs'); fs.mkdirSync('lib', {recursive:true}); fs.copyFileSync('src/sveep-logo.png', 'lib/sveep-logo.png'); fs.copyFileSync('src/ec-logo.png', 'lib/ec-logo.png'); fs.copyFileSync('src/iiit-kottayam-logo.png', 'lib/iiit-kottayam-logo.png');\"",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",

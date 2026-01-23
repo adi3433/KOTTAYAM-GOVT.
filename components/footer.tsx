@@ -25,6 +25,11 @@ export default function Footer() {
                 alt={t("nav.ecLogo")}
                 className="h-12 sm:h-16 w-auto bg-white rounded-lg p-1.5 sm:p-2"
               />
+              <img
+                src="/iiit-kottayam-logo.png"
+                alt="IIIT Kottayam Logo"
+                className="h-12 sm:h-16 w-auto bg-white rounded-lg p-1.5 sm:p-2"
+              />
             </div>
             <h3 className="text-lg sm:text-xl font-bold mb-1.5 sm:mb-2">{t("nav.sveepKottayam")}</h3>
             <p className="text-blue-200 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
@@ -40,40 +45,40 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4 text-orange-400">{t("footer.quickLinksHeader")}</h4>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="/" 
+                <Link
+                  href="/"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.home")}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/about" 
+                <Link
+                  href="/about"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.about")}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/faq" 
+                <Link
+                  href="/faq"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.faq")}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/contact" 
+                <Link
+                  href="/contact"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.contact")}
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/privacy-policy" 
+                <Link
+                  href="/privacy-policy"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.privacy")}
@@ -136,6 +141,9 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm">
             <p className="text-blue-300 text-center md:text-left">
               {t("footer.copyright")}
+            </p>
+            <p className="text-blue-400 text-center md:text-left font-semibold">
+              Powered by IIIT Kottayam
             </p>
             <div className="flex items-center gap-3 sm:gap-4 text-blue-300 flex-wrap justify-center">
               <Link href="/privacy-policy" className="hover:text-white active:text-white transition-colors">

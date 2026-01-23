@@ -1,14 +1,29 @@
-import {onDocumentCreated} from "firebase-functions/v2/firestore";
-import {onRequest} from "firebase-functions/v2/https";
+import { onDocumentCreated } from "firebase-functions/v2/firestore";
+import { onRequest } from "firebase-functions/v2/https";
 import * as admin from "firebase-admin";
 import sharp from "sharp";
 import * as path from "path";
 import * as fs from "fs";
 
-admin.initializeApp();
+// Lazy initialization to avoid deployment timeouts
+let initialized = false;
+function initializeFirebase() {
+  if (!initialized) {
+    admin.initializeApp();
+    initialized = true;
+  }
+}
 
-const db = admin.firestore();
-const storage = admin.storage();
+// Lazy getters for db and storage
+function getDb() {
+  initializeFirebase();
+  return admin.firestore();
+}
+
+function getStorage() {
+  initializeFirebase();
+  return admin.storage();
+}
 
 // Trigger when a new pledge is added
 export const generateCertificate = onDocumentCreated({
@@ -29,10 +44,12 @@ export const generateCertificate = onDocumentCreated({
     // Load logo files from the lib directory (same as compiled code)
     const sveepLogoPath = path.join(__dirname, "sveep-logo.png");
     const ecLogoPath = path.join(__dirname, "ec-logo.png");
-    
+    const iiitLogoPath = path.join(__dirname, "iiit-kottayam-logo.png");
+
     let sveepLogoBuffer: Buffer | null = null;
     let ecLogoBuffer: Buffer | null = null;
-    
+    let iiitLogoBuffer: Buffer | null = null;
+
     try {
       if (fs.existsSync(sveepLogoPath)) {
         sveepLogoBuffer = fs.readFileSync(sveepLogoPath);
@@ -45,6 +62,12 @@ export const generateCertificate = onDocumentCreated({
         console.log("EC logo loaded successfully");
       } else {
         console.error("EC logo not found at:", ecLogoPath);
+      }
+      if (fs.existsSync(iiitLogoPath)) {
+        iiitLogoBuffer = fs.readFileSync(iiitLogoPath);
+        console.log("IIIT Kottayam logo loaded successfully");
+      } else {
+        console.error("IIIT Kottayam logo not found at:", iiitLogoPath);
       }
     } catch (error) {
       console.error("Error loading logos:", error);
@@ -149,7 +172,7 @@ export const generateCertificate = onDocumentCreated({
       <!-- Footer Left: Issued On -->
       <text x="150" y="710" font-family="Georgia, serif" font-size="19" fill="#FBBF24" font-weight="bold">Issued On:</text>
       <text x="150" y="738" font-family="Georgia, serif" font-size="17" fill="#FEF3C7">
-        ${new Date().toLocaleDateString("en-IN", {year: "numeric", month: "long", day: "numeric"})}
+        ${new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })}
       </text>
 
       <!-- Footer Right: Collector Info -->
@@ -175,32 +198,51 @@ export const generateCertificate = onDocumentCreated({
     // Composite logos and watermark
     const compositeOperations: any[] = [];
 
-    // Add SVEEP logo (top left)
+    // Add SVEEP logo (top left - cornered)
     if (sveepLogoBuffer) {
       try {
         const sveepLogo = await sharp(sveepLogoBuffer)
-          .resize(180, 100, { fit: "inside" })
+          .trim() // Remove whitespace
+          .resize(185, 115, { fit: "inside" })
           .toBuffer();
         compositeOperations.push({
           input: sveepLogo,
-          top: 75,
-          left: 180,
+          top: 60,
+          left: 80,
         });
       } catch (error) {
         console.error("Error processing SVEEP logo:", error);
       }
     }
 
-    // Add EC logo (top right)
+    // Add IIIT Kottayam logo (top right - before EC logo)
+    if (iiitLogoBuffer) {
+      try {
+        const iiitLogo = await sharp(iiitLogoBuffer)
+          .trim() // Remove whitespace
+          .resize(185, 115, { fit: "inside" })
+          .toBuffer();
+        compositeOperations.push({
+          input: iiitLogo,
+          top: 60,
+          left: width - 500, // Adjusted for new size
+        });
+      } catch (error) {
+        console.error("Error processing IIIT Kottayam logo:", error);
+      }
+    }
+
+    // Add EC logo (top right - cornered)
     if (ecLogoBuffer) {
       try {
         const ecLogo = await sharp(ecLogoBuffer)
-          .resize(180, 100, { fit: "inside" })
+          .trim() // Remove whitespace
+          .resize(185, 115, { fit: "inside" })
           .toBuffer();
         compositeOperations.push({
           input: ecLogo,
-          top: 75,
-          left: width - 360,
+          top: 60,
+          left: width - 280, // Adjusted for new size
         });
       } catch (error) {
         console.error("Error processing EC logo:", error);
@@ -239,7 +281,7 @@ export const generateCertificate = onDocumentCreated({
     }
 
 
-    const bucket = storage.bucket();
+    const bucket = getStorage().bucket();
     const filePath = `certificates/${pledgeId}.png`;
     const file = bucket.file(filePath);
 
@@ -248,7 +290,7 @@ export const generateCertificate = onDocumentCreated({
 
     const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
 
-    await db.collection("pledges").doc(pledgeId).update({
+    await getDb().collection("pledges").doc(pledgeId).update({
       certificateUrl: publicUrl,
       certificateGeneratedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
@@ -281,7 +323,7 @@ export const downloadCertificate = onRequest({
     }
 
     try {
-      const bucket = storage.bucket();
+      const bucket = getStorage().bucket();
       const filePath = `certificates/${pledgeId}.png`;
       const file = bucket.file(filePath);
 
@@ -292,7 +334,7 @@ export const downloadCertificate = onRequest({
       }
 
       const [fileBuffer] = await file.download();
-      
+
       res.setHeader("Content-Type", "image/png");
       res.setHeader("Content-Disposition", `attachment; filename=\"${pledgeId}-certificate.png\"`);
       res.send(fileBuffer);

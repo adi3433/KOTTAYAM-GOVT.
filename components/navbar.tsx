@@ -118,6 +118,15 @@ export default function Navbar() {
                 <div className="flex items-center gap-2">
                   <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
                     <img
+                      src="/iiit-kottayam-logo.png"
+                      alt="IIIT Kottayam Logo"
+                      className="h-10 w-auto object-contain"
+                      loading="eager"
+                    />
+                  </div>
+                  <div className="hidden md:block h-10 w-px bg-slate-300 dark:bg-slate-500"></div>
+                  <div className="bg-white dark:bg-white/95 rounded-lg p-1.5 transition-transform group-hover:scale-105">
+                    <img
                       src="/sveep-logo.png"
                       alt={t("nav.sveepLogo")}
                       className="h-10 w-auto object-contain"
