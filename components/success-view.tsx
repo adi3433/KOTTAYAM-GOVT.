@@ -108,6 +108,9 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
     const functionUrl = `https://asia-south1-kottayam-official.cloudfunctions.net/downloadCertificate?id=${pledgeId}`
 
     try {
+      // First try to fetch the image to share it directly
+      let fileShared = false;
+
       try {
         const response = await fetch(functionUrl)
         const blob = await response.blob()
@@ -115,32 +118,45 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
         const file = new File([blob], fileName, { type: "image/png" })
 
         if (navigator.share && navigator.canShare) {
-          const shareData = { title: shareTitle, text: shareText, files: [file] }
+          const shareData = {
+            title: shareTitle,
+            text: shareText,
+            files: [file]
+          }
+
+          // Check if we can share files
           if (navigator.canShare(shareData)) {
             await navigator.share(shareData)
             console.log("✅ Certificate image shared successfully")
-            setIsSharing(false)
-            return
+            fileShared = true;
           }
         }
       } catch (fetchError) {
-        console.log("Could not fetch image for sharing:", fetchError)
+        console.log("Could not process image for sharing:", fetchError)
       }
 
-      if (navigator.share) {
-        await navigator.share({ title: shareTitle, text: shareText + `\n\n${certificateUrl}` })
-        console.log("✅ Shared URL")
-      } else {
-        const textToCopy = `${shareText}\n\nView my certificate: ${certificateUrl}`
-        await navigator.clipboard.writeText(textToCopy)
-        alert(t("success.linkCopied") + "\n\n" + t("success.shareOnSocial"))
-        console.log("✅ Copied to clipboard")
+      // If file sharing failed or wasn't possible, fall back to text/link sharing
+      if (!fileShared) {
+        if (navigator.share) {
+          await navigator.share({
+            title: shareTitle,
+            text: shareText + `\n\n${certificateUrl}`
+          })
+          console.log("✅ Shared URL")
+        } else {
+          // Fallback to clipboard
+          const textToCopy = `${shareText}\n\nView my certificate: ${certificateUrl}`
+          await navigator.clipboard.writeText(textToCopy)
+          alert(t("success.linkCopied") + "\n\n" + t("success.shareOnSocial"))
+          console.log("✅ Copied to clipboard")
+        }
       }
     } catch (error: any) {
       if (error.name === 'AbortError') {
         console.log("Share cancelled by user")
       } else {
         console.error("Share error:", error)
+        // Final fallback
         try {
           const textToCopy = `${shareText}\n\n${certificateUrl}`
           await navigator.clipboard.writeText(textToCopy)

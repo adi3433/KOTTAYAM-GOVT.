@@ -138,7 +138,7 @@ export const generateCertificate = onDocumentCreated({
         SVEEP Kottayam District
       </text>
       <text x="${width / 2}" y="308" font-family="Georgia, serif" font-size="15" fill="#D4AF37" text-anchor="middle" font-style="italic">
-        in association with Indian Institute of Information Technology Kottayam
+        in association with <tspan font-weight="900">Indian Institute of Information Technology Kottayam</tspan>
       </text>
 
       <!-- Decorative divider -->
@@ -159,7 +159,7 @@ export const generateCertificate = onDocumentCreated({
 
       <!-- Description text -->
       <text x="${width / 2}" y="550" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
-        for pledging to vote and contribute to strengthening our democracy.
+        for pledging to vote for Upcoming election kerala assembly 2026.
       </text>
 
       <text x="${width / 2}" y="585" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
@@ -180,10 +180,10 @@ export const generateCertificate = onDocumentCreated({
         Chetan Kumar Meena IAS
       </text>
       <text x="${width - 150}" y="733" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
-        District Election Officer &amp;
+        District Election Commissioner
       </text>
-      <text x="${width - 150}" y="755" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
-        District Collector Kottayam
+      <text x="${width - 210}" y="758" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
+        Kottayam
       </text>
 
       <!-- Bottom golden line -->
@@ -203,11 +203,11 @@ export const generateCertificate = onDocumentCreated({
       try {
         const sveepLogo = await sharp(sveepLogoBuffer)
           .trim() // Remove whitespace
-          .resize(185, 115, { fit: "inside" })
+          .resize(180, 95, { fit: "inside" })
           .toBuffer();
         compositeOperations.push({
           input: sveepLogo,
-          top: 60,
+          top: 80, // Adjusted alignment
           left: 80,
         });
       } catch (error) {
@@ -220,12 +220,12 @@ export const generateCertificate = onDocumentCreated({
       try {
         const iiitLogo = await sharp(iiitLogoBuffer)
           .trim() // Remove whitespace
-          .resize(185, 115, { fit: "inside" })
+          .resize(180, 95, { fit: "inside" })
           .toBuffer();
         compositeOperations.push({
           input: iiitLogo,
           top: 60,
-          left: width - 500, // Adjusted for new size
+          left: width - 420, // Adjusted for new size
         });
       } catch (error) {
         console.error("Error processing IIIT Kottayam logo:", error);
@@ -237,12 +237,12 @@ export const generateCertificate = onDocumentCreated({
       try {
         const ecLogo = await sharp(ecLogoBuffer)
           .trim() // Remove whitespace
-          .resize(185, 115, { fit: "inside" })
+          .resize(180, 95, { fit: "inside" })
           .toBuffer();
         compositeOperations.push({
           input: ecLogo,
           top: 60,
-          left: width - 280, // Adjusted for new size
+          left: width - 200, // Adjusted for new size
         });
       } catch (error) {
         console.error("Error processing EC logo:", error);
