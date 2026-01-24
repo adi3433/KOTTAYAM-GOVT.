@@ -346,7 +346,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
             </Button>
 
             {/* Go to Home Button */}
-            <Link href="/" className="block w-full">
+            <a href="/" className="block w-full">
               <Button
                 variant="outline"
                 className="relative w-full h-12 sm:h-14 text-sm sm:text-base font-bold bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 rounded-xl transition-all duration-200 active:scale-[0.98] overflow-hidden group"
@@ -357,7 +357,7 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
                   {t("success.goToHome") || "Go to Home"}
                 </span>
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Social Media Tip with rainbow gradient */}
