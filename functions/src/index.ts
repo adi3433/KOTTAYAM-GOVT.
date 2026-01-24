@@ -45,10 +45,12 @@ export const generateCertificate = onDocumentCreated({
     const sveepLogoPath = path.join(__dirname, "sveep-logo.png");
     const ecLogoPath = path.join(__dirname, "ec-logo.png");
     const iiitLogoPath = path.join(__dirname, "iiit-kottayam-logo.png");
+    const signaturePath = path.join(__dirname, "signature.png");
 
     let sveepLogoBuffer: Buffer | null = null;
     let ecLogoBuffer: Buffer | null = null;
     let iiitLogoBuffer: Buffer | null = null;
+    let signatureBuffer: Buffer | null = null;
 
     try {
       if (fs.existsSync(sveepLogoPath)) {
@@ -68,6 +70,12 @@ export const generateCertificate = onDocumentCreated({
         console.log("IIIT Kottayam logo loaded successfully");
       } else {
         console.error("IIIT Kottayam logo not found at:", iiitLogoPath);
+      }
+      if (fs.existsSync(signaturePath)) {
+        signatureBuffer = fs.readFileSync(signaturePath);
+        console.log("Signature loaded successfully");
+      } else {
+        console.error("Signature not found at:", signaturePath);
       }
     } catch (error) {
       console.error("Error loading logos:", error);
@@ -158,31 +166,31 @@ export const generateCertificate = onDocumentCreated({
       </text>
 
       <!-- Description text -->
-      <text x="${width / 2}" y="550" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
-        for pledging to vote for Upcoming election kerala assembly 2026.
+      <text x="${width / 2}" y="540" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
+        for pledging to vote for Upcoming Election Kerala Assembly 2026.
       </text>
 
-      <text x="${width / 2}" y="585" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
+      <text x="${width / 2}" y="575" font-family="Georgia, serif" font-size="21" fill="#FEF3C7" text-anchor="middle">
         Congratulations on taking this important step towards responsible citizenship!
       </text>
 
       <!-- Decorative separator line -->
-      <line x1="150" y1="660" x2="${width - 150}" y2="660" stroke="#FFC700" stroke-width="1" stroke-dasharray="8,4" opacity="0.7"/>
+      <line x1="150" y1="630" x2="${width - 150}" y2="630" stroke="#FFC700" stroke-width="1" stroke-dasharray="8,4" opacity="0.7"/>
 
       <!-- Footer Left: Issued On -->
-      <text x="150" y="710" font-family="Georgia, serif" font-size="19" fill="#FBBF24" font-weight="bold">Issued On:</text>
-      <text x="150" y="738" font-family="Georgia, serif" font-size="17" fill="#FEF3C7">
+      <text x="150" y="740" font-family="Georgia, serif" font-size="19" fill="#FBBF24" font-weight="bold">Issued On:</text>
+      <text x="150" y="768" font-family="Georgia, serif" font-size="17" fill="#FEF3C7">
         ${new Date().toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })}
       </text>
 
       <!-- Footer Right: Collector Info -->
-      <text x="${width - 150}" y="710" font-family="Georgia, serif" font-size="17" fill="#FBBF24" text-anchor="end" font-weight="600">
+      <text x="${width - 150}" y="740" font-family="Georgia, serif" font-size="17" fill="#FBBF24" text-anchor="end" font-weight="600">
         Chetan Kumar Meena IAS
       </text>
-      <text x="${width - 150}" y="733" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
+      <text x="${width - 150}" y="763" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
         District Election Commissioner
       </text>
-      <text x="${width - 210}" y="758" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
+      <text x="${width - 210}" y="788" font-family="Georgia, serif" font-size="16" fill="#FEF3C7" text-anchor="end">
         Kottayam
       </text>
 
@@ -246,6 +254,24 @@ export const generateCertificate = onDocumentCreated({
         });
       } catch (error) {
         console.error("Error processing EC logo:", error);
+      }
+    }
+
+    // Add Signature
+    if (signatureBuffer) {
+      try {
+        const signature = await sharp(signatureBuffer)
+          .trim()
+          .resize(180, 100, { fit: "inside" })
+          .toBuffer();
+
+        compositeOperations.push({
+          input: signature,
+          top: 640,
+          left: width - 255, // Adjusted to be centered over the name
+        });
+      } catch (error) {
+        console.error("Error processing Signature:", error);
       }
     }
 

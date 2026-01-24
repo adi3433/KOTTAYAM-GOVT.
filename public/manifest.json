@@ -4,13 +4,16 @@
   "description": "Official voter pledge portal for SVEEP Kottayam District - Election Commission of India",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e3a8a",
-  "theme_color": "#1e3a8a",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["government", "education"],
+  "categories": [
+    "government",
+    "education"
+  ],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
@@ -83,21 +86,36 @@
       "short_name": "Pledge",
       "description": "Take the voter pledge",
       "url": "/",
-      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "FAQ",
       "short_name": "FAQ",
       "description": "Frequently asked questions",
       "url": "/faq",
-      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Contact",
       "short_name": "Contact",
       "description": "Contact the election office",
       "url": "/contact",
-      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
     }
   ],
   "related_applications": [],
