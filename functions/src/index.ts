@@ -28,7 +28,8 @@ function getStorage() {
 // Trigger when a new pledge is added
 export const generateCertificate = onDocumentCreated({
   document: "pledges/{pledgeId}",
-  region: "asia-south1"
+  region: "asia-south1",
+  memory: "512MiB"
 },
   async (event) => {
     const snap = event.data;
