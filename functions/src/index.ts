@@ -25,13 +25,55 @@ function getStorage() {
   return admin.storage();
 }
 
+// ============================================
+// LOGO CACHING - Load once, reuse for all requests
+// ============================================
+interface CachedLogos {
+  sveep: Buffer | null;
+  ec: Buffer | null;
+  iiit: Buffer | null;
+  signature: Buffer | null;
+}
+
+let cachedLogos: CachedLogos | null = null;
+
+function getLogos(): CachedLogos {
+  if (cachedLogos) {
+    console.log("Using cached logos");
+    return cachedLogos;
+  }
+
+  console.log("Loading logos from disk (first request)...");
+  const sveepLogoPath = path.join(__dirname, "sveep-logo.png");
+  const ecLogoPath = path.join(__dirname, "ec-logo.png");
+  const iiitLogoPath = path.join(__dirname, "iiit-kottayam-logo.png");
+  const signaturePath = path.join(__dirname, "signature.png");
+
+  cachedLogos = {
+    sveep: fs.existsSync(sveepLogoPath) ? fs.readFileSync(sveepLogoPath) : null,
+    ec: fs.existsSync(ecLogoPath) ? fs.readFileSync(ecLogoPath) : null,
+    iiit: fs.existsSync(iiitLogoPath) ? fs.readFileSync(iiitLogoPath) : null,
+    signature: fs.existsSync(signaturePath) ? fs.readFileSync(signaturePath) : null,
+  };
+
+  // Log which logos were found
+  if (!cachedLogos.sveep) console.error("SVEEP logo not found at:", sveepLogoPath);
+  if (!cachedLogos.ec) console.error("EC logo not found at:", ecLogoPath);
+  if (!cachedLogos.iiit) console.error("IIIT Kottayam logo not found at:", iiitLogoPath);
+  if (!cachedLogos.signature) console.error("Signature not found at:", signaturePath);
+
+  return cachedLogos;
+}
+
 // Trigger when a new pledge is added
 export const generateCertificate = onDocumentCreated({
   document: "pledges/{pledgeId}",
   region: "asia-south1",
-  memory: "512MiB"
+  memory: "1GiB", // Increased for faster Sharp processing
+  concurrency: 80, // Allow concurrent executions
 },
   async (event) => {
+    const startTime = Date.now();
     const snap = event.data;
     if (!snap) return;
 
@@ -42,45 +84,12 @@ export const generateCertificate = onDocumentCreated({
     const width = 1200;
     const height = 850;
 
-    // Load logo files from the lib directory (same as compiled code)
-    const sveepLogoPath = path.join(__dirname, "sveep-logo.png");
-    const ecLogoPath = path.join(__dirname, "ec-logo.png");
-    const iiitLogoPath = path.join(__dirname, "iiit-kottayam-logo.png");
-    const signaturePath = path.join(__dirname, "signature.png");
-
-    let sveepLogoBuffer: Buffer | null = null;
-    let ecLogoBuffer: Buffer | null = null;
-    let iiitLogoBuffer: Buffer | null = null;
-    let signatureBuffer: Buffer | null = null;
-
-    try {
-      if (fs.existsSync(sveepLogoPath)) {
-        sveepLogoBuffer = fs.readFileSync(sveepLogoPath);
-        console.log("SVEEP logo loaded successfully");
-      } else {
-        console.error("SVEEP logo not found at:", sveepLogoPath);
-      }
-      if (fs.existsSync(ecLogoPath)) {
-        ecLogoBuffer = fs.readFileSync(ecLogoPath);
-        console.log("EC logo loaded successfully");
-      } else {
-        console.error("EC logo not found at:", ecLogoPath);
-      }
-      if (fs.existsSync(iiitLogoPath)) {
-        iiitLogoBuffer = fs.readFileSync(iiitLogoPath);
-        console.log("IIIT Kottayam logo loaded successfully");
-      } else {
-        console.error("IIIT Kottayam logo not found at:", iiitLogoPath);
-      }
-      if (fs.existsSync(signaturePath)) {
-        signatureBuffer = fs.readFileSync(signaturePath);
-        console.log("Signature loaded successfully");
-      } else {
-        console.error("Signature not found at:", signaturePath);
-      }
-    } catch (error) {
-      console.error("Error loading logos:", error);
-    }
+    // Get cached logos (loaded once per cold start)
+    const logos = getLogos();
+    const sveepLogoBuffer = logos.sveep;
+    const ecLogoBuffer = logos.ec;
+    const iiitLogoBuffer = logos.iiit;
+    const signatureBuffer = logos.signature;
 
     // ---------- SVG CERTIFICATE ----------
     const svgCertificate = `
@@ -202,84 +211,63 @@ export const generateCertificate = onDocumentCreated({
 
     const baseCertificate = await sharp(Buffer.from(svgCertificate)).png().toBuffer();
 
-    let finalImage = baseCertificate;
+    // ============================================
+    // PARALLEL LOGO PROCESSING - Process all logos simultaneously
+    // ============================================
+    const logoPromises = [];
 
-    // Composite logos and watermark
-    const compositeOperations: any[] = [];
-
-    // Add SVEEP logo (top left - cornered)
+    // SVEEP logo (top left)
     if (sveepLogoBuffer) {
-      try {
-        const sveepLogo = await sharp(sveepLogoBuffer)
-          .trim() // Remove whitespace
+      logoPromises.push(
+        sharp(sveepLogoBuffer)
+          .trim()
           .resize(180, 95, { fit: "inside" })
-          .toBuffer();
-        compositeOperations.push({
-          input: sveepLogo,
-          top: 80, // Adjusted alignment
-          left: 80,
-        });
-      } catch (error) {
-        console.error("Error processing SVEEP logo:", error);
-      }
+          .toBuffer()
+          .then(buffer => ({ input: buffer, top: 80, left: 80 }))
+          .catch(err => { console.error("Error processing SVEEP logo:", err); return null; })
+      );
     }
 
-    // Add IIIT Kottayam logo (top right - before EC logo)
+    // IIIT logo (top right - before EC)
     if (iiitLogoBuffer) {
-      try {
-        const iiitLogo = await sharp(iiitLogoBuffer)
-          .trim() // Remove whitespace
+      logoPromises.push(
+        sharp(iiitLogoBuffer)
+          .trim()
           .resize(180, 95, { fit: "inside" })
-          .toBuffer();
-        compositeOperations.push({
-          input: iiitLogo,
-          top: 60,
-          left: width - 420, // Adjusted for new size
-        });
-      } catch (error) {
-        console.error("Error processing IIIT Kottayam logo:", error);
-      }
+          .toBuffer()
+          .then(buffer => ({ input: buffer, top: 60, left: width - 420 }))
+          .catch(err => { console.error("Error processing IIIT logo:", err); return null; })
+      );
     }
 
-    // Add EC logo (top right - cornered)
+    // EC logo (top right)
     if (ecLogoBuffer) {
-      try {
-        const ecLogo = await sharp(ecLogoBuffer)
-          .trim() // Remove whitespace
+      logoPromises.push(
+        sharp(ecLogoBuffer)
+          .trim()
           .resize(180, 95, { fit: "inside" })
-          .toBuffer();
-        compositeOperations.push({
-          input: ecLogo,
-          top: 60,
-          left: width - 200, // Adjusted for new size
-        });
-      } catch (error) {
-        console.error("Error processing EC logo:", error);
-      }
+          .toBuffer()
+          .then(buffer => ({ input: buffer, top: 60, left: width - 200 }))
+          .catch(err => { console.error("Error processing EC logo:", err); return null; })
+      );
     }
 
-    // Add Signature
+    // Signature
     if (signatureBuffer) {
-      try {
-        const signature = await sharp(signatureBuffer)
+      logoPromises.push(
+        sharp(signatureBuffer)
           .trim()
           .resize(180, 100, { fit: "inside" })
-          .toBuffer();
-
-        compositeOperations.push({
-          input: signature,
-          top: 640,
-          left: width - 255, // Adjusted to be centered over the name
-        });
-      } catch (error) {
-        console.error("Error processing Signature:", error);
-      }
+          .toBuffer()
+          .then(buffer => ({ input: buffer, top: 640, left: width - 255 }))
+          .catch(err => { console.error("Error processing Signature:", err); return null; })
+      );
     }
 
-    // Add SVEEP watermark (center, subtle)
+    // Watermark (center, subtle)
     if (sveepLogoBuffer) {
-      try {
-        const watermark = await sharp(sveepLogoBuffer)
+      logoPromises.push(
+        sharp(sveepLogoBuffer)
           .resize(400, 300, { fit: "inside" })
           .composite([{
             input: Buffer.from([255, 255, 255, 20]),
@@ -287,26 +275,29 @@ export const generateCertificate = onDocumentCreated({
             tile: true,
             blend: "dest-in" as any,
           }])
-          .toBuffer();
-        compositeOperations.push({
-          input: watermark,
-          top: Math.floor((height - 300) / 2),
-          left: Math.floor((width - 400) / 2),
-          blend: "over" as any,
-        });
-      } catch (error) {
-        console.error("Error processing watermark:", error);
-      }
+          .toBuffer()
+          .then(buffer => ({
+            input: buffer,
+            top: Math.floor((height - 300) / 2),
+            left: Math.floor((width - 400) / 2),
+            blend: "over" as any,
+          }))
+          .catch(err => { console.error("Error processing watermark:", err); return null; })
+      );
     }
 
+    // Wait for all logo processing to complete in parallel
+    const processedLogos = await Promise.all(logoPromises);
+    const compositeOperations = processedLogos.filter(op => op !== null) as any[];
+
     // Apply all composite operations
+    let finalImage = baseCertificate;
     if (compositeOperations.length > 0) {
       finalImage = await sharp(baseCertificate)
         .composite(compositeOperations)
         .png()
         .toBuffer();
     }
-
 
     const bucket = getStorage().bucket();
     const filePath = `certificates/${pledgeId}.png`;
@@ -321,6 +312,9 @@ export const generateCertificate = onDocumentCreated({
       certificateUrl: publicUrl,
       certificateGeneratedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
+
+    const duration = Date.now() - startTime;
+    console.log(`Certificate generated for ${pledgeId} in ${duration}ms`);
 
     return { success: true, url: publicUrl };
   }

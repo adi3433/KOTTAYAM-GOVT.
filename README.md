@@ -92,7 +92,7 @@ kottayam-voting-RSVP/
 │   ├── 📂 about/              # About SVEEP page
 │   ├── 📂 contact/            # Contact page
 │   ├── 📂 faq/                # FAQ page
-│   └── 📂 privacy-policy/     # Privacy policy
+│   └── 📂 privacy/            # Privacy policy
 │
 ├── 📂 components/              # React Components
 │   ├── 📄 navbar.tsx          # Navigation with language switcher

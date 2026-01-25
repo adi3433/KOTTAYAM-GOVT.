@@ -8,7 +8,7 @@ const STATIC_ASSETS = [
   '/about',
   '/contact',
   '/faq',
-  '/privacy-policy',
+  '/privacy',
   '/sveep-logo.png',
   '/ec-logo.png',
   '/manifest.json',
@@ -88,7 +88,7 @@ self.addEventListener('fetch', (event) => {
               });
             }
           })
-          .catch(() => {}); // Ignore network errors in background update
+          .catch(() => { }); // Ignore network errors in background update
         return cachedResponse;
       }
 
@@ -126,7 +126,7 @@ async function syncPledges() {
 // Push notification handler
 self.addEventListener('push', (event) => {
   const data = event.data?.json() || {};
-  
+
   const options = {
     body: data.body || 'New update from SVEEP Kottayam',
     icon: '/icons/icon-192x192.png',

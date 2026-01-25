@@ -3,14 +3,14 @@
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { 
-  Home, 
-  Info, 
-  HelpCircle, 
-  Phone, 
-  Shield, 
-  Scale, 
-  Map, 
+import {
+  Home,
+  Info,
+  HelpCircle,
+  Phone,
+  Shield,
+  Scale,
+  Map,
   ExternalLink,
   Vote,
   Users,
@@ -39,7 +39,7 @@ interface SitemapSection {
 
 export default function SitemapPage() {
   const { t } = useLanguage()
-  
+
   const sitemapSections: SitemapSection[] = [
     {
       titleKey: "sitemap.mainPagesTitle",
@@ -78,7 +78,7 @@ export default function SitemapPage() {
       color: "purple",
       items: [
         {
-          href: "/privacy-policy",
+          href: "/privacy",
           labelKey: "sitemap.privacyLabel",
           descKey: "sitemap.privacyDesc",
           icon: <Shield className="w-5 h-5" />
@@ -209,7 +209,7 @@ export default function SitemapPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
       <Navbar />
-      
+
       {/* Hero Section */}
       <header className="relative overflow-hidden bg-gradient-to-r from-indigo-900 via-purple-800 to-blue-900 py-16 px-4">
         <div className="absolute inset-0 opacity-20">
@@ -228,12 +228,12 @@ export default function SitemapPage() {
             {t("sitemap.heroSubtitle")}
           </p>
         </div>
-        
+
         {/* Decorative Wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
-                  className="fill-slate-50 dark:fill-slate-900"/>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+              className="fill-slate-50 dark:fill-slate-900" />
           </svg>
         </div>
       </header>

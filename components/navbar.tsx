@@ -52,7 +52,7 @@ export default function Navbar() {
     { href: "/about", label: t("nav.about") },
     { href: "/contact", label: t("nav.contact") },
     { href: "/faq", label: t("nav.faq") },
-    { href: "/privacy-policy", label: t("nav.privacy") },
+    { href: "/privacy", label: t("nav.privacy") },
   ]
 
   const languages = [

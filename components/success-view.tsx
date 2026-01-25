@@ -5,7 +5,7 @@ import { Download, Share2, Sparkles, Award, CheckCircle, Star, PartyPopper, Home
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { db } from "@/firebase"
-import { collection, query, where, getDocs } from "firebase/firestore"
+import { collection, query, where, getDocs, onSnapshot } from "firebase/firestore"
 import { useLanguage } from "@/lib/language-context"
 
 interface SuccessViewProps {
@@ -22,43 +22,69 @@ export default function SuccessView({ name, phone }: SuccessViewProps) {
   const [certificateLoaded, setCertificateLoaded] = useState(false)
 
 
-  // Fetch certificate from Firestore with polling
+  // Real-time certificate listener - instant updates when certificate is ready
   useEffect(() => {
-    const fetchCertificate = async () => {
+    let unsubscribe: (() => void) | null = null;
+
+    const setupListener = async () => {
       try {
+        // First, find the pledge document
         const q = query(
           collection(db, "pledges"),
           where("fullName", "==", name),
           where("phone", "==", phone)
         )
         const snapshot = await getDocs(q)
+
         if (!snapshot.empty) {
           const doc = snapshot.docs[0]
+          const docId = doc.id
+          setPledgeId(docId)
+
+          // Check if certificate is already available
           const data = doc.data()
-          console.log("Pledge document data:", data)
-
-          setPledgeId(doc.id)
-
           if (data.certificateUrl) {
-            console.log("Certificate URL found:", data.certificateUrl)
+            console.log("Certificate URL already available:", data.certificateUrl)
             setCertificateUrl(data.certificateUrl)
-          } else {
-            console.log("Certificate URL not yet available")
+            return // No need for listener
           }
+
+          // Set up real-time listener for instant certificate detection
+          console.log("Setting up real-time listener for certificate...")
+          unsubscribe = onSnapshot(doc.ref, (docSnapshot) => {
+            const updatedData = docSnapshot.data()
+            if (updatedData?.certificateUrl) {
+              console.log("Certificate ready (real-time):", updatedData.certificateUrl)
+              setCertificateUrl(updatedData.certificateUrl)
+              // Clean up listener once we have the URL
+              if (unsubscribe) {
+                unsubscribe()
+                unsubscribe = null
+              }
+            }
+          }, (error) => {
+            console.error("Real-time listener error:", error)
+          })
         } else {
           console.log("No pledge document found")
         }
       } catch (err) {
-        console.error("Error fetching certificate:", err)
+        console.error("Error setting up certificate listener:", err)
       }
     }
 
-    fetchCertificate()
-    const pollInterval = setInterval(fetchCertificate, 3000)
-    const timeout = setTimeout(() => clearInterval(pollInterval), 30000)
+    setupListener()
+
+    // Timeout after 60 seconds
+    const timeout = setTimeout(() => {
+      if (unsubscribe) {
+        unsubscribe()
+        console.log("Certificate listener timed out")
+      }
+    }, 60000)
 
     return () => {
-      clearInterval(pollInterval)
+      if (unsubscribe) unsubscribe()
       clearTimeout(timeout)
     }
   }, [name, phone])

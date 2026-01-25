@@ -78,7 +78,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/privacy-policy"
+                  href="/privacy"
                   className="text-blue-200 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   {t("nav.privacy")}
@@ -146,7 +146,7 @@ export default function Footer() {
               Powered by IIIT Kottayam
             </p>
             <div className="flex items-center gap-3 sm:gap-4 text-blue-300 flex-wrap justify-center">
-              <Link href="/privacy-policy" className="hover:text-white active:text-white transition-colors">
+              <Link href="/privacy" className="hover:text-white active:text-white transition-colors">
                 {t("footer.privacyPolicy")}
               </Link>
               <span className="text-blue-500">|</span>
